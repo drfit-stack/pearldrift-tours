@@ -1,0 +1,2175 @@
+index.html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Drift Tours</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* Light Theme Variables */
+        :root {
+            --primary: #006b5c;
+            --primary-container: #7df8e5;
+            --secondary: #4a635e;
+            --secondary-container: #cce8e1;
+            --tertiary: #456179;
+            --tertiary-container: #c7e7ff;
+            --surface: #f8f9ff;
+            --surface-variant: #dae4e0;
+            --surface-container: #ecf2f0;
+            --outline: #6f7975;
+            --on-primary: #ffffff;
+            --on-surface: #191c1b;
+            --on-surface-variant: #3f4946;
+            --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --card-background: rgba(255, 255, 255, 0.7);
+            --hero-background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --footer-background: #191c1b;
+            --footer-text: #f8f9ff;
+            --floating-opacity: 0.1;
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --primary: #5ddcc6;
+            --primary-container: #00513f;
+            --secondary: #b0ccc6;
+            --secondary-container: #334b46;
+            --tertiary: #a2cbef;
+            --tertiary-container: #2d4860;
+            --surface: #0f1513;
+            --surface-variant: #3f4946;
+            --surface-container: #1a201e;
+            --outline: #899390;
+            --on-primary: #003831;
+            --on-surface: #e0e3e1;
+            --on-surface-variant: #bfc9c5;
+            --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --card-background: rgba(26, 32, 30, 0.8);
+            --hero-background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --footer-background: #0a0e0c;
+            --footer-text: #e0e3e1;
+            --floating-opacity: 0.05;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--on-surface);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--on-surface);
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            outline: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--surface-variant);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--on-surface);
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--surface-variant);
+        }
+
+        /* Nav Controls Container */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Left side container for logo and theme toggle */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Dynamic Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-background);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        nav > :last-child {
+            margin-left: auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--on-surface);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 48px;
+            line-height: 1;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 84px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--tertiary));
+            background-color: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 4vw, 20px);
+            margin-bottom: 48px;
+            color: var(--on-surface-variant);
+            animation: fadeInUp 1s ease-out 0.3s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Material 3 Button */
+        .cta-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 107, 92, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            outline: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: var(--floating-opacity);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: var(--tertiary);
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: var(--secondary);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--outline);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .feature-card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Tours Section */
+        .tours {
+            padding: 120px 0;
+            background: var(--surface-container);
+        }
+
+        .tours-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .tours h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .tour-card {
+            background: var(--card-background);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 2, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tour-image-slideshow {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .tour-image-slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .tour-image-slideshow img.active {
+            display: block;
+        }
+
+        .tour-image-slideshow .prev,
+        .tour-image-slideshow .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-32%);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .tour-image-slideshow .prev:hover,
+        .tour-image-slideshow .next:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .tour-image-slideshow .prev {
+            left: 8px;
+        }
+
+        .tour-image-slideshow .next {
+            right: 8px;
+        }
+
+        .tour-content {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 32px;
+            height: auto;
+        }
+
+        .tour-content h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .tour-content p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .tour-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .learn-more-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
+            outline: none;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .Contact-details-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
+            outline: none;
+            width: 100%;
+        }
+
+        .flex-center-gap {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .Contact-details-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 107, 92, 0.4);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .contact-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--outline);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: var(--primary-container);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .contact-card h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .contact-card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-background);
+            color: var(--footer-text);
+            padding: 64px 0 32px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-left {
+                gap: 8px;
+            }
+
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                padding: 6px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                /* keep menu within viewport height; account for header space */
+                height: calc(100vh);
+                /* translucent fallback so panel shows even when blur isn't supported */
+                background: var(--card-background, rgba(255,255,255,0.75));
+                /* ensure correct compositing for backdrop */
+                isolation: isolate;
+                /* sit above other content */
+                z-index: 1500;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 50px;
+                padding: 40px 20px;
+
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Enable backdrop-filter only when supported (use standard property to avoid
+               DevTools 'invalid property' noise for prefixed rules) */
+            @supports (backdrop-filter: blur(20px)) {
+                .nav-links {
+                    backdrop-filter: blur(20px);
+                }
+            }
+            .nav-links a {
+                font-size: 18px;
+                padding: 12px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 100px 20px 60px;
+            }
+            
+            .hero h1 {
+                margin-bottom: 16px;
+            }
+            
+            .hero p {
+                margin-bottom: 32px;
+            }
+            
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 14px;
+            }
+            
+            .features,
+            .tours {
+                padding: 80px 0;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 20px;
+            }
+            
+            .features h2,
+            .tours h2 {
+                margin-bottom: 48px;
+            }
+            
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 32px 24px;
+            }
+            
+            /* mobile floating-shape rules intentionally left as default (no mobile override)
+               — floating shapes remain desktop-defined only; index.html keeps the mobile tweaks */
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .footer-content {
+                padding: 0 20px;
+            }
+            
+            footer {
+                padding: 48px 0 24px;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                padding: 0 40px;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 40px;
+            }
+        }
+
+        /* Desktop: center the nav links */
+        @media (min-width: 769px) {
+            nav {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+            }
+
+            .nav-links {
+                justify-self: center;
+            }
+
+            .nav-controls {
+                justify-self: end;
+            }
+
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                padding: 8px;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .features h2,
+            .tours h2 {
+                font-size: 28px;
+            }
+            
+            .feature-card h3,
+            .tour-content h3 {
+                font-size: 18px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 24px 20px;
+            }
+            
+            .tour-image {
+                height: 160px;
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                width: 90%;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+        }
+
+        /* Shared back link styles (looks like nav links) */
+        .back-link,
+        .back-desktop a {
+            text-decoration: none;
+            color: var(--on-surface);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover,
+        .back-desktop a:hover {
+            color: var(--primary);
+        }
+
+        /* underline animation */
+        .back-link::after,
+        .back-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .back-link:hover::after,
+        .back-desktop a:hover::after {
+            width: 100%;
+        }
+
+        /* show/hide depending on screen size */
+        .back-mobile { display: none; }   /* hidden by default */
+        .back-desktop { display: list-item; } /* visible by default */
+
+        @media (max-width: 768px) {
+            .back-mobile { display: inline-block; margin-right: 12px; }
+            .back-desktop { display: none; } /* hide in mobile menu */
+        }
+        /* Social buttons in popup cards*/
+        .social-button {
+            background: #f0f0f0;
+            color: var(--on-primary);
+            border: none;
+            padding: 0;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0, 107, 92, 0.25);
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .social-button img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .social-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.35);
+            background: var(--primary-container);
+        }
+
+        .social-button:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+        #close.social-button {
+           width: 100%;
+        }
+
+        /* Buttons container */
+        .modal-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        /* Footer section */
+        .modal-footer {
+            margin-top: 18px;
+        }
+
+        /* Close button */
+        .close-btn {
+            width: 100%;
+        }
+
+        /* Modal background */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        /* Modal box */
+        .modal-content {
+            background: var(--surface);
+            color: var(--on-surface);
+            padding: 40px 32px;
+            border-radius: 28px;
+            text-align: center;
+            width: 380px;
+            max-width: 96vw;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Title + description */
+        .modal-content h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--on-surface-variant);
+            width: 100%;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* Modal highlights list styling */
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 18px 0 0 0;
+            max-width: 100%;
+            text-align: left;
+        }
+
+        .modal-content ul li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: var(--on-surface-variant);
+        }
+
+        .modal-content ul li::before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 2rem;
+            color: var(--outline);
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--surface-variant);
+            color: var(--primary);
+        }
+
+        /* Carousel Lightbox Styles */
+        #lightboxModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: rgba(32, 33, 36, 0.82);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        #lightboxModal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 97vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border-radius: 0;
+            box-shadow: none;
+            animation: fadeInScale 0.4s cubic-bezier(0.4,0,0.2,1);
+            overflow: visible;
+        }
+
+        .lightbox-image-wrapper {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .lightbox-arrows-bottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            width: auto;
+            margin-top: 8px;
+            height: 48px;
+            box-sizing: border-box;
+            pointer-events: auto;
+        }
+
+        .lightbox-arrow {
+            background: var(--surface);
+            color: var(--primary);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-arrow:hover {
+            background: var(--primary);
+            color: var(--on-primary);
+        }
+
+        #lightboxImage {
+            max-width: 96vw;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            background: none;
+            border: none;
+            transition: box-shadow 0.2s, border 0.2s;
+            display: block;
+            margin: 0;
+            pointer-events: auto;
+            border-radius: 28px;
+        }
+
+        /* Temporary image used for animated lightbox transitions */
+        .lightbox-temp-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 28px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            transition: transform 260ms cubic-bezier(0.22,0.61,0.36,1);
+            z-index: 1;
+            pointer-events: none;
+            transform: translateX(0%);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #lightboxClose {
+            position: absolute;
+            top: 13px;
+            right: 10px;
+            font-size: 2rem;
+            color: var(--outline);
+            background: var(--surface);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            transition: color 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #lightboxClose:hover {
+            background: var(--primary);
+            color: var(--on-primary);
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-content {
+                flex-direction: column !important;
+                justify-content: center !important;
+            }
+
+            .lightbox-image-wrapper {
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                height: auto !important;
+                min-height: 0 !important;
+                flex: 0 0 auto !important;
+            }
+
+            .lightbox-arrows-bottom {
+                position: fixed !important;
+                left: 0;
+                right: 0;
+                bottom: 22vh;
+                margin: 0 auto !important;
+                z-index: 3001;
+                justify-content: center !important;
+                width: 100vw !important;
+                background: none !important;
+                pointer-events: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            #lightboxImage {
+                max-width: 64vw !important;
+                max-height: 78vh !important;
+                width: auto !important;
+                height: auto !important;
+                box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="logo">Pearl Drift</div>
+            </div>
+            <div class="nav-controls">
+                <!-- Mobile Back button -->
+                <a href="javascript:history.back()" class="back-link back-mobile">← Back</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <img class="theme-icon" src="images/sm/moon.gif" style="width: 36px; height: 36px;">
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span id="menu-icon">☰</span>
+                </button>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <!-- Desktop Back button -->
+                <li class="back-desktop"><a href="javascript:history.back()">← Back</a></li>
+                <li><a href="index.html#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="index.html#tours" onclick="closeMobileMenu()">Tours</a></li>
+                <li><a href="index.html#about" onclick="closeMobileMenu()">About</a></li>
+                <li><a href="index.html" onclick="closeMobileMenu()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+
+    <section class="tours" id="tours">
+        <div class="tours-container">
+            <h2>Local Paradise</h2>
+            <div class="tours-grid">
+
+                <!-- card1 -->
+                <div class="tour-card">
+                   <div class="tour-image-slideshow">
+                        <img src="images/maani/maani1.jpg" class="slide active" loading="lazy" onclick="openLightboxModal(['images/maani/maani1.jpg','images/maani/maani2.jpg','images/maani/maani3.jpg'], 0, this)">
+                        <img src="images/maani/maani2.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/maani/maani1.jpg','images/maani/maani2.jpg','images/maani/maani3.jpg'], 1, this)">
+                        <img src="images/maani/maani3.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/maani/maani1.jpg','images/maani/maani2.jpg','images/maani/maani3.jpg'], 2, this)">
+
+                        <button class="prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
+                        <button class="next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
+                    </div>
+
+                    <div class="tour-content">
+                        <h3>Princess Maani</h3>
+                        <p>Princess Maani is a 41 m, 14-cabin liveaboard for 28 guests, featuring two jacuzzis, a sun deck and an open-air cocktail bar. A dedicated dive dhoni and free Nitrox keep diving seamless, while a European-chef kitchen, kayaks/SUP and massage elevate your surface time. </p>
+                        <div class="tour-price">From $2,499</div>
+                        <div class="flex-center-gap" style="margin-top:auto;">
+                            <button class="Contact-details-button"  onclick="openDetailsModal('maani')">Details</button>
+                            <button class="Contact-details-button"  onclick="openContactModal()">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card2  -->
+                <div class="tour-card">
+                   <div class="tour-image-slideshow">
+                        <img src="images/sachika/sachika1.jpg" class="slide active" loading="lazy" onclick="openLightboxModal(['images/sachika/sachika1.jpg','images/sachika/sachika2.jpg','images/sachika/sachika3.jpg'], 0, this)">
+                        <img src="images/sachika/sachika2.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/sachika/sachika1.jpg','images/sachika/sachika2.jpg','images/sachika/sachika3.jpg'], 1, this)">
+                        <img src="images/sachika/sachika3.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/sachika/sachika1.jpg','images/sachika/sachika2.jpg','images/sachika/sachika3.jpg'], 2, this)">
+
+                        <button class="prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
+                        <button class="next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Sachika</h3>
+                        <p>Sachika is an award-winning Maldivian dive safari yacht, combining adventure and elegance. With spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni, she offers seamless comfort and world-class diving with mantas, sharks, and whale sharks across the atolls.</p>
+                        <div class="tour-price">From $1,899</div>
+                        <div class="flex-center-gap">
+                            <button class="Contact-details-button"  onclick="openDetailsModal('sachika')">Details</button>
+                            <button class="Contact-details-button"  onclick="openContactModal()">Contact Us</button>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal for Enlarged Images -->
+    <div id="lightboxModal">
+        <div class="lightbox-content">
+            <button id="lightboxClose" onclick="closeLightboxModal()" aria-label="Close lightbox">&times;</button>
+            <div class="lightbox-image-wrapper">
+            <img id="lightboxImage" src="" alt="Tour image" loading="eager">
+            </div>
+            <div class="lightbox-arrows-bottom">
+                <button id="lightboxPrev" class="lightbox-arrow" onclick="lightboxPrev()" aria-label="Previous image">&#10094;</button>
+                <button id="lightboxNext" class="lightbox-arrow" onclick="lightboxNext()" aria-label="Next image">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal" style="display:none;">
+        <div class="modal-content" style="position:relative;">
+            <span class="modal-close" onclick="closeDetailsModal()" style="position:absolute;top:12px;right:18px;font-size:2rem;cursor:pointer;">&times;</span>
+            <h2 id="detailsModalTitle">Tour Details</h2>
+            <div id="detailsModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Contact Options Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content" style="position:relative;">
+            <span class="modal-close" onclick="closeContactModal()" style="position:absolute;top:12px;right:18px;font-size:2rem;cursor:pointer;">&times;</span>
+            <h2 id="modalTitle">Contact Us</h2>
+            <p id="modalDescription">Choose how you want to reach us:</p>
+
+            <div class="modal-buttons">
+                <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg" style="width:25px; height:25px;"></button>
+                <button class="social-button" onclick="redirectContact('telegram')"><img src="images/ico/contact/tele.svg" style="width:25px; height:25px;"></button>
+                <button class="social-button" onclick="redirectContact('whatsapp')"><img src="images/ico/contact/wha.svg" style="width:25px; height:25px;"></button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#tours">Tours</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contactUs">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <p>&copy; 2025 Pearl Drift. All rights reserved. | Creating unforgettable journeys since 2025</p>
+        </div>
+    </footer>
+
+    
+</body>
+<script>
+        // Theme Management
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = newTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+            });
+            
+            // Save theme preference
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = savedTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+            });
+        }
+
+        // Mobile Menu Management
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            const opening = !navLinks.classList.contains('active');
+
+            if (opening) {
+                // Move the menu to document.body so it's outside the header's stacking context
+                // This allows backdrop-filter to see the page behind the header.
+                if (navLinks.parentElement !== document.body) document.body.appendChild(navLinks);
+                navLinks.classList.add('active');
+                menuIcon.textContent = '✕';
+            } else {
+                // Close and reattach back into the header nav so markup is preserved
+                navLinks.classList.remove('active');
+                menuIcon.textContent = '☰';
+                if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            navLinks.classList.remove('active');
+            menuIcon.textContent = '☰';
+            if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navLinks = document.getElementById('nav-links');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.feature-card, .tour-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add click interactions for navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href') || '';
+
+                // If the link uses a javascript: handler (e.g. back button), or
+                // it's not a fragment link (#id), allow default behavior.
+                if (href.startsWith('javascript:') || !href.startsWith('#')) {
+                    return; // let the browser handle it (e.g. history.back())
+                }
+
+                // Otherwise it's an in-page anchor: smooth-scroll to the section
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    scrollToSection(targetId);
+                }
+
+                // Close mobile menu when a nav item is selected on small screens
+                if (window.innerWidth <= 768) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Details Modal logic
+        function openDetailsModal(tourType) {
+            const detailsModalContent = {
+                maani: {
+                    title: "Princess Maani",
+                    description: "Princess Maani offers a unique blend of luxury and adventure. Enjoy exclusive spa treatments, gourmet dining, and curated excursions designed for discerning travelers.",
+                    highlights: [
+                        "Exclusive spa treatments",
+                        "Gourmet dining",
+                        "Curated excursions",
+                        "Personalized service"
+                    ]
+                },
+                sachika: {
+                    title: "Sachika",
+                    description: "Sachika's details modal features information tailored for guests seeking a premium dive experience, including private briefings and custom itineraries.",
+                    highlights: [
+                        "Private dive briefings",
+                        "Custom itineraries",
+                        "Luxury amenities",
+                        "Expert guides"
+                    ]
+                }
+            };
+            const tour = detailsModalContent[tourType];
+            document.getElementById('detailsModalTitle').textContent = tour ? tour.title : 'Tour Details';
+            let bodyHtml = '';
+            if (tour) {
+                bodyHtml += `<div>${tour.description}</div>`;
+                if (tour.highlights && tour.highlights.length) {
+                    bodyHtml += '<ul style="text-align:left;margin:16px auto;max-width:300px;">';
+                    tour.highlights.forEach(item => {
+                        bodyHtml += `<li>${item}</li>`;
+                    });
+                    bodyHtml += '</ul>';
+                }
+            }
+            document.getElementById('detailsModalBody').innerHTML = bodyHtml;
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').style.display = 'none';
+        }
+
+        // Contact Modal logic
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        // Image slider button functions
+        function changeSlide(button, direction) {
+            const slideshow = button.parentElement;
+            try { slideshow._dragging = false; } catch (e) {}
+            try { slideshow._lastDeltaX = undefined; } catch (e) {}
+            buttonSlide(slideshow, direction);
+        }
+
+        // Deterministic animation used by prev/next buttons
+        function buttonSlide(slideshow, direction) {
+            const slides = Array.from(slideshow.querySelectorAll('.slide'));
+            if (!slides.length) return;
+            if (slideshow._animating) return;
+            slideshow._animating = true;
+
+            const cw = slideshow.clientWidth || slideshow.offsetWidth || 300;
+            const currentIndex = slides.findIndex(s => s.classList.contains('active'));
+            if (currentIndex < 0) {
+                slides[0].classList.add('active');
+            }
+            const curIndex = slides.findIndex(s => s.classList.contains('active'));
+            const targetIndex = (curIndex + direction + slides.length) % slides.length;
+            if (curIndex === targetIndex) { slideshow._animating = false; return; }
+
+            const current = slides[curIndex];
+            const target = slides[targetIndex];
+
+            slides.forEach(s => {
+                s.style.transition = 'none';
+                s.style.display = 'none';
+                s.style.position = 'absolute';
+                s.style.top = '0';
+                s.style.left = '0';
+                s.style.width = '100%';
+                s.style.transform = '';
+                s.style.zIndex = '';
+            });
+
+            current.style.display = 'block';
+            current.style.zIndex = '2';
+            current.style.transform = 'translateX(0)';
+
+            target.style.display = 'block';
+            target.style.zIndex = '1';
+            target.style.transform = `translateX(${direction > 0 ? cw : -cw}px)`;
+
+            void current.offsetWidth;
+            current.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)';
+            target.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)';
+
+            current.style.transform = `translateX(${direction > 0 ? -cw : cw}px)`;
+            target.style.transform = 'translateX(0)';
+
+            const onTransitionEnd = () => {
+                current.classList.remove('active');
+                target.classList.add('active');
+
+                slides.forEach(s => {
+                    s.style.transition = '';
+                    s.style.position = '';
+                    s.style.top = '';
+                    s.style.left = '';
+                    s.style.width = '';
+                    s.style.transform = '';
+                    s.style.zIndex = '';
+                    if (!s.classList.contains('active')) s.style.display = 'none';
+                });
+
+                current.removeEventListener('transitionend', onTransitionEnd);
+                slideshow._animating = false;
+            };
+
+            current.addEventListener('transitionend', onTransitionEnd);
+        }
+
+        // Lightbox Modal Logic
+        let lightboxImages = [];
+        let lightboxIndex = 0;
+
+        function preventScroll(e) { e.preventDefault(); }
+        function preventScrollKeys(e) {
+            const blocked = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'];
+            if (blocked.includes(e.key) || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+            }
+        }
+
+        function openLightboxModal(images, index, clickedEl) {
+            lightboxImages = images || [];
+
+            if (clickedEl && clickedEl.getAttribute) {
+                try {
+                    const clickedSrc = clickedEl.getAttribute('src') || clickedEl.src;
+                    const resolved = lightboxImages.findIndex(i => i === clickedSrc);
+                    if (resolved >= 0) index = resolved;
+                } catch (e) {}
+            }
+
+            lightboxIndex = (typeof index === 'number' && index >= 0) ? index : 0;
+
+            const lbImg = document.getElementById('lightboxImage');
+            if (lbImg) {
+                try { lbImg.style.visibility = ''; } catch (e) {}
+                lbImg.src = lightboxImages[lightboxIndex] || '';
+            }
+            const lbModal = document.getElementById('lightboxModal');
+            if (lbModal) lbModal.classList.add('active');
+            updateLightboxArrows();
+
+            try {
+                document.body.style.overflow = 'hidden';
+                document.addEventListener('touchmove', preventScroll, { passive: false });
+                document.addEventListener('wheel', preventScroll, { passive: false });
+                document.addEventListener('keydown', preventScrollKeys, false);
+            } catch (err) {
+                document.addEventListener('touchmove', preventScroll, false);
+                document.addEventListener('wheel', preventScroll, false);
+                document.addEventListener('keydown', preventScrollKeys, false);
+            }
+        }
+
+        function closeLightboxModal() {
+            const lbModal = document.getElementById('lightboxModal');
+            if (lbModal) lbModal.classList.remove('active');
+
+            try {
+                const wrapper = document.getElementById('lightboxImage') && document.getElementById('lightboxImage').parentElement;
+                if (wrapper) {
+                    const existing = wrapper.querySelectorAll('.lightbox-temp-image');
+                    existing.forEach(t => t.parentElement && t.parentElement.removeChild(t));
+                }
+            } catch (err) {}
+
+            try { lightboxImages = []; } catch (e) {}
+            try { lightboxIndex = 0; } catch (e) {}
+            try { if (lbModal) lbModal._animating = false; } catch (e) {}
+            try {
+                const lbImg = document.getElementById('lightboxImage');
+                if (lbImg) lbImg.style.visibility = '';
+            } catch (e) {}
+
+            document.body.style.overflow = '';
+            document.removeEventListener('touchmove', preventScroll);
+            document.removeEventListener('wheel', preventScroll);
+            document.removeEventListener('keydown', preventScrollKeys);
+        }
+
+        function lightboxPrev() { lightboxSlide(-1); }
+        function lightboxNext() { lightboxSlide(1); }
+
+        function lightboxSlide(direction) {
+            const lbModal = document.getElementById('lightboxModal');
+            const mainImg = document.getElementById('lightboxImage');
+            const wrapper = mainImg.parentElement;
+            if (!lbModal || !mainImg || !wrapper) return;
+            if (lbModal._animating) return;
+            if (!lightboxImages || lightboxImages.length < 1) return;
+
+            const len = lightboxImages.length;
+            const targetIndex = (lightboxIndex + direction + len) % len;
+            if (targetIndex === lightboxIndex) return;
+
+            lbModal._animating = true;
+            const existing = wrapper.querySelectorAll('.lightbox-temp-image');
+            existing.forEach(t => t.parentElement && t.parentElement.removeChild(t));
+
+            const tempCurrent = document.createElement('img');
+            const tempNext = document.createElement('img');
+            tempCurrent.className = 'lightbox-temp-image';
+            tempNext.className = 'lightbox-temp-image';
+            tempCurrent.src = mainImg.src;
+            tempNext.src = lightboxImages[targetIndex];
+            tempCurrent.alt = mainImg.alt || '';
+            tempNext.alt = mainImg.alt || '';
+
+            [tempCurrent, tempNext].forEach(img => {
+                img.style.position = 'absolute';
+                img.style.top = '0';
+                img.style.left = '0';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'contain';
+                img.style.pointerEvents = 'none';
+            });
+
+            tempCurrent.style.transform = 'translateX(0%)';
+            tempCurrent.style.zIndex = '2';
+            tempNext.style.transform = `translateX(${direction > 0 ? 100 : -100}%)`;
+            tempNext.style.zIndex = '1';
+
+            wrapper.appendChild(tempCurrent);
+            wrapper.appendChild(tempNext);
+
+            const startAnim = () => {
+                mainImg.style.visibility = 'hidden';
+                void tempCurrent.offsetWidth;
+
+                tempCurrent.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)';
+                tempNext.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)';
+                tempCurrent.style.transform = `translateX(${direction > 0 ? -100 : 100}%)`;
+                tempNext.style.transform = 'translateX(0%)';
+
+                const onFinish = () => {
+                    const stillOpen = lbModal && lbModal.classList && lbModal.classList.contains('active');
+                    if (!stillOpen) {
+                        if (tempCurrent.parentElement) tempCurrent.parentElement.removeChild(tempCurrent);
+                        if (tempNext.parentElement) tempNext.parentElement.removeChild(tempNext);
+                        lbModal._animating = false;
+                        return;
+                    }
+
+                    mainImg.src = lightboxImages[targetIndex];
+                    lightboxIndex = targetIndex;
+                    updateLightboxArrows();
+
+                    if (tempCurrent.parentElement) tempCurrent.parentElement.removeChild(tempCurrent);
+                    if (tempNext.parentElement) tempNext.parentElement.removeChild(tempNext);
+
+                    mainImg.style.visibility = '';
+                    tempCurrent.removeEventListener('transitionend', onFinish);
+                    lbModal._animating = false;
+                };
+
+                tempCurrent.addEventListener('transitionend', onFinish, { once: true });
+            };
+
+            if (tempNext.complete) startAnim(); else tempNext.onload = startAnim;
+        }
+
+        function updateLightboxArrows() {
+            document.getElementById('lightboxPrev').style.display = lightboxImages.length > 1 ? 'block' : 'none';
+            document.getElementById('lightboxNext').style.display = lightboxImages.length > 1 ? 'block' : 'none';
+        }
+
+        // Setup modal close on outside click
+        function setupModalCloseOnOutsideClick() {
+            const detailsModal = document.getElementById('detailsModal');
+            if (detailsModal) {
+                detailsModal.addEventListener('mousedown', function(e) {
+                    if (e.target === detailsModal) closeDetailsModal();
+                });
+            }
+            const contactModal = document.getElementById('contactModal');
+            if (contactModal) {
+                contactModal.addEventListener('mousedown', function(e) {
+                    if (e.target === contactModal) closeContactModal();
+                });
+            }
+            const lightboxModal = document.getElementById('lightboxModal');
+            if (lightboxModal) {
+                lightboxModal.addEventListener('mousedown', function(e) {
+                    if (e.target === lightboxModal) closeLightboxModal();
+                });
+            }
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeDetailsModal();
+                    closeContactModal();
+                    closeLightboxModal();
+                }
+            });
+        }
+
+        // Touch / Swipe Support for slideshows and lightbox
+        function setupTouchNavigation() {
+            // Slideshow swipe on cards
+            document.querySelectorAll('.tour-image-slideshow').forEach(slideshow => {
+                let startX = 0;
+                let deltaX = 0;
+                let isTouch = false;
+
+                slideshow.addEventListener('touchstart', function(e) {
+                    if (!e.touches || e.touches.length === 0) return;
+                    // don't start touch interactions while a slide animation is running
+                    if (slideshow._animating) return;
+                    // if the touch started on the prev/next buttons, don't treat it as a drag start
+                    if (e.target && e.target.closest && e.target.closest('.prev, .next')) return;
+                    startX = e.touches[0].clientX;
+                    deltaX = 0;
+                    isTouch = true;
+                    // prepare slides for interactive drag
+                    const slides = Array.from(slideshow.querySelectorAll('.slide'));
+                    const cw = slideshow.clientWidth || slideshow.offsetWidth || 300;
+                    const currentIndex = slides.findIndex(s => s.classList.contains('active'));
+                    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    const nextIndex = (currentIndex + 1) % slides.length;
+
+                    // hide all slides first
+                    slides.forEach(s => {
+                        s.style.transition = 'none';
+                        s.style.display = 'none';
+                        s.style.position = 'absolute';
+                        s.style.top = '0';
+                        s.style.left = '0';
+                        s.style.width = '100%';
+                        s.style.transform = '';
+                        s.style.zIndex = '';
+                    });
+
+                    // only show and position prev, current and next slides
+                    const current = slides[currentIndex];
+                    const prev = slides[prevIndex];
+                    const next = slides[nextIndex];
+                    if (prev) {
+                        prev.style.display = 'block';
+                        prev.style.transform = `translateX(${-cw}px)`;
+                        prev.style.zIndex = '1';
+                    }
+                    if (current) {
+                        current.style.display = 'block';
+                        current.style.transform = `translateX(0px)`;
+                        current.style.zIndex = '2';
+                    }
+                    if (next) {
+                        next.style.display = 'block';
+                        next.style.transform = `translateX(${cw}px)`;
+                        next.style.zIndex = '1';
+                    }
+
+                    // mark that this slideshow is being dragged interactively
+                    slideshow._dragging = true;
+                    slideshow._lastDeltaX = 0;
+                }, {passive: true});
+
+                slideshow.addEventListener('touchmove', function(e) {
+                    if (!isTouch || !e.touches || e.touches.length === 0) return;
+                    if (slideshow._animating) return;
+                    deltaX = e.touches[0].clientX - startX;
+
+                    // interactive translate of current/adjacent slides
+                    const slides = Array.from(slideshow.querySelectorAll('.slide'));
+                    const cw = slideshow.clientWidth || slideshow.offsetWidth || 300;
+                    const currentIndex = slides.findIndex(s => s.classList.contains('active'));
+                    if (currentIndex < 0) return;
+                    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    const nextIndex = (currentIndex + 1) % slides.length;
+
+                    const current = slides[currentIndex];
+                    const prev = slides[prevIndex];
+                    const next = slides[nextIndex];
+
+                    // position neighbors
+                    prev.style.transform = `translateX(${ -cw + deltaX }px)`;
+                    current.style.transform = `translateX(${ deltaX }px)`;
+                    next.style.transform = `translateX(${ cw + deltaX }px)`;
+                }, {passive: true});
+
+                slideshow.addEventListener('touchend', function(e) {
+                    if (!isTouch) return;
+                    if (slideshow._animating) return;
+                    isTouch = false;
+                    const threshold = 60; // px
+                    const slides = Array.from(slideshow.querySelectorAll('.slide'));
+                    const cw = slideshow.clientWidth || slideshow.offsetWidth || 300;
+                    const currentIndex = slides.findIndex(s => s.classList.contains('active'));
+                    if (currentIndex < 0) return;
+                    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    const nextIndex = (currentIndex + 1) % slides.length;
+                    const current = slides[currentIndex];
+                    const prev = slides[prevIndex];
+                    const next = slides[nextIndex];
+
+                    // determine action
+                    if (Math.abs(deltaX) > threshold) {
+                        const dir = deltaX < 0 ? 1 : -1;
+                        // perform a single, explicit animation for current and target slides
+                        if (slideshow._animating) return;
+                        slideshow._animating = true;
+
+                        // choose indices
+                        const targetIndex = (currentIndex + dir + slides.length) % slides.length;
+                        const target = slides[targetIndex];
+
+                        // Ensure target is visible and stacked correctly
+                        target.style.display = 'block';
+                        target.style.zIndex = '1';
+                        current.style.zIndex = '2';
+
+                        // animate both slides to their final positions
+                        [current, target].forEach(s => s.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)');
+                        current.style.transform = `translateX(${dir > 0 ? -cw : cw}px)`;
+                        target.style.transform = 'translateX(0)';
+
+                        // after animation, finalize active class and cleanup
+                        const finalize = () => {
+                            // set active class first so hide logic is accurate
+                            current.classList.remove('active');
+                            target.classList.add('active');
+
+                            // hide non-active slides and clear inline styles
+                            slides.forEach(s => {
+                                s.style.transition = '';
+                                s.style.position = '';
+                                s.style.top = '';
+                                s.style.left = '';
+                                s.style.width = '';
+                                s.style.transform = '';
+                                s.style.zIndex = '';
+                                if (!s.classList.contains('active')) s.style.display = 'none';
+                            });
+
+                            slideshow._animating = false;
+                            slideshow._dragging = false;
+                            slideshow._lastDeltaX = undefined;
+                            current.removeEventListener('transitionend', finalize);
+                        };
+
+                        current.addEventListener('transitionend', finalize);
+                    } else {
+                        // small move -> revert back
+                        [prev, current, next].forEach(s => {
+                            if (!s) return;
+                            s.style.transition = 'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)';
+                            s.style.transform = '';
+                        });
+
+                        // after revert, cleanup inline styles
+                        const cleanup = () => {
+                            slides.forEach(s => {
+                                s.style.transition = '';
+                                if (!s.classList.contains('active')) s.style.display = 'none';
+                                s.style.position = '';
+                                s.style.top = '';
+                                s.style.left = '';
+                                s.style.width = '';
+                                s.style.transform = '';
+                            });
+                        };
+                        current.addEventListener('transitionend', cleanup, { once: true });
+                        // clear dragging flag
+                        slideshow._dragging = false;
+                    }
+                }, {passive: true});
+            });
+
+            // Lightbox swipe handling (interactive, single-step; mirrors card slideshow behavior)
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImage');
+            if (lightboxModal && lightboxImg) {
+                let sx = 0, dx = 0, moving = false;
+                let tempPrev = null, tempCur = null, tempNext = null;
+
+                const start = (e) => {
+                    if (!e.touches || e.touches.length === 0) return;
+                    if (lightboxModal._animating) return;
+                    sx = e.touches[0].clientX;
+                    dx = 0;
+                    moving = true;
+
+                    // prepare three temp images (prev/current/next) that cover the wrapper
+                    const wrapper = lightboxImg.parentElement;
+                    const imgs = lightboxImages || [];
+                    if (!imgs.length) return;
+                    const len = imgs.length;
+                    const cur = lightboxIndex;
+                    const prev = (cur - 1 + len) % len;
+                    const next = (cur + 1) % len;
+
+                    // cleanup any leftover temps (including temps left by button navigation)
+                    const existingTemps = wrapper.querySelectorAll('.lightbox-temp-image');
+                    existingTemps.forEach(t => t.parentElement && t.parentElement.removeChild(t));
+                    tempPrev = tempCur = tempNext = null;
+                    tempPrev = document.createElement('img');
+                    tempCur = document.createElement('img');
+                    tempNext = document.createElement('img');
+                    [tempPrev, tempCur, tempNext].forEach(t => t.className = 'lightbox-temp-image');
+                    tempPrev.src = imgs[prev];
+                    tempCur.src = imgs[cur];
+                    tempNext.src = imgs[next];
+
+                    // size/position to cover wrapper
+                    [tempPrev, tempCur, tempNext].forEach(img => {
+                        img.style.position = 'absolute';
+                        img.style.top = '0';
+                        img.style.left = '0';
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                        img.style.objectFit = 'contain';
+                        img.style.pointerEvents = 'none';
+                        img.style.transition = 'none';
+                    });
+
+                    tempPrev.style.transform = 'translateX(-100%)';
+                    tempCur.style.transform = 'translateX(0%)';
+                    tempNext.style.transform = 'translateX(100%)';
+                    tempCur.style.zIndex = '2';
+                    tempPrev.style.zIndex = '1';
+                    tempNext.style.zIndex = '1';
+
+                    wrapper.appendChild(tempPrev);
+                    wrapper.appendChild(tempCur);
+                    wrapper.appendChild(tempNext);
+                    lightboxImg.style.visibility = 'hidden';
+                };
+
+                const move = (e) => {
+                    if (!moving || !e.touches || e.touches.length === 0) return;
+                    dx = e.touches[0].clientX - sx;
+                    const wrapper = lightboxImg.parentElement;
+                    const cw = wrapper.clientWidth || window.innerWidth || 300;
+                    const pct = (dx / cw) * 100;
+                    if (tempPrev && tempCur && tempNext) {
+                        tempPrev.style.transform = `translateX(${ -100 + pct }%)`;
+                        tempCur.style.transform = `translateX(${ pct }%)`;
+                        tempNext.style.transform = `translateX(${ 100 + pct }%)`;
+                    }
+                };
+
+                const end = (e) => {
+                    if (!moving) return;
+                    moving = false;
+                    const wrapper = lightboxImg.parentElement;
+                    const cw = wrapper.clientWidth || window.innerWidth || 300;
+                    const threshold = Math.min(80, cw * 0.18); // px or 18% width
+                    if (!tempCur) {
+                        // nothing to do
+                        return;
+                    }
+
+                    if (Math.abs(dx) > threshold) {
+                        const dir = dx < 0 ? 1 : -1;
+                        // mark animating so other interactions are blocked during the transition
+                        lightboxModal._animating = true;
+                            // ensure target image is loaded first
+                            const ensureLoadedAndAnimate = () => {
+                                tempCur.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)';
+                                tempPrev.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)';
+                                tempNext.style.transition = 'transform 260ms cubic-bezier(0.22,0.61,0.36,1)';
+
+                                tempCur.style.transform = `translateX(${ dir > 0 ? -100 : 100 }%)`;
+                                if (dir > 0) tempNext.style.transform = 'translateX(0%)'; else tempPrev.style.transform = 'translateX(0%)';
+
+                                const onFinish = () => {
+                                    // determine whether modal is still open. If it was closed while
+                                    // the transition was running, avoid mutating the lightbox state
+                                    // (this prevents stale callbacks from setting the wrong image).
+                                    const stillOpen = lightboxModal && lightboxModal.classList && lightboxModal.classList.contains('active');
+                                    if (!stillOpen) {
+                                        [tempPrev, tempCur, tempNext].forEach(t => { if (t && t.parentElement) t.parentElement.removeChild(t); });
+                                        tempPrev = tempCur = tempNext = null;
+                                        lightboxImg.style.visibility = '';
+                                        lightboxModal._animating = false;
+                                        return;
+                                    }
+
+                                    // determine new index and update main image
+                                    const len = (lightboxImages || []).length;
+                                    lightboxIndex = (lightboxIndex + dir + len) % len;
+                                    lightboxImg.src = lightboxImages[lightboxIndex];
+                                    updateLightboxArrows();
+
+                                    // cleanup temps and restore main image
+                                    [tempPrev, tempCur, tempNext].forEach(t => { if (t && t.parentElement) t.parentElement.removeChild(t); });
+                                    tempPrev = tempCur = tempNext = null;
+                                    lightboxImg.style.visibility = '';
+                                    lightboxModal._animating = false;
+                                };
+
+                                tempCur.addEventListener('transitionend', onFinish, { once: true });
+                            };
+
+                            if ((dir > 0 && tempNext && tempNext.complete) || (dir < 0 && tempPrev && tempPrev.complete)) {
+                                ensureLoadedAndAnimate();
+                            } else {
+                                const imgToWait = dir > 0 ? tempNext : tempPrev;
+                                if (imgToWait) imgToWait.onload = ensureLoadedAndAnimate;
+                                else ensureLoadedAndAnimate();
+                            }
+                    } else {
+                        // revert to center
+                        tempCur.style.transition = 'transform 180ms cubic-bezier(0.22,0.61,0.36,1)';
+                        tempPrev.style.transition = 'transform 180ms cubic-bezier(0.22,0.61,0.36,1)';
+                        tempNext.style.transition = 'transform 180ms cubic-bezier(0.22,0.61,0.36,1)';
+                        tempPrev.style.transform = 'translateX(-100%)';
+                        tempCur.style.transform = 'translateX(0%)';
+                        tempNext.style.transform = 'translateX(100%)';
+
+                        const onRevert = () => {
+                            [tempPrev, tempCur, tempNext].forEach(t => { if (t && t.parentElement) t.parentElement.removeChild(t); });
+                            tempPrev = tempCur = tempNext = null;
+                            lightboxImg.style.visibility = '';
+                            lightboxModal._animating = false;
+                        };
+
+                        tempCur.addEventListener('transitionend', onRevert, { once: true });
+                    }
+                    dx = 0;
+                };
+
+                // Attach to image and modal (cover different devices)
+                lightboxImg.addEventListener('touchstart', start, {passive: true});
+                lightboxImg.addEventListener('touchmove', move, {passive: true});
+                lightboxImg.addEventListener('touchend', end, {passive: true});
+
+                lightboxModal.addEventListener('touchstart', start, {passive: true});
+                lightboxModal.addEventListener('touchmove', move, {passive: true});
+                lightboxModal.addEventListener('touchend', end, {passive: true});
+            }
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            setupModalCloseOnOutsideClick();
+            setupTouchNavigation();
+        });
+
+        // Handle resize events
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // Redirect to chosen contact method
+function redirectContact(method) {
+    if (method === 'email') {
+        // Simple mobile detection
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // Open default mobile email app
+            window.location.href = 'mailto:tinyislets@gmail.com?subject=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.';
+        } else {
+            // Open Gmail compose in desktop browser
+            window.open(
+                'https://mail.google.com/mail/?view=cm&fs=1&to=tinyislets@gmail.com&su=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.',
+                '_blank'
+            );
+        }
+    } else if (method === 'telegram') {
+        window.open('https://t.me/pearlDrift', '_blank');
+    } else if (method === 'whatsapp') {
+        window.open('https://wa.me/message/65AGSTP42DCWM1', '_blank'); // Replace with your WhatsApp number
+    }
+}
+    </script>
+</html>

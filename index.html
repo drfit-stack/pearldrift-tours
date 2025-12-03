@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Drift Tours</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* Light Theme Variables */
+        :root {
+            --primary: #006b5c;
+            --primary-container: #7df8e5;
+            --secondary: #4a635e;
+            --secondary-container: #cce8e1;
+            --tertiary: #456179;
+            --tertiary-container: #c7e7ff;
+            --surface: #f8f9ff;
+            --surface-variant: #dae4e0;
+            --surface-container: #ecf2f0;
+            --outline: #6f7975;
+            --on-primary: #ffffff;
+            --on-surface: #191c1b;
+            --on-surface-variant: #3f4946;
+            --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --card-background: rgba(255, 255, 255, 0.7);
+            --hero-background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --footer-background: #191c1b;
+            --footer-text: #f8f9ff;
+            --floating-opacity: 0.1;
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --primary: #5ddcc6;
+            --primary-container: #00513f;
+            --secondary: #b0ccc6;
+            --secondary-container: #334b46;
+            --tertiary: #a2cbef;
+            --tertiary-container: #2d4860;
+            --surface: #0f1513;
+            --surface-variant: #3f4946;
+            --surface-container: #1a201e;
+            --outline: #899390;
+            --on-primary: #003831;
+            --on-surface: #e0e3e1;
+            --on-surface-variant: #bfc9c5;
+            --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --card-background: rgba(26, 32, 30, 0.8);
+            --hero-background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --footer-background: #0a0e0c;
+            --footer-text: #e0e3e1;
+            --floating-opacity: 0.05;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--on-surface);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--on-surface);
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            outline: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--surface-variant);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--on-surface);
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--surface-variant);
+        }
+
+        /* Nav Controls Container */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Left side container for logo and theme toggle */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Dynamic Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-background);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        nav > :last-child {
+            margin-left: auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--on-surface);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 48px;
+            line-height: 1;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 84px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--tertiary));
+            background-color: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 4vw, 20px);
+            margin-bottom: 48px;
+            color: var(--on-surface-variant);
+            animation: fadeInUp 1s ease-out 0.3s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Material 3 Button */
+        .cta-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 107, 92, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            outline: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: var(--floating-opacity);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: var(--tertiary);
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: var(--secondary);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--outline);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .feature-card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Tours Section */
+        .tours {
+            padding: 120px 0;
+            background: var(--surface-container);
+        }
+
+        .tours-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .tours h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .tour-card {
+            background: var(--card-background);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 2, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tour-image {
+            height: 200px;
+            background: #ecf2f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--on-primary);
+            font-size: 48px;
+        }
+
+        .tour-content {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 32px;
+            height: auto;
+        }
+
+        .tour-content h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .tour-content p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .tour-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .learn-more-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
+            outline: none;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .contact-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--outline);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: var(--primary-container);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .contact-card h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .contact-card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-background);
+            color: var(--footer-text);
+            padding: 64px 0 32px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-left {
+                gap: 8px;
+            }
+
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                padding: 6px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                /* keep menu within viewport height; account for header space */
+                height: calc(100vh);
+                /* translucent fallback so panel shows even when blur isn't supported */
+                background: var(--card-background, rgba(255,255,255,0.75));
+                /* ensure correct compositing for backdrop */
+                isolation: isolate;
+                /* sit above other content */
+                z-index: 1500;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 50px;
+                padding: 40px 20px;
+
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Enable backdrop-filter only when supported (use standard property to avoid
+               DevTools 'invalid property' noise for prefixed rules) */
+            @supports (backdrop-filter: blur(20px)) {
+                .nav-links {
+                    backdrop-filter: blur(20px);
+                }
+            }
+            .nav-links a {
+                font-size: 18px;
+                padding: 12px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 100px 20px 60px;
+            }
+            
+            .hero h1 {
+                margin-bottom: 16px;
+            }
+            
+            .hero p {
+                margin-bottom: 32px;
+            }
+            
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 14px;
+            }
+            
+            .features,
+            .tours {
+                padding: 80px 0;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 20px;
+            }
+            
+            .features h2,
+            .tours h2 {
+                margin-bottom: 48px;
+            }
+            
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 32px 24px;
+            }
+            
+            /* mobile floating-shape rules intentionally left as default (no mobile override)
+               — floating shapes remain desktop-defined only; index.html keeps the mobile tweaks */
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .footer-content {
+                padding: 0 20px;
+            }
+            
+            footer {
+                padding: 48px 0 24px;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                padding: 0 40px;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 40px;
+            }
+        }
+
+        /* Desktop: center the nav links */
+        @media (min-width: 769px) {
+            nav {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+            }
+
+            .nav-links {
+                justify-self: center;
+            }
+
+            .nav-controls {
+                justify-self: end;
+            }
+
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                padding: 8px;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .features h2,
+            .tours h2 {
+                font-size: 28px;
+            }
+            
+            .feature-card h3,
+            .tour-content h3 {
+                font-size: 18px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 24px 20px;
+            }
+            
+            .tour-image {
+                height: 160px;
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                width: 90%;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+        }
+        /* Social buttons in popup cards*/
+        .social-button {
+            color: var(--on-primary);
+            border: none;
+            padding: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 100px; 
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-button img {
+            width: 25px;
+            height: 25px;
+            display: block;
+        }
+
+        .social-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 107, 92, 0.4);
+        }
+        #close.social-button {
+           width: 100%;
+        }
+
+        /* Buttons container */
+    .modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    }
+
+    /* Footer section */
+    .modal-footer {
+    margin-top: 18px;
+    }
+
+    /* Close button */
+    .close-btn {
+    width: 100%;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="logo">Pearl Drift</div>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <img class="theme-icon" src="images/sm/moon.gif" style="width: 36px; height: 36px;">
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span id="menu-icon">☰</span>
+                </button>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#tours" onclick="closeMobileMenu()">Tours</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+                <li><a href="#contactUs" onclick="closeMobileMenu()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        
+        <div class="hero-content">
+            <h1>Pearl Drift</h1>
+            <p>Discover extraordinary adventures and create unforgettable memories with our curated travel experiences</p>
+            <button class="cta-button" onclick="scrollToSection('tours')">Explore Tours</button>
+        </div>
+    </section>
+
+    
+
+    <section class="tours" id="tours">
+        <div class="tours-container">
+            <h2>Featured Tours</h2>
+            <div class="tours-grid">
+                <div class="tour-card">
+                    <div class="tour-image"><img src="images/anim/diverco.gif" style="width:150px; height:150px;"></div>
+                    <div class="tour-content">
+                        <h3> Dive Safaris</h3>
+                        <p>Dive into Maldives' vibrant reefs and marine life. Join our liveaboard safaris for the ultimate underwater adventure.</p>
+                        <div class="tour-price">From $2,499</div>
+                        <button class="learn-more-button" onclick="window.location.href='divesaf.html'">Learn More</button>
+                    </div>
+                </div>
+                <div class="tour-card">
+                    <div class="tour-image"><img src="images/anim/islandco.gif" style="width:150px; height:150px;"></div>
+                    <div class="tour-content">
+                        <h3>Local Escapes</h3>
+                        <p>local islands.</p>
+                        <div class="tour-price">From $1,899</div>
+                        <button class="learn-more-button" onclick="window.location.href='local.html'">Learn More</button>
+                    </div>
+                </div>
+                <div class="tour-card">
+                    <div class="tour-image"><img src="images/anim/pearl.gif" style="width:150px; height:150px;"></div>
+                    <div class="tour-content">
+                        <h3>Luxury Havan</h3>
+                        <p>Immerse yourself in rich history, ancient architecture, and local traditions on this enlightening 10-day cultural expedition.</p>
+                        <div class="tour-price">More Journeys Await</div>
+                        <button class="learn-more-button">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="about">
+        <div class="features-container">
+            <h2>Why Choose Pearl Drift?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="images/ico/abt/star.svg" style="width:48px; height:48px;"></div>
+                    <h3>Curated Experiences</h3>
+                    <p>Hand-picked destinations and activities crafted by local experts to ensure authentic and memorable adventures.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="images/ico/abt/per.svg" style="width:48px; height:48px;"></div>
+                    <h3>Personalized Service</h3>
+                    <p>Tailored itineraries designed around your interests, preferences, and travel style for a truly unique journey.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="images/ico/abt/glo.svg" style="width:48px; height:48px;"></div>
+                    <h3>Global Network</h3>
+                    <p>More unforgettabe escapes are <b>coming soon</b> - start dreaming, because your next adventure is closer than you think.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contactUs">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="feature-icon"><img src="images/anim/contact.gif" style="width:48px; height:48px;"></div>
+                    <h3>There are several ways to contact us. </h3>
+                    <p>You can reach us by Email, Telegram, or WhatsApp — simply choose the option that’s most convenient for you.</p>
+                    <br>
+                        <div class="modal-buttons">
+                            <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg" style="width:25px; height:25px;"></button>
+                            <button class="social-button" onclick="redirectContact('telegram')"><img src="images/ico/contact/tele.svg" style="width:25px; height:25px;"></button>
+                            <button class="social-button" onclick="redirectContact('whatsapp')"><img src="images/ico/contact/wha.svg" style="width:25px; height:25px;"></button>
+                        </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#tours">Tours</a>
+                <a href="#about">About</a>
+                <a href="#contactUs">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <p>&copy; 2025 Pearl Drift. All rights reserved. | Creating unforgettable journeys since 2025</p>
+        </div>
+    </footer>
+
+    
+</body>
+<script>
+        // Theme Management
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = newTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+            });
+            
+            // Save theme preference
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = savedTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+            });
+        }
+
+        // Mobile Menu Management
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            const opening = !navLinks.classList.contains('active');
+
+            if (opening) {
+                // Move the menu to document.body so it's outside the header's stacking context
+                // This allows backdrop-filter to see the page behind the header.
+                if (navLinks.parentElement !== document.body) document.body.appendChild(navLinks);
+                navLinks.classList.add('active');
+                menuIcon.textContent = '✕';
+            } else {
+                // Close and reattach back into the header nav so markup is preserved
+                navLinks.classList.remove('active');
+                menuIcon.textContent = '☰';
+                if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            navLinks.classList.remove('active');
+            menuIcon.textContent = '☰';
+            if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navLinks = document.getElementById('nav-links');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.feature-card, .tour-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add click interactions for navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', loadTheme);
+
+        // Handle resize events
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // Redirect to chosen contact method
+function redirectContact(method) {
+    if (method === 'email') {
+        // Simple mobile detection
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // Open default mobile email app
+            window.location.href = 'mailto:tinyislets@gmail.com?subject=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.';
+        } else {
+            // Open Gmail compose in desktop browser
+            window.open(
+                'https://mail.google.com/mail/?view=cm&fs=1&to=tinyislets@gmail.com&su=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.',
+                '_blank'
+            );
+        }
+    } else if (method === 'telegram') {
+        window.open('https://t.me/pearlDrift', '_blank');
+    } else if (method === 'whatsapp') {
+        window.open('https://wa.me/message/65AGSTP42DCWM1', '_blank'); // Replace with your WhatsApp number
+    }
+}
+    </script>
+</html>

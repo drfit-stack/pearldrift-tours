@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Drift Tours</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* Light Theme Variables */
+        :root {
+            --primary: #006b5c;
+            --primary-container: #7df8e5;
+            --secondary: #4a635e;
+            --secondary-container: #cce8e1;
+            --tertiary: #456179;
+            --tertiary-container: #c7e7ff;
+            --surface: #f8f9ff;
+            --surface-variant: #dae4e0;
+            --surface-container: #ecf2f0;
+            --outline: #6f7975;
+            --on-primary: #ffffff;
+            --on-surface: #191c1b;
+            --on-surface-variant: #3f4946;
+            --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --card-background: rgba(255, 255, 255, 0.7);
+            --hero-background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --footer-background: #191c1b;
+            --footer-text: #f8f9ff;
+            --floating-opacity: 0.1;
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --primary: #5ddcc6;
+            --primary-container: #00513f;
+            --secondary: #b0ccc6;
+            --secondary-container: #334b46;
+            --tertiary: #a2cbef;
+            --tertiary-container: #2d4860;
+            --surface: #0f1513;
+            --surface-variant: #3f4946;
+            --surface-container: #1a201e;
+            --outline: #899390;
+            --on-primary: #003831;
+            --on-surface: #e0e3e1;
+            --on-surface-variant: #bfc9c5;
+            --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --card-background: rgba(26, 32, 30, 0.8);
+            --hero-background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --footer-background: #0a0e0c;
+            --footer-text: #e0e3e1;
+            --floating-opacity: 0.05;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--on-surface);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--on-surface);
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            outline: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--surface-variant);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--on-surface);
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--surface-variant);
+        }
+
+        /* Nav Controls Container */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Left side container for logo and theme toggle */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Dynamic Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-background);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        nav > :last-child {
+            margin-left: auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--on-surface);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 48px;
+            line-height: 1;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .contact-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--outline);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: var(--primary-container);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .contact-card h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .contact-card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-background);
+            color: var(--footer-text);
+            padding: 64px 0 32px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-left {
+                gap: 8px;
+            }
+
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                padding: 6px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                /* keep menu within viewport height; account for header space */
+                height: calc(100vh);
+                /* translucent fallback so panel shows even when blur isn't supported */
+                background: var(--card-background, rgba(255,255,255,0.75));
+                /* ensure correct compositing for backdrop */
+                isolation: isolate;
+                /* sit above other content */
+                z-index: 1500;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 50px;
+                padding: 40px 20px;
+
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Enable backdrop-filter only when supported (use standard property to avoid
+               DevTools 'invalid property' noise for prefixed rules) */
+            @supports (backdrop-filter: blur(20px)) {
+                .nav-links {
+                    backdrop-filter: blur(20px);
+                }
+            }
+            .nav-links a {
+                font-size: 18px;
+                padding: 12px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 100px 20px 60px;
+            }
+            
+            .hero h1 {
+                margin-bottom: 16px;
+            }
+            
+            .hero p {
+                margin-bottom: 32px;
+            }
+            
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 14px;
+            }
+            
+            .features,
+            .tours {
+                padding: 80px 0;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 20px;
+            }
+            
+            .features h2,
+            .tours h2 {
+                margin-bottom: 48px;
+            }
+            
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 32px 24px;
+            }
+            
+            /* mobile floating-shape rules intentionally left as default (no mobile override)
+               — floating shapes remain desktop-defined only; index.html keeps the mobile tweaks */
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .footer-content {
+                padding: 0 20px;
+            }
+            
+            footer {
+                padding: 48px 0 24px;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                padding: 0 40px;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 40px;
+            }
+        }
+
+        /* Desktop: center the nav links */
+        @media (min-width: 769px) {
+            nav {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+            }
+
+            .nav-links {
+                justify-self: center;
+            }
+
+            .nav-controls {
+                justify-self: end;
+            }
+
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                padding: 8px;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .features h2,
+            .tours h2 {
+                font-size: 28px;
+            }
+            
+            .feature-card h3,
+            .tour-content h3 {
+                font-size: 18px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 24px 20px;
+            }
+            
+            .tour-image {
+                height: 160px;
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                width: 90%;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+        }
+        .terms {
+            padding: 120px 20px;
+            background: var(--surface);
+        }
+
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--on-surface);
+        }
+
+        .terms h2 {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .terms p {
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--on-surface-variant);
+        }
+
+        .terms h3 {
+            font-size: 20px;
+            margin: 28px 0 12px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .terms {
+                padding: 80px 20px;
+            }
+            .terms h2 {
+                font-size: 28px;
+            }
+            .terms h3 {
+                font-size: 18px;
+            }
+            /* Mobile readability tweaks for paragraphs and lists */
+            .terms-container {
+                padding: 0 8px;
+            }
+            .terms-container p {
+                font-size: 16px;
+                margin-bottom: 14px;
+                line-height: 1.7;
+                color: var(--on-surface-variant);
+            }
+            .terms-container ul {
+                padding-left: 20px;
+                margin: 0 0 16px 0;
+                list-style-position: inside;
+            }
+            .terms-container li {
+                margin-bottom: 10px;
+                font-size: 15px;
+                color: var(--on-surface-variant);
+            }
+            .terms-container li b {
+                display: inline-block;
+                margin-right: 6px;
+            }
+            .terms-container a {
+                color: var(--primary);
+                word-break: break-word;
+            }
+        }
+
+        /* Shared back link styles (looks like nav links) */
+        .back-link,
+        .back-desktop a {
+            text-decoration: none;
+            color: var(--on-surface);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover,
+        .back-desktop a:hover {
+            color: var(--primary);
+        }
+
+        /* underline animation */
+        .back-link::after,
+        .back-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .back-link:hover::after,
+        .back-desktop a:hover::after {
+            width: 100%;
+        }
+
+        /* show/hide depending on screen size */
+        .back-mobile { display: none; }   /* hidden by default */
+        .back-desktop { display: list-item; } /* visible by default */
+
+        @media (max-width: 768px) {
+            .back-mobile { display: inline-block; margin-right: 12px; }
+            .back-desktop { display: none; } /* hide in mobile menu */
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="logo">Pearl Drift</div>
+            </div>
+            <div class="nav-controls">
+                <!-- Mobile Back button (copied from privacy.html) -->
+                <a href="javascript:history.back()" class="back-link back-mobile">← Back</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <img class="theme-icon" src="images/sm/moon.gif" style="width: 36px; height: 36px;">
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span id="menu-icon">☰</span>
+                </button>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <!-- Desktop Back button (visible on larger screens) -->
+                <li class="back-desktop"><a href="javascript:history.back()">← Back</a></li>
+                <li><a href="index.html" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="index.html#tours" onclick="closeMobileMenu()">Tours</a></li>
+                <li><a href="index.html#about" onclick="closeMobileMenu()">About</a></li>
+                <li><a href="index.html#contactUs" onclick="closeMobileMenu()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="terms" id="terms">
+        <div class="terms-container">
+            <h2>Privacy Policy</h2>
+            <p>Pearl Drift (“we”, “us”, “our”), a travel agency registered in the Maldives, is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and protect your personal data in relation to the services we provide, including via our website <a href="https://www.pearldrifttours.com">www.pearldrifttours.com</a> and other channels. By using our services, you agree to the collection and use of your data as described here.</p>
+            
+            <h3>1. Definitions</h3>
+                <ul>
+                    <li><b>Personal Data:</b> Any information that can identify you, directly or indirectly (e.g. name, contact information, passport details, payment information).</li>
+                    <li><b>Processing:</b> Any operation we perform on your data, such as collection, storage, use, disclosure, etc.</li>
+                    <li><b>Data Controller:</b> Pearl Drift, responsible for determining how your personal data is processed.</li>
+                    <li><b>Data Processor:</b>Any third party who processes data on our behalf.</li>
+                </ul>
+
+            <h3>2. What Data We Collect</h3>
+                <p>We may collect and process the following personal data:</p>
+                <ul>
+                    <li>Identity information: name, date of birth, nationality, passport or ID number.</li>
+                    <li>Contact information: address, email address, phone number.</li>
+                    <li>Booking details: travel destination, itinerary, preferences, dates of travel.</li>
+                    <li>Payment information: credit card or bank details (processed via secured payment gateways).</li>
+                    <li>Travel documents (if needed): visa information, health declarations (if required by laws or partners).</li>
+                    <li>Communication data: correspondence, inquiries, feedback.</li>
+                    <li>Device & usage data: IP address, browser type, device information, cookies, analytics, website usage data.</li>
+                </ul>
+
+            <h3>3. How We Use Your Data</h3>
+            <p>We use your personal data for:</p>
+                <ul>
+                    <li>Facilitating travel bookings and related services you request.</li>
+                    <li>Processing payments and refunds.</li>
+                    <li>Communicating with you (confirmations, updates, support, promotional offers if you opt in).</li>
+                    <li>Meeting legal, regulatory or travel requirements (e.g. visa, immigration, safety).</li>
+                    <li>Improving our services, website, and user experience via feedback, statistical analysis.</li>
+                    <li>Marketing (only with your consent), including newsletters, special offers.</li>
+                </ul>
+
+            <h3>4. Legal Basis for Processin</h3>
+                <p>Given Maldives currently lacks general comprehensive data protection legislation, but considering international best practices and possibly GDPR if you serve EU customers or residents, we rely on one or more of the following lawful bases (as relevant):</p>
+                    <ul>
+                        <li>Performance of contract (you request travel services from us).</li>
+                        <li>Your consent (for marketing or optional features).</li>
+                        <li>Compliance with our legal obligations (visas, immigration, safety).</li>
+                        <li>Legitimate interests (e.g. improving our service, preventing fraud), balanced with your rights.</li>
+                    </ul>
+            
+            <h3>5. Data Sharing and Disclosure</h3>
+                <p>We may share your personal data with:</p>
+                    <ul>
+                        <li>Travel service providers (hotels, airlines, transport operators, local guides) to fulfill your bookings.</li>
+                        <li>Payment processors and financial institutions.</li>
+                        <li>Government, immigration, customs, health, or tourism authorities when required by law.</li>
+                        <li>Third party service providers who assist in business operations (e.g. IT hosting, marketing services, analytics), under contractual confidentiality obligations.</li>
+                        <li>Legal authorities in case of legal requirement or to protect our legal rights.</li>
+                    </ul>
+                <p>We do <b>not</b> sell your personal data to unrelated third parties.</p>
+
+            <h3>6. International Transfers</h3>
+                <p>If your travel involves jurisdictions outside the Maldives, your personal data may be transferred to other countries. We will take reasonable steps to ensure that your data is protected in accordance with this Privacy Policy, and that any international transfers meet applicable legal requirements.</p>
+
+            <h3>7. Data Retention</h3>
+                <p>We retain your personal data only for as long as necessary to fulfill the purposes for which it was collected or as required by law. After this period, we will securely delete or anonymize your data, unless further retention is required by law or for legitimate business purposes (e.g. accounting, audit, dispute resolution).</p>
+
+            <h3>8. Cookies & Tracking Technologies</h3>
+                <p>We use cookies, web beacons, analytics tools, and similar technologies on our website to:</p>
+                    <ul>
+                        <li>enable functionality (e.g. keeping you logged in, remembering preferences),</li>
+                        <li>analyze website usage, improve performance, and serve personalized content or ads (if applicable). </li>
+                    </ul>
+                <p>You may disable cookies in your browser settings, though this may impact functionality or your experience.</p>
+
+            <h3>9. Your Rights</h3>
+                <p>Depending on applicable law (including for users from the EU or other jurisdictions), you may have rights including:</p>
+                    <ul>
+                        <li>The right to access the personal data we hold about you.</li>
+                        <li>The right to correct inaccurate or incomplete data.</li>
+                        <li>The right to delete your data (where no longer needed or obliged to retain).</li>
+                        <li>The right to restrict or object to certain kinds of data processing (e.g. marketing).</li>
+                        <li>The right to data portability (if applicable).</li>
+                        <li>The right to withdraw consent at any time (for processing based on consent).</li>
+                    </ul>
+                <p>If you want to exercise any of these rights, please contact us using the details below.</p>
+
+            <h3>10. Security</h3>
+                <p>We take appropriate technical, administrative, and physical measures to safeguard your data from unauthorized or unlawful access, alteration, disclosure, or destruction. These include:</p>
+                    <ul>
+                        <li>Use of encryption where appropriate (e.g. for sensitive data and during transfer).</li>
+                        <li>Access controls—only authorized personnel have access to personal data.</li>
+                        <li>Regular reviews of our data collection, storage, and processing practices.</li>
+                    </ul>
+                <p>However, no system is fully secure; while we strive to protect your data, we cannot guarantee absolute security.</p>
+            
+              <h3>11. Children’s Data</h3>
+                    <p>We do not knowingly collect personal data from children under [age, e.g. 16] without parental consent. If we learn that we have collected data from a child without proper consent, we will take steps to delete it.</p>
+              
+              <h3>12. Changes to This Policy</h3>
+                    <p>We may update this Policy from time to time, to reflect changes in our practices, legal requirements, or service offerings. When we do, we will revise the “Last updated” date. We recommend you review this Privacy Policy periodically. Continued use of our services after changes are posted constitutes acceptance of those changes.</p>
+
+                    <h3>Contact Us</h3>
+                        <p>If you have any questions about this Privacy Policy, or wish to exercise your rights, or have a complaint about our handling of your data, please contact:</p>      
+                        <p>Pearl Drift PVT LTD</p>      
+                        <p>M.White Birdy, Kanba aisa rani hingun, Male’, Rep. of Maldives</p>      
+                        <p>+960 9542808</p>  
+
+            <p><strong>Last Updated:</strong> 18<sup>th</sup> September 2025</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tours">Tours</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contactUs">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <p>&copy; 2025 Pearl Drift. All rights reserved. | Creating unforgettable journeys since 2025</p>
+        </div>
+    </footer>
+
+    
+</body>
+<script>
+        // Theme Management
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = newTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+            });
+            
+            // Save theme preference
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = savedTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+            });
+        }
+
+        // Mobile Menu Management
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            const opening = !navLinks.classList.contains('active');
+
+            if (opening) {
+                // Move the menu to document.body so it's outside the header's stacking context
+                // This allows backdrop-filter to see the page behind the header.
+                if (navLinks.parentElement !== document.body) document.body.appendChild(navLinks);
+                navLinks.classList.add('active');
+                menuIcon.textContent = '✕';
+            } else {
+                // Close and reattach back into the header nav so markup is preserved
+                navLinks.classList.remove('active');
+                menuIcon.textContent = '☰';
+                if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            navLinks.classList.remove('active');
+            menuIcon.textContent = '☰';
+            if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navLinks = document.getElementById('nav-links');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.feature-card, .tour-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add click interactions for navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href') || '';
+
+                // If the link uses a javascript: handler (e.g. back button), or
+                // it's not a fragment link (#id), allow default behavior.
+                if (href.startsWith('javascript:') || !href.startsWith('#')) {
+                    return; // let the browser handle it (e.g. history.back())
+                }
+
+                // Otherwise it's an in-page anchor: smooth-scroll to the section
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    scrollToSection(targetId);
+                }
+
+                // Close mobile menu when a nav item is selected on small screens
+                if (window.innerWidth <= 768) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', loadTheme);
+
+        // Handle resize events
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+    </script>
+</html>
