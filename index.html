@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Drift Tours</title>
+    <link rel="icon" type="image/svg+xml" href="images/favi.svg">
     <style>
         * {
             margin: 0;
@@ -17,7 +18,7 @@
             overflow-x: hidden;
         }
 
-        /* Light Theme Variables */
+        
         :root {
             --primary: #006b5c;
             --primary-container: #7df8e5;
@@ -37,10 +38,9 @@
             --hero-background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
             --footer-background: #191c1b;
             --footer-text: #f8f9ff;
-            --floating-opacity: 0.1;
         }
 
-        /* Dark Theme Variables */
+        
         [data-theme="dark"] {
             --primary: #5ddcc6;
             --primary-container: #00513f;
@@ -60,7 +60,6 @@
             --hero-background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
             --footer-background: #0a0e0c;
             --footer-text: #e0e3e1;
-            --floating-opacity: 0.05;
         }
 
         body {
@@ -68,7 +67,7 @@
             color: var(--on-surface);
         }
 
-        /* Theme Toggle Switch */
+        
         .theme-toggle {
             background: none;
             border: none;
@@ -91,7 +90,7 @@
             transform: scale(1.1);
         }
 
-        /* Mobile Menu Button */
+        
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -110,21 +109,21 @@
             background: var(--surface-variant);
         }
 
-        /* Nav Controls Container */
+        
         .nav-controls {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        /* Left side container for logo and theme toggle */
+        
         .nav-left {
             display: flex;
             align-items: center;
             gap: 16px;
         }
 
-        /* Dynamic Header */
+        
         header {
             position: fixed;
             top: 0;
@@ -152,6 +151,7 @@
         .logo {
             font-size: 28px;
             font-weight: 700;
+            text-decoration: none;
             background: linear-gradient(45deg, var(--primary), var(--tertiary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -200,32 +200,89 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        
         .hero {
             min-height: 100vh;
+            min-height: 100svh;
+            height: 100vh;
+            height: 100svh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 0 20px;
+            padding: 0;
+            background: var(--hero-background);
+        }
+
+        .hero-panel-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+            display: block;
+        }
+
+        @media (min-width: 1200px) {
+            .hero-top-panel .hero-panel-image {
+                object-position: center 60%;
+            }
         }
 
         .hero-content {
-            max-width: 1200px;
+            width: 100%;
+            height: 100%;
+            padding: 0;
             text-align: center;
             z-index: 2;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
         }
 
         .hero h1 {
-            font-size: clamp(36px, 8vw, 84px);
+            font-size: clamp(40px, 5vw, 64px);
             font-weight: 800;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--primary), var(--tertiary));
-            background-color: transparent;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease-out;
+            color: #ecf2f0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
+            line-height: 1.1;
+        }
+
+        .hero-top-panel,
+        .hero-bottom-panel {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-top-panel {
+            justify-content: flex-start;
+            padding: 96px 24px 0;
+        }
+
+        .hero-top-panel h1,
+        .hero-second-line,
+        .hero-bottom-panel .cta-button {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-bottom-panel {
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 0 24px 40px;
+        }
+
+        .hero-second-line {
+            color: #ecf2f0;
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
         }
 
         .hero p {
@@ -239,7 +296,7 @@
             line-height: 1.6;
         }
 
-        /* Material 3 Button */
+        
         .cta-button {
             background: var(--primary);
             color: var(--on-primary);
@@ -260,42 +317,7 @@
             box-shadow: 0 8px 24px rgba(0, 107, 92, 0.4);
         }
 
-        /* Floating Elements */
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: var(--floating-opacity);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape-1 {
-            width: 200px;
-            height: 200px;
-            background: var(--primary);
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape-2 {
-            width: 150px;
-            height: 150px;
-            background: var(--tertiary);
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .shape-3 {
-            width: 100px;
-            height: 100px;
-            background: var(--secondary);
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        /* Features Section */
+        
         .features {
             padding: 120px 0;
             background: var(--surface);
@@ -340,7 +362,6 @@
             width: 64px;
             height: 64px;
             margin: 0 auto 24px;
-            background: var(--primary);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -361,7 +382,7 @@
             font-size: 14px;
         }
 
-        /* Tours Section */
+        
         .tours {
             padding: 120px 0;
             background: var(--surface-container);
@@ -394,6 +415,7 @@
             transition: all 0.3s cubic-bezier(0.4, 2, 0.2, 1);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            border: 1px solid var(--outline);
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -406,12 +428,27 @@
 
         .tour-image {
             height: 200px;
-            background: #ecf2f0;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--on-primary);
             font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tour-image .tour-background {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .tour-image > img:not(.tour-background) {
+            position: relative;
+            z-index: 1;
         }
 
         .tour-content {
@@ -434,6 +471,19 @@
             line-height: 1.6;
             margin-bottom: 24px;
             font-size: 14px;
+            max-height: 140px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .tour-content p.is-scrollable:not(.is-at-scroll-end) {
+            -webkit-mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
+            mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
+        }
+
+        .tour-content p.is-scrollable:focus-visible {
+            outline: 2px solid var(--outline);
+            outline-offset: 2px;
         }
 
         .tour-price {
@@ -460,7 +510,7 @@
             margin-top: auto;
         }
 
-        /* Contact Section */
+        
         .contact {
             padding: 120px 0;
             background: var(--surface);
@@ -526,7 +576,7 @@
             font-size: 14px;
         }
 
-        /* Footer */
+        
         footer {
             background: var(--footer-background);
             color: var(--footer-text);
@@ -559,7 +609,7 @@
             opacity: 0.7;
         }
 
-        /* Animations */
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -571,12 +621,7 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Mobile Responsive Design */
+        
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
@@ -598,13 +643,13 @@
                 right: -100%;
                 width: 80%;
                 max-width: 300px;
-                /* keep menu within viewport height; account for header space */
+                
                 height: calc(100vh);
-                /* translucent fallback so panel shows even when blur isn't supported */
+                
                 background: var(--card-background, rgba(255,255,255,0.75));
-                /* ensure correct compositing for backdrop */
+                
                 isolation: isolate;
-                /* sit above other content */
+                
                 z-index: 1500;
                 flex-direction: column;
                 justify-content: flex-start;
@@ -619,8 +664,7 @@
                 right: 0;
             }
 
-            /* Enable backdrop-filter only when supported (use standard property to avoid
-               DevTools 'invalid property' noise for prefixed rules) */
+            
             @supports (backdrop-filter: blur(20px)) {
                 .nav-links {
                     backdrop-filter: blur(20px);
@@ -634,11 +678,12 @@
             }
             
             .hero {
-                padding: 100px 20px 60px;
+                justify-content: flex-start;
+                padding: 0;
             }
-            
-            .hero h1 {
-                margin-bottom: 16px;
+
+            .hero-content {
+                width: 100%;
             }
             
             .hero p {
@@ -676,9 +721,6 @@
                 padding: 32px 24px;
             }
             
-            /* mobile floating-shape rules intentionally left as default (no mobile override)
-               — floating shapes remain desktop-defined only; index.html keeps the mobile tweaks */
-            
             .footer-links {
                 flex-direction: column;
                 gap: 16px;
@@ -693,7 +735,7 @@
             }
         }
 
-        /* Tablet Responsive */
+        
         @media (max-width: 1024px) and (min-width: 769px) {
             .features-grid,
             .tours-grid {
@@ -701,7 +743,11 @@
             }
             
             .hero {
-                padding: 0 40px;
+                padding: 0;
+            }
+
+            .hero-top-panel .hero-panel-image {
+                object-position: center 60%;
             }
             
             .features-container,
@@ -710,8 +756,17 @@
             }
         }
 
-        /* Desktop: center the nav links */
+        
         @media (min-width: 769px) {
+            .hero {
+                justify-content: flex-start;
+            }
+
+            .hero-content {
+                width: 100%;
+                margin-inline: auto;
+            }
+
             nav {
                 display: grid;
                 grid-template-columns: auto 1fr auto;
@@ -733,15 +788,18 @@
             }
         }
 
-        /* Extra Small Mobile */
+        
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 32px;
+            .hero h1,
+            .hero-second-line {
+                font-size: clamp(34px, 11vw, 01px);
             }
             
             .hero p {
                 font-size: 16px;
             }
+
+            
             
             .features h2,
             .tours h2 {
@@ -771,7 +829,7 @@
                 font-size: 24px;
             }
         }
-        /* Social buttons in popup cards*/
+        
         .social-button {
             color: var(--on-primary);
             border: none;
@@ -804,7 +862,7 @@
            width: 100%;
         }
 
-        /* Buttons container */
+        
     .modal-buttons {
     display: flex;
     gap: 10px;
@@ -812,12 +870,12 @@
     flex-wrap: wrap;
     }
 
-    /* Footer section */
+    
     .modal-footer {
     margin-top: 18px;
     }
 
-    /* Close button */
+    
     .close-btn {
     width: 100%;
     }
@@ -827,34 +885,35 @@
     <header>
         <nav>
             <div class="nav-left">
-                <div class="logo">Pearl Drift</div>
+                <a class="logo" href="index.html#home">Pearl Drift</a>
             </div>
             <div class="nav-controls">
                 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                    <img class="theme-icon" src="images/sm/moon.gif" style="width: 36px; height: 36px;">
+                    <img class="theme-icon" src="images/sm/moon.webp" style="width: 36px; height: 36px;">
                 </button>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
                     <span id="menu-icon">☰</span>
                 </button>
             </div>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
-                <li><a href="#tours" onclick="closeMobileMenu()">Tour Packages</a></li>
-                <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
-                <li><a href="#contactUs" onclick="closeMobileMenu()">Contact</a></li>
+                <li><a href="#tours" onclick="closeMobileMenu()">Our Experiences</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">Why Us</a></li>
+                <li><a href="#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero" id="home">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        
         <div class="hero-content">
-            <h1>Pearl Drift</h1>
-            <p>Discover extraordinary adventures and create unforgettable memories with our curated travel experiences</p>
-            <button class="cta-button" onclick="scrollToSection('tours')">Explore Tours</button>
+            <div class="hero-top-panel">
+                <img class="hero-panel-image" data-light-src="images/hero/heroL3.webp" data-dark-src="images/hero/heroD3.webp" src="images/hero/heroL3.webp" alt="A sandy island beach shaded by palm trees.">
+                <h1>Stay where people actually live</h1>
+            </div>
+            <div class="hero-bottom-panel">
+                <img class="hero-panel-image" data-light-src="images/hero/heroL.webp" data-dark-src="images/hero/heroD.webp" src="images/hero/heroL.webp" alt="A diver swimming through clear tropical water.">
+                <span class="hero-second-line">Go where the water gets interesting </span>
+                <button class="cta-button" onclick="scrollToSection('tours')">Explore Tours</button>
+            </div>
         </div>
     </section>
 
@@ -862,33 +921,34 @@
 
     <section class="tours" id="tours">
         <div class="tours-container">
-            <h2>Featured Tours</h2>
+            <h2>Our Experiences</h2>
             <div class="tours-grid">
                 <div class="tour-card">
-                    <div class="tour-image"><img src="images/anim/diverco.gif" style="width:150px; height:150px;"></div>
+                    <div class="tour-image"><img class="tour-background" data-light-src="images/back/cor/corL.webp" data-dark-src="images/back/cor/corD.webp" src="images/back/cor/corL.webp" alt="A colorful coral reef beneath the water."></div>
                     <div class="tour-content">
-                        <h3> Dive Safaris</h3>
-                        <p>Explore the Maldives from the deck of a liveaboard, diving world-class reefs, manta cleaning stations, and hidden atoll gems with expert local guides.</p>
-                        <div class="tour-price">From $2,499</div>
-                        <button class="learn-more-button" onclick="window.location.href='divesaf.html'">Learn More</button>
+                        <h3> Dive the Maldives </h3>
+                        <p>Liveaboard trips for divers who want to visit several dive sites and atolls in one journey.</p>
+                        <button class="learn-more-button" onclick="window.location.href='divesaf.html'">View Dive Safaris</button>
                     </div>
                 </div>
                 <div class="tour-card">
-                    <div class="tour-image"><img src="images/anim/islandco.gif" style="width:150px; height:150px;"></div>
-                    <div class="tour-content">
-                        <h3>Local Escapes</h3>
-                        <p>Relax on authentic island hideaways, discover local culture, and enjoy sun-drenched beaches with curated stays off the beaten path.</p>
-                        <div class="tour-price">From $1,899</div>
-                        <button class="learn-more-button" onclick="window.location.href='local.html'">Learn More</button>
+                    <div class="tour-image">
+                        <img class="tour-background" data-light-src="images/back/pal/palL.webp" data-dark-src="images/back/pal/palD.webp" src="images/back/pal/palL.webp" alt="Illustrated tropical islands with palm trees and coconuts.">
                     </div>
-                </div>
-                <div class="tour-card">
-                    <div class="tour-image"><img src="images/anim/pearl.gif" style="width:150px; height:150px;"></div>
                     <div class="tour-content">
-                        <h3>Luxury Haevan</h3>
-                        <p>Experience elegant island living with refined resorts, private beachfront moments, and effortless service designed for a truly restorative escape.</p>
-                        <div class="tour-price">More Journeys Await</div>
-                        <button class="learn-more-button">Coming Soon</button>
+                        <h3>Local Island Escapes</h3>
+                        <p>A few days between beaches, reefs and island life.</p>
+                        <button class="learn-more-button" onclick="window.location.href='local.html'">View Escapes</button>
+                    </div>
+                    </div>
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img class="tour-background" data-light-src="images/back/spe/specL.webp" data-dark-src="images/back/spe/specD.webp" src="images/back/spe/specL.webp" alt="A repeating illustration of palm trees and tropical foliage.">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Pearl Drift Exclusive </h3>
+                        <p>Trips that don't fit the usual itinerary.</p>
+                        <button class="learn-more-button" onclick="window.location.href='spec.html'">View Specials</button>
                     </div>
                 </div>
             </div>
@@ -900,19 +960,19 @@
             <h2>Why Choose Pearl Drift?</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon"><img src="images/ico/abt/star.svg" style="width:48px; height:48px;"></div>
-                    <h3>Curated Experiences</h3>
-                    <p>Hand-picked destinations and activities crafted by local experts to ensure authentic and memorable adventures.</p>
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/abt/owlL.webp" data-light-src="images/ico/abt/owlL.webp" data-dark-src="images/ico/abt/owlD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Local knowledge</h3>
+                    <p>We know the destinations we recommend and work directly with the people who make them worth visiting.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><img src="images/ico/abt/per.svg" style="width:48px; height:48px;"></div>
-                    <h3>Personalized Service</h3>
-                    <p>Tailored itineraries designed around your interests, preferences, and travel style for a truly unique journey.</p>
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/abt/puzzL.webp" data-light-src="images/ico/abt/puzzL.webp" data-dark-src="images/ico/abt/puzzD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Curated, not crowded</h3>
+                    <p>We select experiences and stays rather than giving you an endless list of options.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon"><img src="images/ico/abt/glo.svg" style="width:48px; height:48px;"></div>
-                    <h3>Global Network</h3>
-                    <p>More unforgettabe escapes are <b>coming soon</b> - start dreaming, because your next adventure is closer than you think.</p>
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/abt/plaL.webp" data-light-src="images/ico/abt/plaL.webp" data-dark-src="images/ico/abt/plaD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Built around your trip</h3>
+                    <p>Tell us what you want to do, and we'll help put the right places and experiences together.</p>
                 </div>
             </div>
         </div>
@@ -920,12 +980,11 @@
 
     <section class="contact" id="contactUs">
         <div class="contact-container">
-            <h2>Contact Us</h2>
+            <h2>Planning a trip to the Maldives? </h2>
             <div class="contact-grid">
                 <div class="contact-card">
-                    <div class="feature-icon"><img src="images/anim/contact.gif" style="width:48px; height:48px;"></div>
-                    <h3>There are several ways to contact us. </h3>
-                    <p>You can reach us by Email, Telegram, or WhatsApp — simply choose the option that’s most convenient for you.</p>
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/contact/envL.webp" data-light-src="images/ico/contact/envL.webp" data-dark-src="images/ico/contact/envD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Tell us your dates, interests and the kind of experience you're looking for. </h3>
                     <br>
                         <div class="modal-buttons">
                             <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg" style="width:25px; height:25px;"></button>
@@ -941,14 +1000,11 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#tours">Tour Packages</a>
-                <a href="#about">About</a>
-                <a href="#contactUs">Contact</a>
+                <a href="#home">Back to Top</a>
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
             </div>
-            <p>&copy; 2025 Pearl Drift. All rights reserved. | Creating unforgettable journeys since 2025</p>
+            <p>&copy;  2026 Pearl Drift. All rights reserved.</p>
         </div>
     </footer>
 
@@ -962,9 +1018,10 @@
             
             document.documentElement.setAttribute('data-theme', newTheme);
             document.querySelectorAll('.theme-icon').forEach(img => {
-                img.src = newTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+                img.src = newTheme === 'dark' ? 'images/sm/sun.webp' : 'images/sm/moon.webp';
             });
-            
+            // Update hero image for the selected theme
+            updateHeroImage(newTheme);
             // Save theme preference
             localStorage.setItem('theme', newTheme);
         }
@@ -974,8 +1031,41 @@
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             document.querySelectorAll('.theme-icon').forEach(img => {
-                img.src = savedTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+                img.src = savedTheme === 'dark' ? 'images/sm/sun.webp' : 'images/sm/moon.webp';
             });
+            // Ensure hero image matches saved theme
+            updateHeroImage(savedTheme);
+        }
+
+        // Update theme-specific images
+        function updateHeroImage(theme) {
+            document.querySelectorAll('.hero-panel-image, .tour-background, .feature-theme-icon').forEach(image => {
+                const source = image.dataset[`${theme}Src`];
+                if (source) image.src = source;
+            });
+        }
+
+        function updateTourDescriptionFade(paragraph) {
+            const isScrollable = paragraph.scrollHeight > paragraph.clientHeight + 1;
+            const isAtScrollEnd = paragraph.scrollTop + paragraph.clientHeight >= paragraph.scrollHeight - 1;
+
+            paragraph.classList.toggle('is-scrollable', isScrollable);
+            paragraph.classList.toggle('is-at-scroll-end', isScrollable && isAtScrollEnd);
+
+            if (isScrollable) {
+                paragraph.setAttribute('tabindex', '0');
+            } else {
+                paragraph.removeAttribute('tabindex');
+            }
+        }
+
+        function setupTourDescriptionFades() {
+            const paragraphs = document.querySelectorAll('.tour-content p');
+            paragraphs.forEach(paragraph => {
+                paragraph.addEventListener('scroll', () => updateTourDescriptionFade(paragraph), { passive: true });
+                updateTourDescriptionFade(paragraph);
+            });
+            window.addEventListener('resize', () => paragraphs.forEach(updateTourDescriptionFade));
         }
 
         // Mobile Menu Management
@@ -1066,7 +1156,10 @@
         });
 
         // Initialize theme on page load
-        document.addEventListener('DOMContentLoaded', loadTheme);
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            setupTourDescriptionFades();
+        });
 
         // Handle resize events
         window.addEventListener('resize', () => {

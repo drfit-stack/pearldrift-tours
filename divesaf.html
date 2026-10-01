@@ -1,9 +1,10 @@
-index.html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Drift Tours</title>
+    <link rel="icon" type="image/svg+xml" href="images/favi.svg">
     <style>
         * {
             margin: 0;
@@ -17,14 +18,11 @@ index.html<!DOCTYPE html>
             overflow-x: hidden;
         }
 
-        /* Light Theme Variables */
+        
         :root {
             --primary: #006b5c;
             --primary-container: #7df8e5;
-            --secondary: #4a635e;
-            --secondary-container: #cce8e1;
             --tertiary: #456179;
-            --tertiary-container: #c7e7ff;
             --surface: #f8f9ff;
             --surface-variant: #dae4e0;
             --surface-container: #ecf2f0;
@@ -33,21 +31,18 @@ index.html<!DOCTYPE html>
             --on-surface: #191c1b;
             --on-surface-variant: #3f4946;
             --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --tours-background-image: url("images/back/cor/corL.webp");
+            --tours-background-overlay: rgba(236, 242, 240, 0.9);
             --card-background: rgba(255, 255, 255, 0.7);
-            --hero-background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
             --footer-background: #191c1b;
             --footer-text: #f8f9ff;
-            --floating-opacity: 0.1;
         }
 
-        /* Dark Theme Variables */
+        
         [data-theme="dark"] {
             --primary: #5ddcc6;
             --primary-container: #00513f;
-            --secondary: #b0ccc6;
-            --secondary-container: #334b46;
             --tertiary: #a2cbef;
-            --tertiary-container: #2d4860;
             --surface: #0f1513;
             --surface-variant: #3f4946;
             --surface-container: #1a201e;
@@ -56,11 +51,11 @@ index.html<!DOCTYPE html>
             --on-surface: #e0e3e1;
             --on-surface-variant: #bfc9c5;
             --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --tours-background-image: url("images/back/cor/corD.webp");
+            --tours-background-overlay: rgba(26, 32, 30, 0.9);
             --card-background: rgba(26, 32, 30, 0.8);
-            --hero-background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
             --footer-background: #0a0e0c;
             --footer-text: #e0e3e1;
-            --floating-opacity: 0.05;
         }
 
         body {
@@ -68,7 +63,7 @@ index.html<!DOCTYPE html>
             color: var(--on-surface);
         }
 
-        /* Theme Toggle Switch */
+        
         .theme-toggle {
             background: none;
             border: none;
@@ -91,7 +86,7 @@ index.html<!DOCTYPE html>
             transform: scale(1.1);
         }
 
-        /* Mobile Menu Button */
+        
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -110,21 +105,21 @@ index.html<!DOCTYPE html>
             background: var(--surface-variant);
         }
 
-        /* Nav Controls Container */
+        
         .nav-controls {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        /* Left side container for logo and theme toggle */
+        
         .nav-left {
             display: flex;
             align-items: center;
             gap: 16px;
         }
 
-        /* Dynamic Header */
+        
         header {
             position: fixed;
             top: 0;
@@ -152,6 +147,7 @@ index.html<!DOCTYPE html>
         .logo {
             font-size: 28px;
             font-weight: 700;
+            text-decoration: none;
             background: linear-gradient(45deg, var(--primary), var(--tertiary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -200,171 +196,14 @@ index.html<!DOCTYPE html>
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 0 20px;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 8vw, 84px);
-            font-weight: 800;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--primary), var(--tertiary));
-            background-color: transparent;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero p {
-            font-size: clamp(16px, 4vw, 20px);
-            margin-bottom: 48px;
-            color: var(--on-surface-variant);
-            animation: fadeInUp 1s ease-out 0.3s both;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        /* Material 3 Button */
-        .cta-button {
-            background: var(--primary);
-            color: var(--on-primary);
-            border: none;
-            padding: 16px 32px;
-            border-radius: 100px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0, 107, 92, 0.3);
-            animation: fadeInUp 1s ease-out 0.6s both;
-            outline: none;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.4);
-        }
-
-        /* Floating Elements */
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: var(--floating-opacity);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape-1 {
-            width: 200px;
-            height: 200px;
-            background: var(--primary);
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape-2 {
-            width: 150px;
-            height: 150px;
-            background: var(--tertiary);
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .shape-3 {
-            width: 100px;
-            height: 100px;
-            background: var(--secondary);
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 120px 0;
-            background: var(--surface);
-        }
-
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: clamp(32px, 6vw, 48px);
-            font-weight: 700;
-            margin-bottom: 64px;
-            color: var(--on-surface);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-        }
-
-        .feature-card {
-            background: var(--card-background);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--outline);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 24px;
-            background: var(--primary);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
-
-        .feature-card h3 {
-            font-size: clamp(20px, 4vw, 24px);
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--on-surface);
-        }
-
-        .feature-card p {
-            color: var(--on-surface-variant);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        /* Tours Section */
+        
         .tours {
             padding: 120px 0;
-            background: var(--surface-container);
+            background-color: var(--surface-container);
+            background-image: linear-gradient(var(--tours-background-overlay), var(--tours-background-overlay)), var(--tours-background-image);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .tours-container {
@@ -377,8 +216,17 @@ index.html<!DOCTYPE html>
             text-align: center;
             font-size: clamp(32px, 6vw, 48px);
             font-weight: 700;
-            margin-bottom: 64px;
+            margin-bottom: 16px;
             color: var(--on-surface);
+        }
+
+        .tours-intro {
+            max-width: 760px;
+            margin: 0 auto 48px;
+            color: var(--on-surface-variant);
+            font-size: 17px;
+            line-height: 1.7;
+            text-align: center;
         }
 
         .tours-grid {
@@ -394,6 +242,7 @@ index.html<!DOCTYPE html>
             transition: all 0.3s cubic-bezier(0.4, 2, 0.2, 1);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            border: 1px solid var(--outline);
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -470,16 +319,34 @@ index.html<!DOCTYPE html>
         }
 
         .tour-content p {
+            flex: 1 1 auto;
+            min-height: 0;
             color: var(--on-surface-variant);
             line-height: 1.6;
             margin-bottom: 24px;
             font-size: 14px;
+            max-height: 200px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .tour-content p.is-scrollable:not(.is-at-scroll-end),
+        #detailsModalBody.is-scrollable:not(.is-at-scroll-end) {
+            -webkit-mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
+            mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
+        }
+
+        .tour-content p.is-scrollable:focus-visible,
+        #detailsModalBody.is-scrollable:focus-visible {
+            outline: 2px solid var(--outline);
+            outline-offset: 2px;
         }
 
         .tour-badges {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-top: auto;
             margin-bottom: 16px;
         }
 
@@ -498,24 +365,21 @@ index.html<!DOCTYPE html>
             font-size: 20px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 12px;
+            margin: 0;
+            min-width: 0;
+        }
+
+        .tour-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
             margin-top: auto;
         }
 
-        .learn-more-button {
-            background: var(--primary);
-            color: var(--on-primary);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
-            outline: none;
-            width: 100%;
-            margin-top: auto;
+        .tour-card-footer .Contact-details-button {
+            min-width: 0;
+            padding: 12px 16px;
         }
 
         .Contact-details-button {
@@ -530,7 +394,8 @@ index.html<!DOCTYPE html>
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
             outline: none;
-            flex: 1;
+            flex: 0 0 auto;
+            min-width: 160px;
         }
 
         .flex-center-gap {
@@ -544,73 +409,7 @@ index.html<!DOCTYPE html>
             box-shadow: 0 4px 16px rgba(0, 107, 92, 0.4);
         }
 
-        /* Contact Section */
-        .contact {
-            padding: 120px 0;
-            background: var(--surface);
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .contact h2 {
-            text-align: center;
-            font-size: clamp(32px, 6vw, 48px);
-            font-weight: 700;
-            margin-bottom: 64px;
-            color: var(--on-surface);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-        }
-
-        .contact-card {
-            background: var(--card-background);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--outline);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 24px;
-            background: var(--primary-container);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
-
-        .contact-card h3 {
-            font-size: clamp(20px, 4vw, 24px);
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--on-surface);
-        }
-
-        .contact-card p {
-            color: var(--on-surface-variant);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        /* Footer */
+        
         footer {
             background: var(--footer-background);
             color: var(--footer-text);
@@ -643,24 +442,8 @@ index.html<!DOCTYPE html>
             opacity: 0.7;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Mobile Responsive Design */
+        
+        
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
@@ -682,13 +465,13 @@ index.html<!DOCTYPE html>
                 right: -100%;
                 width: 80%;
                 max-width: 300px;
-                /* keep menu within viewport height; account for header space */
+                
                 height: calc(100vh);
-                /* translucent fallback so panel shows even when blur isn't supported */
+                
                 background: var(--card-background, rgba(255,255,255,0.75));
-                /* ensure correct compositing for backdrop */
+                
                 isolation: isolate;
-                /* sit above other content */
+                
                 z-index: 1500;
                 flex-direction: column;
                 justify-content: flex-start;
@@ -703,8 +486,7 @@ index.html<!DOCTYPE html>
                 right: 0;
             }
 
-            /* Enable backdrop-filter only when supported (use standard property to avoid
-               DevTools 'invalid property' noise for prefixed rules) */
+            
             @supports (backdrop-filter: blur(20px)) {
                 .nav-links {
                     backdrop-filter: blur(20px);
@@ -717,51 +499,31 @@ index.html<!DOCTYPE html>
                 text-align: center;
             }
             
-            .hero {
-                padding: 100px 20px 60px;
-            }
-            
-            .hero h1 {
-                margin-bottom: 16px;
-            }
-            
-            .hero p {
-                margin-bottom: 32px;
-            }
-            
-            .cta-button {
-                padding: 14px 28px;
-                font-size: 14px;
-            }
-            
-            .features,
             .tours {
                 padding: 80px 0;
             }
             
-            .features-container,
             .tours-container {
                 padding: 0 20px;
             }
             
-            .features h2,
             .tours h2 {
-                margin-bottom: 48px;
+                margin-bottom: 16px;
+            }
+
+            .tours-intro {
+                margin-bottom: 32px;
+                font-size: 16px;
             }
             
-            .features-grid,
             .tours-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
             
-            .feature-card,
             .tour-content {
                 padding: 32px 24px;
             }
-            
-            /* mobile floating-shape rules intentionally left as default (no mobile override)
-               — floating shapes remain desktop-defined only; index.html keeps the mobile tweaks */
             
             .footer-links {
                 flex-direction: column;
@@ -777,24 +539,33 @@ index.html<!DOCTYPE html>
             }
         }
 
-        /* Tablet Responsive */
+        
         @media (max-width: 1024px) and (min-width: 769px) {
-            .features-grid,
             .tours-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .hero {
-                padding: 0 40px;
-            }
-            
-            .features-container,
             .tours-container {
                 padding: 0 40px;
             }
         }
 
-        /* Desktop: center the nav links */
+        @media (min-width: 769px) {
+            .tours-grid {
+                grid-template-columns: repeat(auto-fit, 380px);
+                justify-content: center;
+            }
+
+            .tour-card {
+                height: 680px;
+            }
+
+            .tour-image-slideshow {
+                flex: 0 0 200px;
+            }
+        }
+
+        
         @media (min-width: 769px) {
             nav {
                 display: grid;
@@ -817,34 +588,18 @@ index.html<!DOCTYPE html>
             }
         }
 
-        /* Extra Small Mobile */
+        
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .features h2,
             .tours h2 {
                 font-size: 28px;
             }
             
-            .feature-card h3,
             .tour-content h3 {
                 font-size: 18px;
             }
             
-            .feature-card,
             .tour-content {
                 padding: 24px 20px;
-            }
-            
-            .tour-image {
-                height: 160px;
-                font-size: 36px;
             }
             
             .nav-links {
@@ -856,7 +611,7 @@ index.html<!DOCTYPE html>
             }
         }
 
-        /* Shared back link styles (looks like nav links) */
+        
         .back-link,
         .back-desktop a {
             text-decoration: none;
@@ -872,7 +627,7 @@ index.html<!DOCTYPE html>
             color: var(--primary);
         }
 
-        /* underline animation */
+        
         .back-link::after,
         .back-desktop a::after {
             content: '';
@@ -890,15 +645,15 @@ index.html<!DOCTYPE html>
             width: 100%;
         }
 
-        /* show/hide depending on screen size */
-        .back-mobile { display: none; }   /* hidden by default */
-        .back-desktop { display: list-item; } /* visible by default */
+        
+        .back-mobile { display: none; }   
+        .back-desktop { display: list-item; } 
 
         @media (max-width: 768px) {
             .back-mobile { display: inline-block; margin-right: 12px; }
-            .back-desktop { display: none; } /* hide in mobile menu */
+            .back-desktop { display: none; } 
         }
-        /* Social buttons in popup cards*/
+        
         .social-button {
             background: #f0f0f0;
             color: var(--on-primary);
@@ -935,11 +690,7 @@ index.html<!DOCTYPE html>
         .social-button:active {
             transform: translateY(-2px) scale(0.98);
         }
-        #close.social-button {
-           width: 100%;
-        }
-
-        /* Buttons container */
+        
         .modal-buttons {
             display: flex;
             gap: 16px;
@@ -950,17 +701,7 @@ index.html<!DOCTYPE html>
             margin-top: 12px;
         }
 
-        /* Footer section */
-        .modal-footer {
-            margin-top: 18px;
-        }
-
-        /* Close button */
-        .close-btn {
-            width: 100%;
-        }
-
-        /* Modal background */
+        
         .modal {
             display: none;
             position: fixed;
@@ -971,7 +712,7 @@ index.html<!DOCTYPE html>
             z-index: 2000;
         }
 
-        /* Modal box */
+        
         .modal-content {
             background: var(--surface);
             color: var(--on-surface);
@@ -991,7 +732,98 @@ index.html<!DOCTYPE html>
             gap: 20px;
         }
 
-        /* Title + description */
+        #detailsModal .modal-content {
+            width: min(840px, 94vw);
+            max-width: 94vw;
+            height: min(760px, calc(100vh - 48px));
+            height: min(760px, calc(100dvh - 48px));
+            overflow: hidden;
+            align-items: stretch;
+            gap: 18px;
+            text-align: left;
+        }
+
+        #detailsModal .modal-content h2 {
+            padding-right: 40px;
+            text-align: left;
+        }
+
+        #detailsModalBody {
+            width: 100%;
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        #detailsModal .trip-overview {
+            margin: 0 0 8px;
+            color: var(--on-surface-variant);
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .trip-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 28px;
+        }
+
+        .trip-detail {
+            padding: 16px 0;
+        }
+
+        .trip-detail h3 {
+            margin: 0 0 8px;
+            color: var(--on-surface);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        #detailsModal .trip-detail p,
+        #detailsModal .trip-detail li {
+            color: var(--on-surface-variant);
+            font-size: 0.9rem;
+            line-height: 1.55;
+            text-align: left;
+        }
+
+        #detailsModal .trip-detail ul {
+            margin: 0;
+        }
+
+        .trip-inquiry {
+            display: flex;
+            justify-content: flex-end;
+            flex: 0 0 auto;
+            padding-top: 14px;
+        }
+
+        .trip-inquiry button {
+            width: auto;
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            #detailsModal .modal-content {
+                width: calc(100vw - 24px);
+                max-width: calc(100vw - 24px);
+                height: calc(100vh - 24px);
+                height: calc(100dvh - 24px);
+                padding: 28px 20px 20px;
+            }
+
+            .trip-detail-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .trip-inquiry button {
+                width: 100%;
+            }
+        }
+
+        
         .modal-content h2 {
             margin: 0;
             font-size: 1.5rem;
@@ -1010,7 +842,7 @@ index.html<!DOCTYPE html>
             line-height: 1.5;
         }
 
-        /* Modal highlights list styling */
+        
         .modal-content ul {
             list-style: none;
             padding: 0;
@@ -1084,7 +916,7 @@ index.html<!DOCTYPE html>
             color: var(--primary);
         }
 
-        /* Carousel Lightbox Styles */
+        
         #lightboxModal {
             display: none;
             position: fixed;
@@ -1179,7 +1011,7 @@ index.html<!DOCTYPE html>
             border-radius: 28px;
         }
 
-        /* Temporary image used for animated lightbox transitions */
+        
         .lightbox-temp-image {
             position: absolute;
             top: 0;
@@ -1269,25 +1101,24 @@ index.html<!DOCTYPE html>
     <header>
         <nav>
             <div class="nav-left">
-                <div class="logo">Pearl Drift</div>
+                <a class="logo" href="index.html#home">Pearl Drift</a>
             </div>
             <div class="nav-controls">
-                <!-- Mobile Back button -->
+                
                 <a href="javascript:history.back()" class="back-link back-mobile">← Back</a>
                 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                    <img class="theme-icon" src="images/sm/moon.gif" style="width: 36px; height: 36px;">
+                    <img class="theme-icon" src="images/sm/moon.webp" style="width: 36px; height: 36px;">
                 </button>
                 <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
                     <span id="menu-icon">☰</span>
                 </button>
             </div>
             <ul class="nav-links" id="nav-links">
-                <!-- Desktop Back button -->
+                
                 <li class="back-desktop"><a href="javascript:history.back()">← Back</a></li>
-                <li><a href="index.html#home" onclick="closeMobileMenu()">Home</a></li>
                 <li><a href="index.html#tours" onclick="closeMobileMenu()">Tour Packages</a></li>
-                <li><a href="index.html#about" onclick="closeMobileMenu()">About</a></li>
-                <li><a href="index.html" onclick="closeMobileMenu()">Contact</a></li>
+                <li><a href="index.html#about" onclick="closeMobileMenu()">Why Us</a></li>
+                <li><a href="index.html#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
             </ul>
         </nav>
     </header>
@@ -1297,9 +1128,10 @@ index.html<!DOCTYPE html>
     <section class="tours" id="tours">
         <div class="tours-container">
             <h2>Dive Safari</h2>
+            <p class="tours-intro">We don't simply put you on a liveaboard. We select dive safaris around the diving, route, season and overall experience—so you spend your time in the water, not just moving between sites.</p>
             <div class="tours-grid">
 
-                <!-- Princess Maani -->
+                
                 <div class="tour-card">
                    <div class="tour-image-slideshow">
                         <img src="images/saf/maani/maani1.webp" class="slide active" loading="lazy" onclick="openLightboxModal(['images/saf/maani/maani1.webp','images/saf/maani/maani2.jpg','images/saf/maani/maani3.webp'], 0, this)">
@@ -1318,15 +1150,14 @@ index.html<!DOCTYPE html>
                             <span class="tour-badge">Free Nitrox</span>
                             <span class="tour-badge">Jacuzzi sundeck</span>
                         </div>
-                        <div class="tour-price">From $2,650</div>
-                        <div class="flex-center-gap" style="margin-top:auto;">
-                            <button class="Contact-details-button"  onclick="openDetailsModal('maani')">Package details</button>
-                            <button class="Contact-details-button"  onclick="openContactModal()">Contact Us</button>
+                        <div class="tour-card-footer">
+                            <div class="tour-price">From $2,650</div>
+                            <button class="Contact-details-button" onclick="openDetailsModal('maani')">View safari &rarr;</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sachika  -->
+                
                 <div class="tour-card">
                    <div class="tour-image-slideshow">
                         <img src="images/saf/sachika/sachika1.webp" class="slide active" loading="lazy" onclick="openLightboxModal(['images/saf/sachika/sachika1.webp','images/saf/sachika/sachika2.webp','images/saf/sachika/sachika3.webp'], 0, this)">
@@ -1344,18 +1175,17 @@ index.html<!DOCTYPE html>
                             <span class="tour-badge">Jacuzzi deck</span>
                             <span class="tour-badge">Premium dive sites</span>
                         </div>
-                        <div class="tour-price">From $2,400</div>
-                        <div class="flex-center-gap">
-                            <button class="Contact-details-button"  onclick="openDetailsModal('sachika')">Package details</button>
-                            <button class="Contact-details-button"  onclick="openContactModal()">Contact Us</button>
+                        <div class="tour-card-footer">
+                            <div class="tour-price">From $2,400</div>
+                            <button class="Contact-details-button" onclick="openDetailsModal('sachika')">View safari &rarr;</button>
                         </div>
                     </div>
-                </div>               
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox Modal for Enlarged Images -->
+    
     <div id="lightboxModal">
         <div class="lightbox-content">
             <button id="lightboxClose" onclick="closeLightboxModal()" aria-label="Close lightbox">&times;</button>
@@ -1369,16 +1199,17 @@ index.html<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- Details Modal -->
+    
     <div id="detailsModal" class="modal" style="display:none;">
         <div class="modal-content" style="position:relative;">
             <span class="modal-close" onclick="closeDetailsModal()" style="position:absolute;top:12px;right:18px;font-size:2rem;cursor:pointer;">&times;</span>
-            <h2 id="detailsModalTitle">Tour Details</h2>
+            <h2 id="detailsModalTitle">Safari details</h2>
             <div id="detailsModalBody"></div>
+            <div class="trip-inquiry"><button class="Contact-details-button" onclick="openSafariInquiry()">Ask about this safari</button></div>
         </div>
     </div>
 
-    <!-- Contact Options Modal -->
+    
     <div id="contactModal" class="modal">
         <div class="modal-content" style="position:relative;">
             <span class="modal-close" onclick="closeContactModal()" style="position:absolute;top:12px;right:18px;font-size:2rem;cursor:pointer;">&times;</span>
@@ -1396,14 +1227,11 @@ index.html<!DOCTYPE html>
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="index.html#home">Home</a>
-                <a href="index.html#tours">Tour Packages</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contactUs">Contact</a>
+                <a href="index.html#home">Back to Top</a>
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
             </div>
-            <p>&copy; 2025 Pearl Drift. All rights reserved. | Creating unforgettable journeys since 2025</p>
+            <p>&copy;  2026 Pearl Drift. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1417,7 +1245,7 @@ index.html<!DOCTYPE html>
             
             document.documentElement.setAttribute('data-theme', newTheme);
             document.querySelectorAll('.theme-icon').forEach(img => {
-                img.src = newTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+                img.src = newTheme === 'dark' ? 'images/sm/sun.webp' : 'images/sm/moon.webp';
             });
             
             // Save theme preference
@@ -1429,8 +1257,31 @@ index.html<!DOCTYPE html>
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             document.querySelectorAll('.theme-icon').forEach(img => {
-                img.src = savedTheme === 'dark' ? 'images/sm/sun.gif' : 'images/sm/moon.gif';
+                img.src = savedTheme === 'dark' ? 'images/sm/sun.webp' : 'images/sm/moon.webp';
             });
+        }
+
+        function updateTourDescriptionFade(paragraph) {
+            const isScrollable = paragraph.scrollHeight > paragraph.clientHeight + 1;
+            const isAtScrollEnd = paragraph.scrollTop + paragraph.clientHeight >= paragraph.scrollHeight - 1;
+
+            paragraph.classList.toggle('is-scrollable', isScrollable);
+            paragraph.classList.toggle('is-at-scroll-end', isScrollable && isAtScrollEnd);
+
+            if (isScrollable) {
+                paragraph.setAttribute('tabindex', '0');
+            } else {
+                paragraph.removeAttribute('tabindex');
+            }
+        }
+
+        function setupTourDescriptionFades() {
+            const paragraphs = document.querySelectorAll('.tour-content p, #detailsModalBody');
+            paragraphs.forEach(paragraph => {
+                paragraph.addEventListener('scroll', () => updateTourDescriptionFade(paragraph), { passive: true });
+                updateTourDescriptionFade(paragraph);
+            });
+            window.addEventListener('resize', () => paragraphs.forEach(updateTourDescriptionFade));
         }
 
         // Mobile Menu Management
@@ -1537,116 +1388,131 @@ index.html<!DOCTYPE html>
             });
         });
 
+        let lockedBodyStyles = null;
+
+        function updateModalScrollLock() {
+            const modalIsOpen = ['detailsModal', 'contactModal'].some(id => {
+                const modal = document.getElementById(id);
+                return modal && modal.style.display === 'flex';
+            });
+            const body = document.body;
+
+            if (modalIsOpen && !lockedBodyStyles) {
+                const scrollY = window.scrollY;
+                lockedBodyStyles = {
+                    scrollY,
+                    position: body.style.position,
+                    top: body.style.top,
+                    left: body.style.left,
+                    right: body.style.right,
+                    width: body.style.width,
+                    overflow: body.style.overflow
+                };
+                body.style.position = 'fixed';
+                body.style.top = `-${scrollY}px`;
+                body.style.left = '0';
+                body.style.right = '0';
+                body.style.width = '100%';
+                body.style.overflow = 'hidden';
+            } else if (!modalIsOpen && lockedBodyStyles) {
+                const { scrollY, ...styles } = lockedBodyStyles;
+                Object.assign(body.style, styles);
+                lockedBodyStyles = null;
+                window.scrollTo(0, scrollY);
+            }
+        }
+
         // Details Modal logic
         function openDetailsModal(tourType) {
             const detailsModalContent = {
                 maani: {
                     title: "Princess Maani",
                     overview: "Princess Maani is a luxury liveaboard built for divers who want premium comfort, free Nitrox, and a dedicated dive dhoni across the Maldives.",
+                    route: "Maldives atolls. Confirm the route and dive sites for the selected departure.",
+                    vessel: "41 m liveaboard with 14 cabins for up to 28 guests and a dedicated dive dhoni.",
                     includes: [
                         "14-cabin accommodation for up to 28 guests",
                         "All meals by a European chef",
                         "Dedicated dive dhoni service",
                         "Free Nitrox for certified divers"
                     ],
-                    highlights: [
-                        "Jacuzzi sundeck",
-                        "Open-air cocktail bar",
-                        "Spa treatments available",
-                        "Kayaks and SUP on deck"
-                    ],
-                    practicalInfo: [
-                        "Ideal for 7+ night safaris",
-                        "Best for advanced divers and snorkelers",
-                        "Pickup from Male or domestic airport",
-                        "Comfortable social spaces onboard"
-                    ],
-                    extras: [
-                        "Private dive guides",
-                        "Onboard massage services",
-                        "Custom itinerary upgrades"
-                    ]
+                    activities: ["Guided diving across the atolls; marine sightings vary by route and season", "Kayaks and stand-up paddleboards", "Jacuzzis, open-air cocktail bar, and massage services"],
+                    transfers: "Pickup from Malé or a domestic airport is listed. Confirm the embarkation point and transfer timing.",
+                    priceBasis: "From $2,650 as shown on the trip card. Confirm currency, dates, cabin, trip length, and rate basis.",
+                    importantNotes: ["14 cabins for up to 28 guests", "Free Nitrox is for certified divers", "Private dive guides and custom itinerary upgrades may be additional"]
                 },
                 sachika: {
                     title: "Sachika",
                     overview: "Sachika is an award-winning dive safari yacht offering spacious cabins, a jacuzzi sundeck, and premium diving experiences with mantas, sharks, and whale sharks.",
+                    route: "Maldives atolls. Confirm the route and dive sites for the selected departure.",
+                    vessel: "Award-winning safari yacht with spacious cabins, a dedicated dive dhoni, and a jacuzzi sundeck.",
                     includes: [
                         "Spacious onboard cabins",
                         "Three daily meals",
                         "Dedicated dive dhoni",
                         "Daily guided dive briefings"
                     ],
-                    highlights: [
-                        "Jacuzzi sundeck",
-                        "Award-winning crew",
-                        "Premium dive sites",
-                        "Luxury onboard amenities"
-                    ],
-                    practicalInfo: [
-                        "Great for mixed skill groups",
-                        "Best for 7+ night safaris",
-                        "Whale shark season highlights",
-                        "Transfers from Male available"
-                    ],
-                    extras: [
-                        "Private briefings",
-                        "Custom dive plans",
-                        "Sunset cruise experiences"
-                    ]
+                    activities: ["Guided dives across the atolls", "Marine encounters may include mantas, sharks, and whale sharks; sightings are not guaranteed", "Private briefings, custom dive plans, and sunset cruises may be available"],
+                    transfers: "Transfers from Malé are listed as available. Confirm whether they are included and the exact routing.",
+                    priceBasis: "From $2,400 as shown on the trip card. Confirm currency, dates, cabin, trip length, and rate basis.",
+                    importantNotes: ["Suitable for mixed-skill groups", "Best for 7 or more nights", "Whale shark encounters are seasonal and not guaranteed"]
                 }
             };
             const tour = detailsModalContent[tourType];
-            document.getElementById('detailsModalTitle').textContent = tour ? tour.title : 'Tour Details';
-            let bodyHtml = '';
-            if (tour) {
-                if (tour.overview) {
-                    bodyHtml += `<div class="modal-section"><p>${tour.overview}</p></div>`;
-                }
-                if (tour.includes && tour.includes.length) {
-                    bodyHtml += '<div class="modal-section"><h3>What’s included</h3><ul>';
-                    tour.includes.forEach(item => {
-                        bodyHtml += `<li>${item}</li>`;
-                    });
-                    bodyHtml += '</ul></div>';
-                }
-                if (tour.highlights && tour.highlights.length) {
-                    bodyHtml += '<div class="modal-section"><h3>Why book it</h3><ul>';
-                    tour.highlights.forEach(item => {
-                        bodyHtml += `<li>${item}</li>`;
-                    });
-                    bodyHtml += '</ul></div>';
-                }
-                if (tour.practicalInfo && tour.practicalInfo.length) {
-                    bodyHtml += '<div class="modal-section"><h3>Practical info</h3><ul>';
-                    tour.practicalInfo.forEach(item => {
-                        bodyHtml += `<li>${item}</li>`;
-                    });
-                    bodyHtml += '</ul></div>';
-                }
-                if (tour.extras && tour.extras.length) {
-                    bodyHtml += '<div class="modal-section"><h3>Optional add-ons</h3><ul>';
-                    tour.extras.forEach(item => {
-                        bodyHtml += `<li>${item}</li>`;
-                    });
-                    bodyHtml += '</ul></div>';
-                }
-            }
+            if (!tour) return;
+
+            document.getElementById('detailsModalTitle').textContent = tour.title;
+            const fields = [
+                ["Route & atolls", tour.route],
+                ["Vessel & accommodation", tour.vessel],
+                ["What's included", tour.includes],
+                ["Activities available", tour.activities],
+                ["Transfers", tour.transfers],
+                ["Price basis", tour.priceBasis],
+                ["Important notes", tour.importantNotes]
+            ];
+            let bodyHtml = `<p class="trip-overview">${tour.overview}</p><div class="trip-detail-grid">`;
+            fields.forEach(([label, value]) => {
+                const content = Array.isArray(value)
+                    ? `<ul>${value.map(item => `<li>${item}</li>`).join('')}</ul>`
+                    : `<p>${value}</p>`;
+                bodyHtml += `<section class="trip-detail"><h3>${label}</h3>${content}</section>`;
+            });
+            bodyHtml += '</div>';
             document.getElementById('detailsModalBody').innerHTML = bodyHtml;
             document.getElementById('detailsModal').style.display = 'flex';
+            updateTourDescriptionFade(document.getElementById('detailsModalBody'));
+            updateModalScrollLock();
         }
 
         function closeDetailsModal() {
             document.getElementById('detailsModal').style.display = 'none';
+            updateModalScrollLock();
+        }
+
+        let inquirySafariTitle = '';
+
+        function openSafariInquiry() {
+            const safariTitle = document.getElementById('detailsModalTitle').textContent;
+            openContactModal(safariTitle);
+            closeDetailsModal();
         }
 
         // Contact Modal logic
-        function openContactModal() {
+        function openContactModal(safariTitle = '') {
+            inquirySafariTitle = safariTitle;
+            document.getElementById('modalTitle').textContent = safariTitle ? `Ask about ${safariTitle}` : 'Contact Us';
+            document.getElementById('modalDescription').textContent = safariTitle
+                ? `Share your travel dates and group size to ask about ${safariTitle}.`
+                : 'Choose how you want to reach us:';
             document.getElementById('contactModal').style.display = 'flex';
+            updateModalScrollLock();
         }
 
         function closeContactModal() {
             const modal = document.getElementById('contactModal');
             if (modal) modal.style.display = 'none';
+            updateModalScrollLock();
         }
 
         // Image slider button functions
@@ -2252,12 +2118,14 @@ index.html<!DOCTYPE html>
         // Initialize theme on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadTheme();
+            setupTourDescriptionFades();
             setupModalCloseOnOutsideClick();
             setupTouchNavigation();
         });
 
         // Handle resize events
         window.addEventListener('resize', () => {
+            document.querySelectorAll('.tour-content p, #detailsModalBody').forEach(updateTourDescriptionFade);
             if (window.innerWidth > 768) {
                 closeMobileMenu();
             }
@@ -2265,17 +2133,22 @@ index.html<!DOCTYPE html>
 
         // Redirect to chosen contact method
 function redirectContact(method) {
+    const subject = inquirySafariTitle ? `Safari enquiry: ${inquirySafariTitle}` : 'Tour Enquiry';
+    const body = inquirySafariTitle
+        ? `Hi Pearl Drift,\n\nI'm interested in ${inquirySafariTitle}. Please share availability, cabin options, route, transfers, and the rate basis.\n\nMy travel dates and group size: `
+        : 'Hi Pearl Drift,\n\nI\'m interested in your tour packages. Please send me more details.';
+
     if (method === 'email') {
         // Simple mobile detection
         const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
         if (isMobile) {
             // Open default mobile email app
-            window.location.href = 'mailto:tinyislets@gmail.com?subject=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.';
+            window.location.href = `mailto:tinyislets@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         } else {
             // Open Gmail compose in desktop browser
             window.open(
-                'https://mail.google.com/mail/?view=cm&fs=1&to=tinyislets@gmail.com&su=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.',
+                `https://mail.google.com/mail/?view=cm&fs=1&to=tinyislets@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
                 '_blank'
             );
         }

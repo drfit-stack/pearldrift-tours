@@ -31,7 +31,7 @@
             --on-surface: #191c1b;
             --on-surface-variant: #3f4946;
             --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
-            --tours-background-image: url("images/back/pal/palL.webp");
+            --tours-background-image: url("images/back/spe/specL.webp");
             --tours-background-overlay: rgba(236, 242, 240, 0.9);
             --card-background: rgba(255, 255, 255, 0.7);
             --footer-background: #191c1b;
@@ -51,7 +51,7 @@
             --on-surface: #e0e3e1;
             --on-surface-variant: #bfc9c5;
             --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
-            --tours-background-image: url("images/back/pal/palD.webp");
+            --tours-background-image: url("images/back/spe/specD.webp");
             --tours-background-overlay: rgba(26, 32, 30, 0.9);
             --card-background: rgba(26, 32, 30, 0.8);
             --footer-background: #0a0e0c;
@@ -325,7 +325,7 @@
             line-height: 1.6;
             margin-bottom: 24px;
             font-size: 14px;
-            max-height: 220px;
+            max-height: 200px;
             overflow-y: auto;
             overscroll-behavior: contain;
         }
@@ -399,6 +399,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
+            margin-top: auto;
         }
 
         .tour-card-footer .Contact-details-button {
@@ -566,15 +567,24 @@
         
         @media (max-width: 1024px) and (min-width: 769px) {
             .tours-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fit, 380px);
+                justify-content: center;
             }
             
             .tours-container {
                 padding: 0 40px;
             }
+
+            .tour-card {
+                height: 680px;
+            }
+
+            .tour-image-slideshow {
+                flex: 0 0 200px;
+            }
         }
 
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
             .tours-grid {
                 grid-template-columns: repeat(auto-fit, 380px);
                 justify-content: center;
@@ -780,7 +790,7 @@
             overscroll-behavior: contain;
         }
 
-        #detailsModal .stay-overview {
+        #detailsModal .cruise-overview {
             margin: 0 0 8px;
             color: var(--on-surface-variant);
             font-size: 1rem;
@@ -788,43 +798,43 @@
             text-align: left;
         }
 
-        .stay-detail-grid {
+        .cruise-detail-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             column-gap: 28px;
         }
 
-        .stay-detail {
+        .cruise-detail {
             padding: 16px 0;
         }
 
-        .stay-detail h3 {
+        .cruise-detail h3 {
             margin: 0 0 8px;
             color: var(--on-surface);
             font-size: 0.95rem;
             font-weight: 700;
         }
 
-        #detailsModal .stay-detail p,
-        #detailsModal .stay-detail li {
+        #detailsModal .cruise-detail p,
+        #detailsModal .cruise-detail li {
             color: var(--on-surface-variant);
             font-size: 0.9rem;
             line-height: 1.55;
             text-align: left;
         }
 
-        #detailsModal .stay-detail ul {
+        #detailsModal .cruise-detail ul {
             margin: 0;
         }
 
-        .stay-inquiry {
+        .cruise-inquiry {
             display: flex;
             justify-content: flex-end;
             flex: 0 0 auto;
             padding-top: 14px;
         }
 
-        .stay-inquiry button {
+        .cruise-inquiry button {
             width: auto;
             flex: 0 0 auto;
         }
@@ -838,11 +848,11 @@
                 padding: 28px 20px 20px;
             }
 
-            .stay-detail-grid {
+            .cruise-detail-grid {
                 grid-template-columns: minmax(0, 1fr);
             }
 
-            .stay-inquiry button {
+            .cruise-inquiry button {
                 width: 100%;
             }
         }
@@ -1126,144 +1136,38 @@
 
     <section class="tours" id="tours">
         <div class="tours-container">
-            <h2>Local Island Escapes</h2>
-            <p class="tours-intro">We select local stays based on location, activities, comfort and the experience they offer—not simply the room.</p>
+            <h2>Pearl Drift Exclusive</h2>
+            <p class="tours-intro">Our Specials are unique trips built around experiences that go beyond the standard Maldives holiday—from time on the water and snorkeling to local islands, marine life and conservation.</p>
             <div class="tours-grid">
 
                 
                 <div class="tour-card">
                    <div class="tour-image-slideshow">
-                        <img src="images/local/dhar/aveyla1.jpg" class="slide active" loading="lazy" onclick="openLightboxModal(['images/local/dhar/aveyla1.jpg','images/local/dhar/aveyla2.jpg','images/local/dhar/aveyla3.jpg','images/local/dhar/aveyla4.jpg','images/local/dhar/aveyla5.jpg'], 0, this)">
-                        <img src="images/local/dhar/aveyla2.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhar/aveyla1.jpg','images/local/dhar/aveyla2.jpg','images/local/dhar/aveyla3.jpg','images/local/dhar/aveyla4.jpg','images/local/dhar/aveyla5.jpg'], 1, this)">
-                        <img src="images/local/dhar/aveyla3.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhar/aveyla1.jpg','images/local/dhar/aveyla2.jpg','images/local/dhar/aveyla3.jpg','images/local/dhar/aveyla4.jpg','images/local/dhar/aveyla5.jpg'], 2, this)">
-                        <img src="images/local/dhar/aveyla4.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhar/aveyla1.jpg','images/local/dhar/aveyla2.jpg','images/local/dhar/aveyla3.jpg','images/local/dhar/aveyla4.jpg','images/local/dhar/aveyla5.jpg'], 3, this)">
-                        <img src="images/local/dhar/aveyla5.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhar/aveyla1.jpg','images/local/dhar/aveyla2.jpg','images/local/dhar/aveyla3.jpg','images/local/dhar/aveyla4.jpg','images/local/dhar/aveyla5.jpg'], 4, this)">
+                        <img src="images/saf/hope/hope1.jpeg" class="slide active" loading="lazy" onclick="openLightboxModal(['images/saf/hope/hope1.jpeg','images/saf/hope/hope2.jpeg','images/saf/hope/hope3.jpeg','images/saf/hope/hope4.jpeg'], 0, this)">
+                        <img src="images/saf/hope/hope2.jpeg" class="slide" loading="lazy" onclick="openLightboxModal(['images/saf/hope/hope1.jpeg','images/saf/hope/hope2.jpeg','images/saf/hope/hope3.jpeg','images/saf/hope/hope4.jpeg'], 1, this)">
+                        <img src="images/saf/hope/hope3.jpeg" class="slide" loading="lazy" onclick="openLightboxModal(['images/saf/hope/hope1.jpeg','images/saf/hope/hope2.jpeg','images/saf/hope/hope3.jpeg','images/saf/hope/hope4.jpeg'], 2, this)">
+                        <img src="images/saf/hope/hope4.jpeg" class="slide" loading="lazy" onclick="openLightboxModal(['images/saf/hope/hope1.jpeg','images/saf/hope/hope2.jpeg','images/saf/hope/hope3.jpeg','images/saf/hope/hope4.jpeg'], 3, this)">
                         
 
                         <button class="prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
                         <button class="next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
                     </div>
-
                     <div class="tour-content">
-                        <h3>Aveyla Manta Village</h3>
-                        <p>Eco resort on Dharavandhoo Island in the UNESCO-protected Baa Atoll, with solar-powered rooms and direct access to world-class manta diving.</p>
+                        <h3>Hope Cruiser</h3>
+                        <p>The Hope Cruiser is a luxury yacht offering an unforgettable experience in the Maldives. With spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni, she provides seamless comfort and world-class diving with mantas, sharks, and whale sharks across the atolls.</p>
                         <div class="tour-badges">
-                            <span class="tour-badge">Eco resort</span>
-                            <span class="tour-badge">PADI 5★ dive centre</span>
-                            <span class="tour-badge">Hanifaru Bay access</span>
+                            <span class="tour-badge">Luxury yacht</span>
+                            <span class="tour-badge">Jacuzzi deck</span>
+                            <span class="tour-badge">Premium dive sites</span>
                         </div>
                         <div class="tour-card-footer">
-                            <div class="tour-price">From $1,080</div>
-                            <button class="Contact-details-button" onclick="openDetailsModal('aveyla')">View stay &rarr;</button>
+                            <div class="tour-price">$1750</div>
+                            <button class="Contact-details-button" onclick="openDetailsModal('hope')">View cruise &rarr;</button>
                         </div>
                     </div>
                 </div>
 
                 
-                <div class="tour-card">
-                   <div class="tour-image-slideshow">
-                        <img src="images/local/addu/mbr1.jpg" class="slide active" loading="lazy" onclick="openLightboxModal(['images/local/addu/mbr1.jpg','images/local/addu/mbr2.jpg','images/local/addu/mbr3.jpg'], 0, this)">
-                        <img src="images/local/addu/mbr2.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/addu/mbr1.jpg','images/local/addu/mbr2.jpg','images/local/addu/mbr3.jpg'], 1, this)">
-                        <img src="images/local/addu/mbr3.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/addu/mbr1.jpg','images/local/addu/mbr2.jpg','images/local/addu/mbr3.jpg'], 2, this)">
-
-                        <button class="prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
-                        <button class="next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
-                    </div>
-                    <div class="tour-content">
-                        <h3>Manta Beach Retreat</h3>
-                        <p>Manta Beach Retreat is your gateway to experiencing the soul of Addu—where history, culture, and natural beauty come together in the southern Maldives.</p>
-                        <div class="tour-badges">
-                            <span class="tour-badge">Addu culture</span>
-                            <span class="tour-badge">Custom dive itineraries</span>
-                            <span class="tour-badge">Local island charm</span>
-                        </div>
-                        <div class="tour-card-footer">
-                            <div class="tour-price">From $1,899</div>
-                            <button class="Contact-details-button" onclick="openDetailsModal('mantaBeachRetreat')">View stay &rarr;</button>
-                        </div>
-                    </div>
-                </div>  
-                
-                
-                <div class="tour-card">
-                   <div class="tour-image-slideshow">
-                        <img src="images/local/emp/emp1.webp" class="slide active" loading="lazy" onclick="openLightboxModal(['images/local/emp/emp1.webp','images/local/emp/emp2.jpg','images/local/emp/emp3.webp','images/local/emp/emp4.webp','images/local/emp/emp5.jpg'], 0, this)">
-                        <img src="images/local/emp/emp2.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/emp/emp1.webp','images/local/emp/emp2.jpg','images/local/emp/emp3.webp','images/local/emp/emp4.webp','images/local/emp/emp5.jpg'], 1, this)">
-                        <img src="images/local/emp/emp3.webp" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/emp/emp1.webp','images/local/emp/emp2.jpg','images/local/emp/emp3.webp','images/local/emp/emp4.webp','images/local/emp/emp5.jpg'], 2, this)">
-                        <img src="images/local/emp/emp4.webp" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/emp/emp1.webp','images/local/emp/emp2.jpg','images/local/emp/emp3.webp','images/local/emp/emp4.webp','images/local/emp/emp5.jpg'], 3, this)">
-                        <img src="images/local/emp/emp5.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/emp/emp1.webp','images/local/emp/emp2.jpg','images/local/emp/emp3.webp','images/local/emp/emp4.webp','images/local/emp/emp5.jpg'], 4, this)">
-                        
-                        <button class="prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
-                        <button class="next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
-                    </div>
-                    <div class="tour-content">
-                        <h3>Empyrean Stay</h3>
-                        <p>A family-managed 6-room guesthouse offering cozy stays just steps from the beach. Perfect for travelers seeking comfort, privacy, and authentic island life well known for surfing.</p>
-                        <div class="tour-badges">
-                            <span class="tour-badge">Beachfront guesthouse</span>
-                            <span class="tour-badge">Family-owned</span>
-                            <span class="tour-badge">Surf-friendly</span>
-                        </div>
-                        <div class="tour-card-footer">
-                            <div class="tour-price">From $600</div>
-                            <button class="Contact-details-button" onclick="openDetailsModal('empyrean')">View stay &rarr;</button>
-                        </div>
-                    </div>
-                </div> 
-                
-                
-                <div class="tour-card">
-                   <div class="tour-image-slideshow">
-                        <img src="images/local/dhimv/dhigumv1.webp" class="slide active" loading="lazy" onclick="openLightboxModal(['images/local/dhimv/dhigumv1.webp','images/local/dhimv/dhigumv2.webp','images/local/dhimv/dhigumv3.jpg','images/local/dhimv/dhigumv4.webp'], 0, this)">
-                        <img src="images/local/dhimv/dhigumv2.webp" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhimv/dhigumv1.webp','images/local/dhimv/dhigumv2.webp','images/local/dhimv/dhigumv3.jpg','images/local/dhimv/dhigumv4.webp'], 1, this)">
-                        <img src="images/local/dhimv/dhigumv3.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhimv/dhigumv1.webp','images/local/dhimv/dhigumv2.webp','images/local/dhimv/dhigumv3.jpg','images/local/dhimv/dhigumv4.webp'], 2, this)">
-                        <img src="images/local/dhimv/dhigumv4.webp" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhimv/dhigumv1.webp','images/local/dhimv/dhigumv2.webp','images/local/dhimv/dhigumv3.jpg','images/local/dhimv/dhigumv4.webp'], 3, this)">
-                        
-                        <button class="prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
-                        <button class="next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
-                    </div>
-                    <div class="tour-content">
-                        <h3>Dhiguveli Maldives</h3>
-                        <p>Dhiguveli Maldives is truly the place for you if you are looking to unwind and make memories of a lifetime. Our hotel is only a minute’s walk away from the long stretches of white sandy beaches, dedicated to provide you the ultimate local experience. Our cosy modern rooms would make you feel right at home.</p>
-                        <div class="tour-badges">
-                            <span class="tour-badge">Beach access</span>
-                            <span class="tour-badge">Modern rooms</span>
-                            <span class="tour-badge">Local island feel</span>
-                        </div>
-                        <div class="tour-card-footer">
-                            <div class="tour-price">From $1,899</div>
-                            <button class="Contact-details-button" onclick="openDetailsModal('dhiguveliMaldives')">View stay &rarr;</button>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                
-                <div class="tour-card">
-                   <div class="tour-image-slideshow">
-                        <img src="images/local/dhibree/dhibree1.webp" class="slide active" loading="lazy" onclick="openLightboxModal(['images/local/dhibree/dhibree1.webp','images/local/dhibree/dhibree2.webp','images/local/dhibree/dhibree3.jpg','images/local/dhibree/dhibree4.jpg'], 0, this)">
-                        <img src="images/local/dhibree/dhibree2.webp" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhibree/dhibree1.webp','images/local/dhibree/dhibree2.webp','images/local/dhibree/dhibree3.jpg','images/local/dhibree/dhibree4.jpg'], 1, this)">
-                        <img src="images/local/dhibree/dhibree3.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhibree/dhibree1.webp','images/local/dhibree/dhibree2.webp','images/local/dhibree/dhibree3.jpg','images/local/dhibree/dhibree4.jpg'], 2, this)">
-                        <img src="images/local/dhibree/dhibree4.jpg" class="slide" loading="lazy" onclick="openLightboxModal(['images/local/dhibree/dhibree1.webp','images/local/dhibree/dhibree2.webp','images/local/dhibree/dhibree3.jpg','images/local/dhibree/dhibree4.jpg'], 3, this)">
-                        
-
-                        <button class="prev" onclick="event.stopPropagation(); changeSlide(this, -1)">&#10094;</button>
-                        <button class="next" onclick="event.stopPropagation(); changeSlide(this, 1)">&#10095;</button>
-                    </div>
-                    <div class="tour-content">
-                        <h3>Dhiguveli Breeze</h3>
-                        <p>Dhiguveli Breeze offers 3-star accommodations in Dhigurah and has a garden, a shared lounge and a restaurant. The property has a 24-hour front desk, airport transportation, room service and free WiFi. The hotel will provide guests with air-conditioned rooms with a desk, an electric tea pot, a safety deposit box, a flat-screen TV, a terrace and a private bathroom with a bidet. Dhiguveli Breeze provides some rooms with city views, and all rooms include a balcony. All rooms feature a closet. A buffet, à la carte or continental breakfast is available at the property.</p>
-                        <div class="tour-badges">
-                            <span class="tour-badge">24-hour front desk</span>
-                            <span class="tour-badge">Breakfast included</span>
-                            <span class="tour-badge">Free WiFi</span>
-                        </div>
-                        <div class="tour-card-footer">
-                            <div class="tour-price">From $1,899</div>
-                            <button class="Contact-details-button" onclick="openDetailsModal('dhiguveliBreeze')">View stay &rarr;</button>
-                        </div>
-                    </div>
-                </div> 
             </div>
         </div>
     </section>
@@ -1286,9 +1190,9 @@
     <div id="detailsModal" class="modal" style="display:none;">
         <div class="modal-content" style="position:relative;">
             <span class="modal-close" onclick="closeDetailsModal()" style="position:absolute;top:12px;right:18px;font-size:2rem;cursor:pointer;">&times;</span>
-            <h2 id="detailsModalTitle">Stay details</h2>
+            <h2 id="detailsModalTitle">Cruise details</h2>
             <div id="detailsModalBody"></div>
-            <div class="stay-inquiry"><button class="Contact-details-button" onclick="openStayInquiry()">Ask about this stay</button></div>
+            <div class="cruise-inquiry"><button class="Contact-details-button" onclick="openCruiseInquiry()">Ask about this cruise</button></div>
         </div>
     </div>
 
@@ -1359,10 +1263,12 @@
         }
 
         function setupTourDescriptionFades() {
-            document.querySelectorAll('.tour-content p, #detailsModalBody').forEach(paragraph => {
+            const paragraphs = document.querySelectorAll('.tour-content p, #detailsModalBody');
+            paragraphs.forEach(paragraph => {
                 paragraph.addEventListener('scroll', () => updateTourDescriptionFade(paragraph), { passive: true });
                 updateTourDescriptionFade(paragraph);
             });
+            window.addEventListener('resize', () => paragraphs.forEach(updateTourDescriptionFade));
         }
 
         // Mobile Menu Management
@@ -1506,198 +1412,37 @@
         // Details Modal logic
         function openDetailsModal(tourType) {
             const detailsModalContent = {
-                aveyla: {
-                    title: "Aveyla Manta Village",
-                    overview: "An eco-conscious resort inside the UNESCO-protected Baa Atoll, built for guests who want manta diving, marine conservation, and a quieter island stay.",
-                    island: "Dharavandhoo",
-                    atoll: "Baa Atoll",
-                    accommodation: "16 solar-powered beach rooms. Family-friendly rooms are available.",
-                    activities: ["Manta diving", "Private manta snorkel excursions", "Sustainability-focused island experiences"],
-                    transfers: "Round-trip speedboat transfer is listed as included. Confirm the domestic-flight connection and timing.",
-                    priceBasis: "From $1,080 as shown on the stay card. Confirm dates, room type, and whether the rate is per person, per night, or for a package.",
-                    importantNotes: ["Best suited to diving and marine-wildlife trips", "Suggested stay: 4 or more nights", "Small property with 16 rooms"],
-                    includes: [
-                        "Accommodation in solar-powered beach rooms",
-                        "Daily breakfast",
-                        "Round-trip speedboat transfer",
-                        "Guided manta dive briefing and marine-expert support"
-                    ],
-                    highlights: [
-                        "Direct access to Hanifaru Bay",
-                        "PADI 5-star dive centre",
-                        "Small resort with only 16 rooms",
-                        "Solar-powered resort operations"
-                    ],
-                    practicalInfo: [
-                        "Best for diving and marine wildlife lovers",
-                        "Ideal stay: 4+ nights",
-                        "Easy access via Dharavandhoo domestic airport",
-                        "Family-friendly rooms available"
-                    ],
-                    extras: [
-                        "Spa treatments",
-                        "Private manta snorkel excursions",
-                        "Sustainability-focused island experiences"
-                    ]
+                hope: {
+                    title: "Hope Cruiser",
+                    overview: "A luxury Maldives yacht with spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni for diving across the atolls.",
+                    route: "Maldives atolls. Confirm the route, atolls, and dive sites for the selected departure.",
+                    vessel: "Luxury yacht with spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni.",
+                    includes: ["Confirm inclusions for the selected departure and cabin."],
+                    activities: ["World-class diving across the atolls", "Marine encounters may include mantas, sharks, and whale sharks; sightings are not guaranteed"],
+                    transfers: "Confirm the embarkation point, airport transfers, and pickup timing for the selected departure.",
+                    priceBasis: "$1,750 is shown on the trip card. Confirm currency, cabin basis, trip length, dates, and included services.",
+                    importantNotes: ["Spacious cabins", "Jacuzzi sundeck", "Dedicated dive dhoni"]
                 },
-                mantaBeachRetreat: {
-                    title: "Manta Beach Retreat",
-                    overview: "A welcoming retreat in Addu with local hospitality, optional dive add-ons, and guided island exploration.",
-                    island: "Addu City; confirm the specific island with the property.",
-                    atoll: "Addu Atoll",
-                    accommodation: "Guesthouse-style retreat. Confirm room types and configuration.",
-                    activities: ["Dive excursions", "Guided island exploration", "Private island tours", "Sunset dhow cruises", "Surf and snorkel options"],
-                    transfers: "Airport transfer is available on request. Gan Airport is the stated arrival point.",
-                    priceBasis: "From $1,899 as shown on the stay card. Confirm dates, room type, and rate basis.",
-                    importantNotes: ["Flexible stay length", "Family-friendly options are available", "Confirm which activities and transfers are included in your quote"],
-                    includes: [
-                        "Breakfast each morning",
-                        "Airport transfer on request",
-                        "Assistance booking dive excursions",
-                        "Access to cultural island experiences"
-                    ],
-                    highlights: [
-                        "Local cultural immersion",
-                        "Personalized dive itineraries",
-                        "Friendly guesthouse atmosphere",
-                        "Close to Addu Atoll dive sites"
-                    ],
-                    practicalInfo: [
-                        "Best for couples and small groups",
-                        "Flexible stay length",
-                        "Family-friendly options available",
-                        "Easy transfer from Gan Airport"
-                    ],
-                    extras: [
-                        "Private island tours",
-                        "Sunset dhow cruises",
-                        "Surf and snorkel packages"
-                    ]
-                },
-                empyrean: {
-                    title: "Empyrean Stay",
-                    overview: "A small, family-run guesthouse offering beachside comfort, quiet days, and local surf culture just steps from the sand.",
-                    island: "Confirm with the property.",
-                    atoll: "Confirm with the property.",
-                    accommodation: "Family-run, 6-room guesthouse. Confirm available room types.",
-                    activities: ["Surf lessons", "Island bike rentals", "Private dining requests", "Nearby beach and local cafes"],
-                    transfers: "Airport transfers are available; confirm arrangements and cost.",
-                    priceBasis: "From $600 as shown on the stay card. Confirm dates, room type, and rate basis.",
-                    importantNotes: ["Beachside location", "Surf-friendly setting", "Well suited to relaxed stays and families"],
-                    includes: [
-                        "Cozy room stay",
-                        "Daily breakfast",
-                        "Beachfront access",
-                        "Local guesthouse hospitality"
-                    ],
-                    highlights: [
-                        "Steps from the beach",
-                        "Family-managed atmosphere",
-                        "Surf-friendly location",
-                        "Authentic island living"
-                    ],
-                    practicalInfo: [
-                        "Ideal for relaxed beach stays",
-                        "Perfect for surfers and families",
-                        "Short walk to local cafés",
-                        "Airport transfers available"
-                    ],
-                    extras: [
-                        "Surf lessons",
-                        "Island bike rentals",
-                        "Private dining requests"
-                    ]
-                },
-                dhiguveliMaldives: {
-                    title: "Dhiguveli Maldives",
-                    overview: "A modern island hideaway close to long white beaches and local life, designed for guests who want comfort without losing authentic island character.",
-                    island: "Confirm with the property.",
-                    atoll: "Confirm with the property.",
-                    accommodation: "Modern hotel rooms. Confirm room types and availability.",
-                    activities: ["Private beach picnics", "Guided island walks", "Local craft and food tours", "Local beach activities"],
-                    transfers: "Airport transfer service is listed. Confirm route, schedule, and whether it is included.",
-                    priceBasis: "From $1,899 as shown on the stay card. Confirm dates, room type, and rate basis.",
-                    importantNotes: ["Close to local beaches and dining", "Couples and family stays are available", "Domestic-flight routing from Malé is noted; confirm the connection"],
-                    includes: [
-                        "Comfortable modern rooms",
-                        "Daily breakfast",
-                        "Airport transfer service",
-                        "Access to local beach activities"
-                    ],
-                    highlights: [
-                        "Minutes from the sand",
-                        "Modern rooms",
-                        "Local dining options",
-                        "Relaxed island atmosphere"
-                    ],
-                    practicalInfo: [
-                        "Great for beach lovers",
-                        "Perfect for couples and families",
-                        "Easy access via Malé domestic flights",
-                        "Well suited for longer stays"
-                    ],
-                    extras: [
-                        "Private beach picnics",
-                        "Guided island walks",
-                        "Local craft and food tours"
-                    ]
-                },
-                dhiguveliBreeze: {
-                    title: "Dhiguveli Breeze",
-                    overview: "A reliable island stay with practical amenities, free WiFi, and simple comfort for travellers who want a good value local base.",
-                    island: "Dhigurah",
-                    atoll: "Confirm with the property.",
-                    accommodation: "Air-conditioned rooms with desk, kettle, safe, flat-screen TV, terrace, and private bathroom. Balconies are listed; room views vary.",
-                    activities: ["Local guided tours", "Nearby beach activities", "Laundry service and breakfast upgrades may be available"],
-                    transfers: "Airport transfer is available on request. Confirm arrangements and cost.",
-                    priceBasis: "From $1,899 as shown on the stay card. Confirm dates, room type, and rate basis.",
-                    importantNotes: ["24-hour front desk, garden, and shared lounge", "Breakfast options include buffet, à la carte, or continental", "Some rooms have city views"],
-                    includes: [
-                        "Air-conditioned rooms",
-                        "Breakfast included",
-                        "WiFi throughout the property",
-                        "Airport transfer upon request"
-                    ],
-                    highlights: [
-                        "24-hour front desk",
-                        "Garden and lounge spaces",
-                        "Breakfast and WiFi included",
-                        "Good local value"
-                    ],
-                    practicalInfo: [
-                        "Best for budget-conscious travellers",
-                        "Perfect for short stays",
-                        "Family rooms available",
-                        "Close to local shops and beaches"
-                    ],
-                    extras: [
-                        "Laundry service",
-                        "Local guided tours",
-                        "Breakfast upgrades"
-                    ]
-                }
-                
             };
             const tour = detailsModalContent[tourType];
             if (!tour) return;
 
             document.getElementById('detailsModalTitle').textContent = tour.title;
             const fields = [
-                ["Island", tour.island],
-                ["Atoll", tour.atoll],
-                ["Accommodation", tour.accommodation],
+                ["Route & atolls", tour.route],
+                ["Vessel & accommodation", tour.vessel],
                 ["What's included", tour.includes],
                 ["Activities available", tour.activities],
                 ["Transfers", tour.transfers],
                 ["Price basis", tour.priceBasis],
                 ["Important notes", tour.importantNotes]
             ];
-            let bodyHtml = `<p class="stay-overview">${tour.overview}</p><div class="stay-detail-grid">`;
+            let bodyHtml = `<p class="cruise-overview">${tour.overview}</p><div class="cruise-detail-grid">`;
             fields.forEach(([label, value]) => {
                 const content = Array.isArray(value)
                     ? `<ul>${value.map(item => `<li>${item}</li>`).join('')}</ul>`
                     : `<p>${value}</p>`;
-                bodyHtml += `<section class="stay-detail"><h3>${label}</h3>${content}</section>`;
+                bodyHtml += `<section class="cruise-detail"><h3>${label}</h3>${content}</section>`;
             });
             bodyHtml += '</div>';
             document.getElementById('detailsModalBody').innerHTML = bodyHtml;
@@ -1711,20 +1456,20 @@
             updateModalScrollLock();
         }
 
-        let inquiryStayTitle = '';
+        let inquiryCruiseTitle = '';
 
-        function openStayInquiry() {
-            const stayTitle = document.getElementById('detailsModalTitle').textContent;
-            openContactModal(stayTitle);
+        function openCruiseInquiry() {
+            const cruiseTitle = document.getElementById('detailsModalTitle').textContent;
+            openContactModal(cruiseTitle);
             closeDetailsModal();
         }
 
         // Contact Modal logic
-        function openContactModal(stayTitle = '') {
-            inquiryStayTitle = stayTitle;
-            document.getElementById('modalTitle').textContent = stayTitle ? `Ask about ${stayTitle}` : 'Contact Us';
-            document.getElementById('modalDescription').textContent = stayTitle
-                ? `Share your travel dates and group size to ask about ${stayTitle}.`
+        function openContactModal(cruiseTitle = '') {
+            inquiryCruiseTitle = cruiseTitle;
+            document.getElementById('modalTitle').textContent = cruiseTitle ? `Ask about ${cruiseTitle}` : 'Contact Us';
+            document.getElementById('modalDescription').textContent = cruiseTitle
+                ? `Share your travel dates and group size to ask about ${cruiseTitle}.`
                 : 'Choose how you want to reach us:';
             document.getElementById('contactModal').style.display = 'flex';
             updateModalScrollLock();
@@ -2346,7 +2091,6 @@
 
         // Handle resize events
         window.addEventListener('resize', () => {
-            document.querySelectorAll('.tour-content p, #detailsModalBody').forEach(updateTourDescriptionFade);
             if (window.innerWidth > 768) {
                 closeMobileMenu();
             }
@@ -2354,9 +2098,9 @@
 
         // Redirect to chosen contact method
 function redirectContact(method) {
-    const subject = inquiryStayTitle ? `Stay enquiry: ${inquiryStayTitle}` : 'Tour Enquiry';
-    const body = inquiryStayTitle
-        ? `Hi Pearl Drift,\n\nI'm interested in ${inquiryStayTitle}. Please share availability, room options, activities, transfer details, and the rate basis.\n\nMy travel dates and group size: `
+    const subject = inquiryCruiseTitle ? `Cruise enquiry: ${inquiryCruiseTitle}` : 'Tour Enquiry';
+    const body = inquiryCruiseTitle
+        ? `Hi Pearl Drift,\n\nI'm interested in ${inquiryCruiseTitle}. Please share availability, cabin options, route, transfers, and the rate basis.\n\nMy travel dates and group size: `
         : 'Hi Pearl Drift,\n\nI\'m interested in your tour packages. Please send me more details.';
 
     if (method === 'email') {
