@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Drift Tours</title>
+    <link rel="icon" type="image/svg+xml" href="images/favi.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* Light Theme Variables */
+        :root {
+            --primary: #006b5c;
+            --primary-container: #7df8e5;
+            --secondary: #4a635e;
+            --secondary-container: #cce8e1;
+            --tertiary: #456179;
+            --tertiary-container: #c7e7ff;
+            --surface: #f8f9ff;
+            --surface-variant: #dae4e0;
+            --surface-container: #ecf2f0;
+            --outline: #6f7975;
+            --on-primary: #ffffff;
+            --on-surface: #191c1b;
+            --on-surface-variant: #3f4946;
+            --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --card-background: rgba(255, 255, 255, 0.7);
+            --hero-background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --footer-background: #191c1b;
+            --footer-text: #f8f9ff;
+        }
+
+        /* Dark Theme Variables */
+        [data-theme="dark"] {
+            --primary: #5ddcc6;
+            --primary-container: #00513f;
+            --secondary: #b0ccc6;
+            --secondary-container: #334b46;
+            --tertiary: #a2cbef;
+            --tertiary-container: #2d4860;
+            --surface: #0f1513;
+            --surface-variant: #3f4946;
+            --surface-container: #1a201e;
+            --outline: #899390;
+            --on-primary: #003831;
+            --on-surface: #e0e3e1;
+            --on-surface-variant: #bfc9c5;
+            --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --card-background: rgba(26, 32, 30, 0.8);
+            --hero-background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --footer-background: #0a0e0c;
+            --footer-text: #e0e3e1;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--on-surface);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--on-surface);
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            outline: none;
+        }
+
+        .theme-toggle:hover {
+            background: var(--surface-variant);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--on-surface);
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--surface-variant);
+        }
+
+        /* Nav Controls Container */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Left side container for logo and theme toggle */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Dynamic Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-background);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        nav > :last-child {
+            margin-left: auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--primary), var(--tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--on-surface);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 48px;
+            line-height: 1;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+            height: 100vh;
+            height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            background: var(--hero-background);
+        }
+
+        .hero-panel-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+            display: block;
+        }
+
+        @media (min-width: 1200px) {
+            .hero-top-panel .hero-panel-image {
+                object-position: center 60%;
+            }
+        }
+
+        .hero-content {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            text-align: center;
+            z-index: 2;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 800;
+            color: #ecf2f0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
+            line-height: 1.1;
+        }
+
+        .hero-top-panel,
+        .hero-bottom-panel {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-top-panel {
+            justify-content: flex-start;
+            padding: 96px 24px 0;
+        }
+
+        .hero-top-panel h1,
+        .hero-second-line,
+        .hero-bottom-panel .cta-button {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-bottom-panel {
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 0 24px 40px;
+        }
+
+        .hero-second-line {
+            color: #ecf2f0;
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
+        }
+
+        .hero p {
+            font-size: clamp(16px, 4vw, 20px);
+            margin-bottom: 48px;
+            color: var(--on-surface-variant);
+            animation: fadeInUp 1s ease-out 0.3s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Material 3 Button */
+        .cta-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 107, 92, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            outline: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--outline);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .feature-card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Tours Section */
+        .tours {
+            padding: 120px 0;
+            background: var(--surface-container);
+        }
+
+        .tours-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .tours h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .tour-card {
+            background: var(--card-background);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 2, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--outline);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tour-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--on-primary);
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tour-image .tour-background {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .tour-image > img:not(.tour-background) {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tour-content {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 32px;
+            height: auto;
+        }
+
+        .tour-content h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .tour-content p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-size: 14px;
+            max-height: 140px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .tour-content p.is-scrollable:not(.is-at-scroll-end) {
+            -webkit-mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
+            mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
+        }
+
+        .tour-content p.is-scrollable:focus-visible {
+            outline: 2px solid var(--outline);
+            outline-offset: 2px;
+        }
+
+        .tour-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            margin-top: auto;
+        }
+
+        .learn-more-button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
+            outline: none;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 64px;
+            color: var(--on-surface);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .contact-card {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--outline);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: var(--primary-container);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .contact-card h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--on-surface);
+        }
+
+        .contact-card p {
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-background);
+            color: var(--footer-text);
+            padding: 64px 0 32px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-left {
+                gap: 8px;
+            }
+
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                padding: 6px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                /* keep menu within viewport height; account for header space */
+                height: calc(100vh);
+                /* translucent fallback so panel shows even when blur isn't supported */
+                background: var(--card-background, rgba(255,255,255,0.75));
+                /* ensure correct compositing for backdrop */
+                isolation: isolate;
+                /* sit above other content */
+                z-index: 1500;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 50px;
+                padding: 40px 20px;
+
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Enable backdrop-filter only when supported (use standard property to avoid
+               DevTools 'invalid property' noise for prefixed rules) */
+            @supports (backdrop-filter: blur(20px)) {
+                .nav-links {
+                    backdrop-filter: blur(20px);
+                }
+            }
+            .nav-links a {
+                font-size: 18px;
+                padding: 12px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero {
+                justify-content: flex-start;
+                padding: 0;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+            
+            .hero p {
+                margin-bottom: 32px;
+            }
+            
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 14px;
+            }
+            
+            .features,
+            .tours {
+                padding: 80px 0;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 20px;
+            }
+            
+            .features h2,
+            .tours h2 {
+                margin-bottom: 48px;
+            }
+            
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 32px 24px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .footer-content {
+                padding: 0 20px;
+            }
+            
+            footer {
+                padding: 48px 0 24px;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .features-grid,
+            .tours-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                padding: 0;
+            }
+
+            .hero-top-panel .hero-panel-image {
+                object-position: center 60%;
+            }
+            
+            .features-container,
+            .tours-container {
+                padding: 0 40px;
+            }
+        }
+
+        /* Desktop: center the nav links */
+        @media (min-width: 769px) {
+            .hero {
+                justify-content: flex-start;
+            }
+
+            .hero-content {
+                width: 100%;
+                margin-inline: auto;
+            }
+
+            nav {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
+            }
+
+            .nav-links {
+                justify-self: center;
+            }
+
+            .nav-controls {
+                justify-self: end;
+            }
+
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                padding: 8px;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1,
+            .hero-second-line {
+                font-size: clamp(34px, 11vw, 01px);
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+
+            
+            
+            .features h2,
+            .tours h2 {
+                font-size: 28px;
+            }
+            
+            .feature-card h3,
+            .tour-content h3 {
+                font-size: 18px;
+            }
+            
+            .feature-card,
+            .tour-content {
+                padding: 24px 20px;
+            }
+            
+            .tour-image {
+                height: 160px;
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                width: 90%;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+        }
+        /* Social buttons in popup cards*/
+        .social-button {
+            color: var(--on-primary);
+            border: none;
+            padding: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 100px; 
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-button img {
+            width: 25px;
+            height: 25px;
+            display: block;
+        }
+
+        .social-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 107, 92, 0.4);
+        }
+        #close.social-button {
+           width: 100%;
+        }
+
+        /* Buttons container */
+    .modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    }
+
+    /* Footer section */
+    .modal-footer {
+    margin-top: 18px;
+    }
+
+    /* Close button */
+    .close-btn {
+    width: 100%;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a class="logo" href="index.html#home">Pearl Drift</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <img class="theme-icon" src="images/sm/moon.webp" style="width: 36px; height: 36px;">
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span id="menu-icon">☰</span>
+                </button>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#tours" onclick="closeMobileMenu()">Our Experiences</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">Why Us</a></li>
+                <li><a href="#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-top-panel">
+                <img class="hero-panel-image" data-light-src="images/hero/heroL3s.webp" data-dark-src="images/hero/heroD3s.webp" src="images/hero/heroL3s.webp" alt="A sandy island beach shaded by palm trees.">
+                <h1>Stay where people actually live</h1>
+            </div>
+            <div class="hero-bottom-panel">
+                <img class="hero-panel-image" data-light-src="images/hero/heroLs.webp" data-dark-src="images/hero/heroDs.webp" src="images/hero/heroLs.webp" alt="A diver swimming through clear tropical water.">
+                <span class="hero-second-line">Go where the water gets interesting </span>
+                <button class="cta-button" onclick="scrollToSection('tours')">Explore Tours</button>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="tours" id="tours">
+        <div class="tours-container">
+            <h2>Our Experiences</h2>
+            <div class="tours-grid">
+                <div class="tour-card">
+                    <div class="tour-image"><img class="tour-background" data-light-src="images/tcard/cor/corL.webp" data-dark-src="images/tcard/cor/corD.webp" src="images/tcard/cor/corL.webp" alt="A colorful coral reef beneath the water."></div>
+                    <div class="tour-content">
+                        <h3> Dive the Maldives </h3>
+                        <p>Liveaboard trips for divers who want to visit several dive sites and atolls in one journey.</p>
+                        <button class="learn-more-button" onclick="window.location.href='divesaf.html'">View Dive Safaris</button>
+                    </div>
+                </div>
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img class="tour-background" data-light-src="images/tcard/pal/palL.webp" data-dark-src="images/tcard/pal/palD.webp" src="images/tcard/pal/palL.webp" alt="Illustrated tropical islands with palm trees and coconuts.">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Local Island Escapes</h3>
+                        <p>A few days between beaches, reefs and island life.</p>
+                        <button class="learn-more-button" onclick="window.location.href='local.html'">View Escapes</button>
+                    </div>
+                    </div>
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img class="tour-background" data-light-src="images/tcard/spe/specL.webp" data-dark-src="images/tcard/spe/specD.webp" src="images/tcard/spe/specL.webp" alt="A repeating illustration of palm trees and tropical foliage.">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Pearl Drift Exclusive </h3>
+                        <p>Trips that don't fit the usual itinerary.</p>
+                        <button class="learn-more-button" onclick="window.location.href='spec.html'">View Specials</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="about">
+        <div class="features-container">
+            <h2>Why Choose Pearl Drift?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/abt/owlL.webp" data-light-src="images/ico/abt/owlL.webp" data-dark-src="images/ico/abt/owlD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Local knowledge</h3>
+                    <p>We know the destinations we recommend and work directly with the people who make them worth visiting.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/abt/puzzL.webp" data-light-src="images/ico/abt/puzzL.webp" data-dark-src="images/ico/abt/puzzD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Curated, not crowded</h3>
+                    <p>We select experiences and stays rather than giving you an endless list of options.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/abt/plaL.webp" data-light-src="images/ico/abt/plaL.webp" data-dark-src="images/ico/abt/plaD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Built around your trip</h3>
+                    <p>Tell us what you want to do, and we'll help put the right places and experiences together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contactUs">
+        <div class="contact-container">
+            <h2>Planning a trip to the Maldives? </h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/contact/envL.webp" data-light-src="images/ico/contact/envL.webp" data-dark-src="images/ico/contact/envD.webp" style="width:110px; height:110px;"></div>
+                    <h3>Tell us your dates, interests and the kind of experience you're looking for. </h3>
+                    <br>
+                        <div class="modal-buttons">
+                            <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg" style="width:25px; height:25px;"></button>
+                            <button class="social-button" onclick="redirectContact('telegram')"><img src="images/ico/contact/tele.svg" style="width:25px; height:25px;"></button>
+                            <button class="social-button" onclick="redirectContact('whatsapp')"><img src="images/ico/contact/wha.svg" style="width:25px; height:25px;"></button>
+                        </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Back to Top</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <p>&copy;  2026 Pearl Drift. All rights reserved.</p>
+        </div>
+    </footer>
+
+    
+</body>
+<script>
+        // Theme Management
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = newTheme === 'dark' ? 'images/sm/sun.webp' : 'images/sm/moon.webp';
+            });
+            // Update hero image for the selected theme
+            updateHeroImage(newTheme);
+            // Save theme preference
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelectorAll('.theme-icon').forEach(img => {
+                img.src = savedTheme === 'dark' ? 'images/sm/sun.webp' : 'images/sm/moon.webp';
+            });
+            // Ensure hero image matches saved theme
+            updateHeroImage(savedTheme);
+        }
+
+        // Update theme-specific images
+        function updateHeroImage(theme) {
+            document.querySelectorAll('.hero-panel-image, .tour-background, .feature-theme-icon').forEach(image => {
+                const source = image.dataset[`${theme}Src`];
+                if (source) image.src = source;
+            });
+        }
+
+        function updateTourDescriptionFade(paragraph) {
+            const isScrollable = paragraph.scrollHeight > paragraph.clientHeight + 1;
+            const isAtScrollEnd = paragraph.scrollTop + paragraph.clientHeight >= paragraph.scrollHeight - 1;
+
+            paragraph.classList.toggle('is-scrollable', isScrollable);
+            paragraph.classList.toggle('is-at-scroll-end', isScrollable && isAtScrollEnd);
+
+            if (isScrollable) {
+                paragraph.setAttribute('tabindex', '0');
+            } else {
+                paragraph.removeAttribute('tabindex');
+            }
+        }
+
+        function setupTourDescriptionFades() {
+            const paragraphs = document.querySelectorAll('.tour-content p');
+            paragraphs.forEach(paragraph => {
+                paragraph.addEventListener('scroll', () => updateTourDescriptionFade(paragraph), { passive: true });
+                updateTourDescriptionFade(paragraph);
+            });
+            window.addEventListener('resize', () => paragraphs.forEach(updateTourDescriptionFade));
+        }
+
+        // Mobile Menu Management
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            const opening = !navLinks.classList.contains('active');
+
+            if (opening) {
+                // Move the menu to document.body so it's outside the header's stacking context
+                // This allows backdrop-filter to see the page behind the header.
+                if (navLinks.parentElement !== document.body) document.body.appendChild(navLinks);
+                navLinks.classList.add('active');
+                menuIcon.textContent = '✕';
+            } else {
+                // Close and reattach back into the header nav so markup is preserved
+                navLinks.classList.remove('active');
+                menuIcon.textContent = '☰';
+                if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuIcon = document.getElementById('menu-icon');
+            const headerNav = document.querySelector('header nav');
+
+            navLinks.classList.remove('active');
+            menuIcon.textContent = '☰';
+            if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navLinks = document.getElementById('nav-links');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.feature-card, .tour-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add click interactions for navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            setupTourDescriptionFades();
+        });
+
+        // Handle resize events
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // Redirect to chosen contact method
+function redirectContact(method) {
+    if (method === 'email') {
+        // Simple mobile detection
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // Open default mobile email app
+            window.location.href = 'mailto:tinyislets@gmail.com?subject=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.';
+        } else {
+            // Open Gmail compose in desktop browser
+            window.open(
+                'https://mail.google.com/mail/?view=cm&fs=1&to=tinyislets@gmail.com&su=Tour%20Enquiry&body=Hi%20Pearl%20Drift%2C%0A%0AI%27m%20interested%20in%20your%20tour%20packages.%20Please%20send%20me%20more%20details.',
+                '_blank'
+            );
+        }
+    } else if (method === 'telegram') {
+        window.open('https://t.me/pearlDrift', '_blank');
+    } else if (method === 'whatsapp') {
+        window.open('https://wa.me/message/65AGSTP42DCWM1', '_blank'); // Replace with your WhatsApp number
+    }
+}
+    </script>
+</html>
