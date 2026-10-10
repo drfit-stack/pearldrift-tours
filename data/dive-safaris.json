@@ -1,0 +1,86 @@
+[
+  {
+    "id": "maani",
+    "title": "Princess Maani",
+    "description": "Princess Maani is a 41 m, 14-cabin liveaboard for 28 guests, featuring two jacuzzis, a sun deck and an open-air cocktail bar. A dedicated dive dhoni and free Nitrox keep diving seamless, while a European-chef kitchen, kayaks/SUP and massage elevate your surface time.",
+    "price": "From $2,650",
+    "badges": [
+      "Liveaboard luxury",
+      "Free Nitrox",
+      "Jacuzzi sundeck"
+    ],
+    "images": [
+      "images/saf/maani/maani1.webp",
+      "images/saf/maani/maani2.webp",
+      "images/saf/maani/maani3.webp"
+    ],
+    "buttonText": "View safari →",
+    "details": {
+      "title": "Princess Maani",
+      "overview": "Princess Maani is a luxury liveaboard built for divers who want premium comfort, free Nitrox, and a dedicated dive dhoni across the Maldives.",
+      "route": "Maldives atolls. Confirm the route and dive sites for the selected departure.",
+      "vessel": "41 m liveaboard with 14 cabins for up to 28 guests and a dedicated dive dhoni.",
+      "includes": [
+        "14-cabin accommodation for up to 28 guests",
+        "All meals by a European chef",
+        "Dedicated dive dhoni service",
+        "Free Nitrox for certified divers"
+      ],
+      "activities": [
+        "Guided diving across the atolls; marine sightings vary by route and season",
+        "Kayaks and stand-up paddleboards",
+        "Jacuzzis, open-air cocktail bar, and massage services"
+      ],
+      "transfers": "Pickup from Malé or a domestic airport is listed. Confirm the embarkation point and transfer timing.",
+      "priceBasis": "From $2,650 as shown on the trip card. Confirm currency, dates, cabin, trip length, and rate basis.",
+      "importantNotes": [
+        "14 cabins for up to 28 guests",
+        "Free Nitrox is for certified divers",
+        "Private dive guides and custom itinerary upgrades may be additional"
+      ]
+    },
+    "published": true
+  },
+  {
+    "id": "sachika",
+    "title": "Sachika",
+    "description": "Sachika is an award-winning Maldivian dive safari yacht, combining adventure and elegance. With spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni, she offers seamless comfort and world-class diving with mantas, sharks, and whale sharks across the atolls.",
+    "price": "From $2,400",
+    "badges": [
+      "Award-winning yacht",
+      "Jacuzzi deck",
+      "Premium dive sites"
+    ],
+    "images": [
+      "images/saf/sachika/sachika1.webp",
+      "images/saf/sachika/sachika2.webp",
+      "images/saf/sachika/sachika3.webp"
+    ],
+    "buttonText": "View safari →",
+    "details": {
+      "title": "Sachika",
+      "overview": "Sachika is an award-winning dive safari yacht offering spacious cabins, a jacuzzi sundeck, and premium diving experiences with mantas, sharks, and whale sharks.",
+      "route": "Maldives atolls. Confirm the route and dive sites for the selected departure.",
+      "vessel": "Award-winning safari yacht with spacious cabins, a dedicated dive dhoni, and a jacuzzi sundeck.",
+      "includes": [
+        "Spacious onboard cabins",
+        "Three daily meals",
+        "Dedicated dive dhoni",
+        "Daily guided dive briefings"
+      ],
+      "activities": [
+        "Guided dives across the atolls",
+        "Marine encounters may include mantas, sharks, and whale sharks; sightings are not guaranteed",
+        "Private briefings, custom dive plans, and sunset cruises may be available"
+      ],
+      "transfers": "Transfers from Malé are listed as available. Confirm whether they are included and the exact routing.",
+      "priceBasis": "From $2,400 as shown on the trip card. Confirm currency, dates, cabin, trip length, and rate basis.",
+      "importantNotes": [
+        "Suitable for mixed-skill groups",
+        "Best for 7 or more nights",
+        "Whale shark encounters are seasonal and not guaranteed"
+      ]
+    },
+    "published": true
+  }
+]

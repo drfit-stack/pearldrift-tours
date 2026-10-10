@@ -1,0 +1,41 @@
+[
+  {
+    "id": "hope",
+    "title": "Hope Cruiser",
+    "description": "The Hope Cruiser is a luxury yacht offering an unforgettable experience in the Maldives. With spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni, she provides seamless comfort and world-class diving with mantas, sharks, and whale sharks across the atolls.",
+    "price": "$1750",
+    "badges": [
+      "Luxury yacht",
+      "Jacuzzi deck",
+      "Premium dive sites"
+    ],
+    "images": [
+      "images/saf/hope/hope1.webp",
+      "images/saf/hope/hope2.webp",
+      "images/saf/hope/hope3.webp",
+      "images/saf/hope/hope4.webp"
+    ],
+    "buttonText": "View cruise →",
+    "details": {
+      "title": "Hope Cruiser",
+      "overview": "A luxury Maldives yacht with spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni for diving across the atolls.",
+      "route": "Maldives atolls. Confirm the route, atolls, and dive sites for the selected departure.",
+      "vessel": "Luxury yacht with spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni.",
+      "includes": [
+        "Confirm inclusions for the selected departure and cabin."
+      ],
+      "activities": [
+        "World-class diving across the atolls",
+        "Marine encounters may include mantas, sharks, and whale sharks; sightings are not guaranteed"
+      ],
+      "transfers": "Confirm the embarkation point, airport transfers, and pickup timing for the selected departure.",
+      "priceBasis": "$1,750 is shown on the trip card. Confirm currency, cabin basis, trip length, dates, and included services.",
+      "importantNotes": [
+        "Spacious cabins",
+        "Jacuzzi sundeck",
+        "Dedicated dive dhoni"
+      ]
+    },
+    "published": true
+  }
+]
