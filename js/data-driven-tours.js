@@ -149,14 +149,22 @@
 
     const content = makeElement("div", "tour-content");
     content.appendChild(makeElement("h3", "", tour.title || ""));
-    const descriptionPager = renderTourDescription(tour.description || "");
-    content.appendChild(descriptionPager);
-
+    if (tour.bestTimeToVisit) {
+      const bestTime = makeElement("div", "tour-best-time");
+      bestTime.append(
+        makeElement("span", "tour-best-time-label", "Best time to visit: "),
+        makeElement("span", "tour-best-time-value", tour.bestTimeToVisit)
+      );
+      content.appendChild(bestTime);
+    }
     const badges = makeElement("div", "tour-badges");
     (Array.isArray(tour.badges) ? tour.badges : []).forEach(label => {
       badges.appendChild(makeElement("span", "tour-badge", label));
     });
-    content.appendChild(badges);
+    if (badges.childElementCount) content.appendChild(badges);
+
+    const descriptionPager = renderTourDescription(tour.description || "");
+    content.appendChild(descriptionPager);
 
     const footer = makeElement("div", "tour-card-footer");
     footer.appendChild(makeElement("div", "tour-price", tour.price || ""));
