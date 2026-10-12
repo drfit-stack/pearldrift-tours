@@ -351,7 +351,10 @@
             padding: 40px;
             text-align: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--outline);
+            border: 0.5px solid var(--outline);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .feature-card:hover {
@@ -373,7 +376,7 @@
         .feature-card h3 {
             font-size: clamp(20px, 4vw, 24px);
             font-weight: 600;
-            margin-bottom: 16px;
+            margin: 0 0 16px;
             color: var(--on-surface);
         }
 
@@ -381,6 +384,7 @@
             color: var(--on-surface-variant);
             line-height: 1.6;
             font-size: 14px;
+            margin: 0;
         }
 
         /* Tours Section */
@@ -416,7 +420,7 @@
             transition: all 0.3s cubic-bezier(0.4, 2, 0.2, 1);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--outline);
+            border: 0.5px solid var(--outline);
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -458,6 +462,7 @@
             flex-direction: column;
             padding: 32px;
             height: auto;
+            text-align: center;
         }
 
         .tour-content h3 {
@@ -465,6 +470,7 @@
             font-weight: 600;
             margin-bottom: 16px;
             color: var(--on-surface);
+            text-align: center;
         }
 
         .tour-content p {
@@ -772,14 +778,19 @@
             nav {
                 display: grid;
                 grid-template-columns: auto 1fr auto;
+                column-gap: clamp(24px, 3vw, 48px);
                 align-items: center;
             }
 
             .nav-links {
+                grid-row: 1;
+                grid-column: 2;
                 justify-self: center;
             }
 
             .nav-controls {
+                grid-row: 1;
+                grid-column: 3;
                 justify-self: end;
             }
 
@@ -898,6 +909,7 @@
                 </button>
             </div>
             <ul class="nav-links" id="nav-links">
+                <li><a href="mald.html" onclick="closeMobileMenu()">The Maldives</a></li>
                 <li><a href="#tours" onclick="closeMobileMenu()">Our Experiences</a></li>
                 <li><a href="#about" onclick="closeMobileMenu()">Why Us</a></li>
                 <li><a href="#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
@@ -926,6 +938,16 @@
             <h2>Our Experiences</h2>
             <div class="tours-grid">
                 <div class="tour-card">
+                    <div class="tour-image">
+                        <img class="tour-background" data-light-src="images/tcard/spe/specL.webp" data-dark-src="images/tcard/spe/specD.webp" src="images/tcard/spe/specL.webp" alt="A repeating illustration of palm trees and tropical foliage.">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Pearl Drift Exclusive </h3>
+                        <p>Trips that don't fit the usual itinerary.</p>
+                        <button class="learn-more-button" onclick="window.location.href='spec.html'">View Specials</button>
+                    </div>
+                </div>
+                <div class="tour-card">
                     <div class="tour-image"><img class="tour-background" data-light-src="images/tcard/cor/corL.webp" data-dark-src="images/tcard/cor/corD.webp" src="images/tcard/cor/corL.webp" alt="A colorful coral reef beneath the water."></div>
                     <div class="tour-content">
                         <h3> Dive the Maldives </h3>
@@ -943,16 +965,6 @@
                         <button class="learn-more-button" onclick="window.location.href='local.html'">View Escapes</button>
                     </div>
                     </div>
-                <div class="tour-card">
-                    <div class="tour-image">
-                        <img class="tour-background" data-light-src="images/tcard/spe/specL.webp" data-dark-src="images/tcard/spe/specD.webp" src="images/tcard/spe/specL.webp" alt="A repeating illustration of palm trees and tropical foliage.">
-                    </div>
-                    <div class="tour-content">
-                        <h3>Pearl Drift Exclusive </h3>
-                        <p>Trips that don't fit the usual itinerary.</p>
-                        <button class="learn-more-button" onclick="window.location.href='spec.html'">View Specials</button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1151,9 +1163,19 @@
         // Add click interactions for navigation
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', (e) => {
+                const targetUrl = new URL(link.href);
+                if (targetUrl.origin !== window.location.origin ||
+                    targetUrl.pathname !== window.location.pathname ||
+                    !targetUrl.hash) {
+                    return;
+                }
+
+                const targetId = decodeURIComponent(targetUrl.hash.slice(1));
+                const target = document.getElementById(targetId);
+                if (!target) return;
+
                 e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                scrollToSection(targetId);
+                target.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
