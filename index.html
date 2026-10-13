@@ -34,9 +34,8 @@
             --on-primary: #ffffff;
             --on-surface: #191c1b;
             --on-surface-variant: #3f4946;
-            --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --background: #dae4e0;
             --card-background: rgba(255, 255, 255, 0.7);
-            --hero-background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
             --footer-background: #191c1b;
             --footer-text: #f8f9ff;
         }
@@ -56,15 +55,19 @@
             --on-primary: #003831;
             --on-surface: #e0e3e1;
             --on-surface-variant: #bfc9c5;
-            --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --background: #1a201e;
             --card-background: rgba(26, 32, 30, 0.8);
-            --hero-background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
             --footer-background: #0a0e0c;
             --footer-text: #e0e3e1;
         }
 
+        html {
+            min-height: 100%;
+            background: var(--background) fixed no-repeat;
+        }
+
         body {
-            background: var(--background);
+            background: transparent;
             color: var(--on-surface);
         }
 
@@ -203,125 +206,184 @@
 
         /* Hero Section */
         .hero {
+            width: min(100%, 1200px);
             min-height: 100vh;
             min-height: 100svh;
-            height: 100vh;
-            height: 100svh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
-            overflow: hidden;
-            padding: 0;
-            background: var(--hero-background);
-        }
-
-        .hero-panel-image {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            z-index: 1;
-            display: block;
-        }
-
-        @media (min-width: 1200px) {
-            .hero-top-panel .hero-panel-image {
-                object-position: center 60%;
-            }
+            margin: 0 auto;
+            padding: 112px 24px 64px;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            gap: 48px;
         }
 
         .hero-content {
-            width: 100%;
-            height: 100%;
-            padding: 0;
+            max-width: 560px;
+            margin: 0 auto;
             text-align: center;
-            z-index: 2;
-            display: grid;
-            grid-template-rows: 1fr 1fr;
+        }
+
+        .hero .hero-kicker {
+            margin-bottom: 16px;
+            color: var(--tertiary);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: inherit;
         }
 
         .hero h1 {
+            margin-bottom: 24px;
+            color: var(--on-surface);
             font-size: clamp(40px, 5vw, 64px);
             font-weight: 800;
-            color: #ecf2f0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
             line-height: 1.1;
         }
 
-        .hero-top-panel,
-        .hero-bottom-panel {
-            position: relative;
+        .hero h1 em {
+            color: var(--primary);
+            font-style: normal;
+        }
+
+        .hero-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .hero-image-card {
+            height: clamp(220px, 45vw, 360px);
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border-radius: 28px;
+            background: var(--card-background);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .hero-top-panel {
-            justify-content: flex-start;
-            padding: 96px 24px 0;
+        .hero-image-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .hero-top-panel h1,
-        .hero-second-line,
-        .hero-bottom-panel .cta-button {
-            position: relative;
+        .hero-scroll {
+            position: absolute;
             z-index: 1;
+            right: 0;
+            bottom: 12px;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            width: 208px;
+            height: 208px;
+            margin: 0 auto;
+            border-radius: 50%;
         }
 
-        .hero-bottom-panel {
-            justify-content: flex-end;
-            gap: 20px;
-            padding: 0 24px 40px;
+        .hero-scroll img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
-        .hero-second-line {
-            color: #ecf2f0;
-            font-size: clamp(40px, 5vw, 64px);
-            font-weight: 800;
-            line-height: 1.1;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.42);
+        .hero-scroll:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
         }
 
-        .hero p {
-            font-size: clamp(16px, 4vw, 20px);
-            margin-bottom: 48px;
-            color: var(--on-surface-variant);
-            animation: fadeInUp 1s ease-out 0.3s both;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+        @media (min-width: 768px) {
+            .hero {
+                padding: 120px 40px 80px;
+            }
+
+            .hero-gallery {
+                grid-template-columns: 1.1fr 0.9fr;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .hero-image-card-landscape {
+                height: 340px;
+            }
+
+            .hero-image-card-portrait {
+                height: 420px;
+            }
         }
 
-        /* Material 3 Button */
-        .cta-button {
-            background: var(--primary);
-            color: var(--on-primary);
-            border: none;
-            padding: 16px 32px;
-            border-radius: 100px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0, 107, 92, 0.3);
-            animation: fadeInUp 1s ease-out 0.6s both;
-            outline: none;
+        @media (min-width: 1100px) {
+            .hero {
+                grid-template-columns: 0.9fr 1.1fr;
+                gap: 64px;
+                padding-right: 24px;
+                padding-left: 24px;
+            }
+
+            .hero-content {
+                margin: 0;
+                text-align: left;
+            }
+
+            .hero-gallery {
+                gap: 24px;
+            }
+
+            .hero-image-card-landscape {
+                height: 400px;
+            }
+
+            .hero-image-card-portrait {
+                height: 500px;
+            }
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.4);
-        }
+        @media (max-width: 600px) {
+            .hero {
+                min-height: auto;
+                grid-template-areas:
+                    "landscape"
+                    "content"
+                    "portrait"
+                    "scroll";
+                gap: 32px;
+                padding: 80px 20px 24px;
+            }
 
+            .hero-content {
+                grid-area: content;
+            }
+
+            .hero-gallery {
+                display: contents;
+            }
+
+            .hero-image-card-landscape {
+                grid-area: landscape;
+            }
+
+            .hero-image-card-portrait {
+                grid-area: portrait;
+            }
+
+            .hero-scroll {
+                position: static;
+                grid-area: scroll;
+                margin-top: -24px;
+            }
+
+            .hero-image-card {
+                border-radius: 20px;
+            }
+        }
         /* Features Section */
         .features {
-            padding: 120px 0;
-            background: var(--surface);
+            padding: 120px 0 0;
+            background: transparent;
         }
 
         .features-container {
@@ -342,6 +404,255 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 32px;
+        }
+
+        .maldives-teaser {
+            padding: 120px 0 0;
+            background: transparent;
+        }
+
+        .maldives-teaser-heading {
+            max-width: 1152px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .maldives-teaser-heading h2 {
+            color: var(--on-surface);
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .maldives-teaser-container {
+            width: calc(100% - 48px);
+            max-width: 1152px;
+            margin: 0 auto;
+            padding: 0;
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            border: 0.5px solid var(--outline);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+
+        .maldives-teaser-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .maldives-teaser-image-frame {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: clamp(220px, 30vw, 360px);
+            overflow: hidden;
+            container-type: size;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .maldives-teaser-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100cqh;
+            height: 100cqw;
+            max-width: none;
+            object-fit: cover;
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        .maldives-teaser-content {
+            max-width: 1080px;
+            padding: 5px 40px 40px 32px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-kicker,
+        .maldives-teaser-kicker {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .section-kicker {
+            text-align: center;
+        }
+
+        .maldives-teaser-intro {
+            color: var(--on-surface-variant);
+            font-size: clamp(17px, 2vw, 21px);
+            line-height: 1.7;
+            margin: 0 auto 28px;
+            max-width: 780px;
+        }
+
+        .maldives-teaser-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            max-width: 720px;
+            margin: 0 auto 28px;
+            justify-items: center;
+        }
+
+        .maldives-teaser-highlight {
+            color: var(--on-surface);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            max-width: 220px;
+        }
+
+        .maldives-teaser-icon {
+            display: block;
+            width: 26px;
+            height: 26px;
+            margin: 0 auto 10px;
+            color: var(--tertiary);
+        }
+
+        .maldives-teaser-icon img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .maldives-teaser-highlight strong,
+        .maldives-teaser-highlight span {
+            display: block;
+        }
+
+        .maldives-teaser-highlight strong {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .maldives-teaser-highlight span {
+            color: var(--on-surface-variant);
+            font-size: 15px;
+        }
+
+        .maldives-teaser-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: min(100%, 420px);
+            margin: 0 auto;
+            background: var(--primary);
+            color: var(--on-primary);
+            text-decoration: none;
+            padding: 16px 24px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
+        }
+
+        .maldives-teaser-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.3);
+        }
+
+        .maldives-teaser-button svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 768px) {
+            .maldives-teaser {
+                padding-top: 80px;
+            }
+
+            .maldives-teaser-heading {
+                width: calc(100% - 40px);
+                margin-bottom: 32px;
+                padding: 0;
+            }
+
+            .maldives-teaser-container {
+                width: calc(100% - 40px);
+            }
+
+            .maldives-teaser-image-frame {
+                height: 220px;
+            }
+
+            .maldives-teaser-content {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .maldives-teaser-image-frame {
+                border-radius: 20px 20px 0 0;
+            }
+
+            .maldives-teaser-content {
+                padding: 24px 20px;
+            }
+
+            .maldives-teaser-heading {
+                margin-bottom: 24px;
+            }
+
+            .maldives-teaser-highlights {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                max-width: 360px;
+                justify-items: stretch;
+            }
+
+            .maldives-teaser-highlight {
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
+                max-width: none;
+                text-align: left;
+            }
+
+            .maldives-teaser-icon {
+                flex: 0 0 26px;
+                margin: 0;
+            }
+
+            .maldives-teaser-highlight strong {
+                font-size: 16px;
+            }
+
+            .maldives-teaser-highlight span {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .maldives-teaser-container {
+                width: calc(100% - 80px);
+                max-width: 1120px;
+            }
+
+            .maldives-teaser-content {
+                padding: 32px 32px 28px;
+            }
         }
 
         .feature-card {
@@ -389,8 +700,8 @@
 
         /* Tours Section */
         .tours {
-            padding: 120px 0;
-            background: var(--surface-container);
+            padding: 120px 0 0;
+            background: transparent;
         }
 
         .tours-container {
@@ -446,7 +757,7 @@
             position: absolute;
             inset: 0;
             width: 100%;
-            height: 100%;
+            /* height: 100%; */
             object-fit: cover;
             z-index: 0;
         }
@@ -519,8 +830,8 @@
 
         /* Contact Section */
         .contact {
-            padding: 120px 0;
-            background: var(--surface);
+            padding: 120px 0 120px;
+            background: transparent;
         }
 
         .contact-container {
@@ -544,18 +855,9 @@
         }
 
         .contact-card {
-            background: var(--card-background);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 40px;
+            background: transparent;
+            padding: 0;
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--outline);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
         }
 
         .contact-icon {
@@ -628,7 +930,6 @@
             }
         }
 
-        /* Mobile Responsive Design */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
@@ -650,20 +951,15 @@
                 right: -100%;
                 width: 80%;
                 max-width: 300px;
-                /* keep menu within viewport height; account for header space */
                 height: calc(100vh);
-                /* translucent fallback so panel shows even when blur isn't supported */
                 background: var(--card-background, rgba(255,255,255,0.75));
-                /* ensure correct compositing for backdrop */
                 isolation: isolate;
-                /* sit above other content */
                 z-index: 1500;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
                 gap: 50px;
                 padding: 40px 20px;
-
                 transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
             
@@ -671,8 +967,6 @@
                 right: 0;
             }
 
-            /* Enable backdrop-filter only when supported (use standard property to avoid
-               DevTools 'invalid property' noise for prefixed rules) */
             @supports (backdrop-filter: blur(20px)) {
                 .nav-links {
                     backdrop-filter: blur(20px);
@@ -685,27 +979,21 @@
                 text-align: center;
             }
             
-            .hero {
-                justify-content: flex-start;
-                padding: 0;
-            }
-
-            .hero-content {
-                width: 100%;
-            }
-            
-            .hero p {
-                margin-bottom: 32px;
-            }
-            
-            .cta-button {
-                padding: 14px 28px;
-                font-size: 14px;
-            }
-            
             .features,
             .tours {
                 padding: 80px 0;
+            }
+
+            .features {
+                padding: 80px 0 0;
+            }
+
+            .tours {
+                padding: 80px 0 0;
+            }
+
+            .contact {
+                padding-top: 80px;
             }
             
             .features-container,
@@ -750,14 +1038,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .hero {
-                padding: 0;
-            }
-
-            .hero-top-panel .hero-panel-image {
-                object-position: center 60%;
-            }
-            
             .features-container,
             .tours-container {
                 padding: 0 40px;
@@ -766,15 +1046,6 @@
 
         /* Desktop: center the nav links */
         @media (min-width: 769px) {
-            .hero {
-                justify-content: flex-start;
-            }
-
-            .hero-content {
-                width: 100%;
-                margin-inline: auto;
-            }
-
             nav {
                 display: grid;
                 grid-template-columns: auto 1fr auto;
@@ -803,17 +1074,6 @@
 
         /* Extra Small Mobile */
         @media (max-width: 480px) {
-            .hero h1,
-            .hero-second-line {
-                font-size: clamp(34px, 11vw, 01px);
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-
-            
-            
             .features h2,
             .tours h2 {
                 font-size: 28px;
@@ -847,8 +1107,8 @@
             color: var(--on-primary);
             border: none;
             padding: 0;
-            width: 45px;
-            height: 45px;
+            width: 70px;
+            height: 70px;
             border-radius: 100px; 
             cursor: pointer;
             font-size: 14px;
@@ -862,8 +1122,8 @@
         }
 
         .social-button img {
-            width: 25px;
-            height: 25px;
+            width: 42px;
+            height: 42px;
             display: block;
         }
 
@@ -878,7 +1138,7 @@
         /* Buttons container */
     .modal-buttons {
     display: flex;
-    gap: 10px;
+    gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
     }
@@ -909,32 +1169,34 @@
                 </button>
             </div>
             <ul class="nav-links" id="nav-links">
-                <li><a href="mald.html" onclick="closeMobileMenu()">The Maldives</a></li>
                 <li><a href="#tours" onclick="closeMobileMenu()">Our Experiences</a></li>
+                <li><a href="mald.html" onclick="closeMobileMenu()">Guide to Maldives</a></li>
                 <li><a href="#about" onclick="closeMobileMenu()">Why Us</a></li>
                 <li><a href="#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-labelledby="hero-title">
         <div class="hero-content">
-            <div class="hero-top-panel">
-                <img class="hero-panel-image" data-light-src="images/hero/heroL3s.webp" data-dark-src="images/hero/heroD3s.webp" src="images/hero/heroL3s.webp" alt="A sandy island beach shaded by palm trees.">
-                <h1>Stay where people actually live</h1>
+            <p class="section-kicker hero-kicker">Local islands & ocean adventures</p>
+            <h1 id="hero-title">Stay where people actually <em>live</em>, Go where the <em>water</em> gets interesting.</h1>
+        </div>
+        <div class="hero-gallery" role="group" aria-label="Explore the Maldives">
+            <div class="hero-image-card hero-image-card-landscape">
+                <img class="hero-gallery-image" src="images/hero/heroL3s.webp" data-light-src="images/hero/heroL3s.webp" data-dark-src="images/hero/heroD3s.webp" alt="A sandy island beach shaded by palm trees">
             </div>
-            <div class="hero-bottom-panel">
-                <img class="hero-panel-image" data-light-src="images/hero/heroLs.webp" data-dark-src="images/hero/heroDs.webp" src="images/hero/heroLs.webp" alt="A diver swimming through clear tropical water.">
-                <span class="hero-second-line">Go where the water gets interesting </span>
-                <button class="cta-button" onclick="scrollToSection('tours')">Explore Tours</button>
+            <div class="hero-image-card hero-image-card-portrait">
+                <img class="hero-gallery-image" src="images/hero/heroLs.webp" data-light-src="images/hero/heroLs.webp" data-dark-src="images/hero/heroDs.webp" alt="A diver swimming through clear tropical water">
             </div>
         </div>
+        <a class="hero-scroll" href="#tours" aria-label="Scroll down to Our Experiences" onclick="event.preventDefault(); scrollToSection('tours')">
+            <img class="hero-scroll-image" src="images/hero/arrL.webp" data-light-src="images/hero/arrL.webp" data-dark-src="images/hero/arrD.webp" alt="">
+        </a>
     </section>
-
-    
-
     <section class="tours" id="tours">
         <div class="tours-container">
+            <p class="section-kicker">Choose From</p>
             <h2>Our Experiences</h2>
             <div class="tours-grid">
                 <div class="tour-card">
@@ -969,8 +1231,51 @@
         </div>
     </section>
 
+    <section class="maldives-teaser" aria-labelledby="maldives-teaser-title">
+        <div class="maldives-teaser-heading">
+            <p class="maldives-teaser-kicker">Maldives, made clear</p>
+            <h2 id="maldives-teaser-title">A little know-how goes a long way.</h2>
+        </div>
+        <div class="maldives-teaser-container">
+            <div class="maldives-teaser-image-frame">
+                <img class="maldives-teaser-image" data-light-src="images/mald/maldL.webp" data-dark-src="images/mald/maldD.webp" src="images/mald/maldL.webp" alt="Maldives island scenery" loading="lazy">
+            </div>
+            <div class="maldives-teaser-content">
+                <p class="maldives-teaser-intro">Find out when to visit, what to experience and what to know before you arrive. From world-class diving and surf breaks to seasonal weather and practical travel essentials, make your Maldives trip one worth getting right.</p>
+                <div class="maldives-teaser-highlights">
+                    <div class="maldives-teaser-highlight">
+                        <span class="maldives-teaser-icon" aria-hidden="true">
+                            <img src="images/ico/blog/jmL.webp" data-light-src="images/ico/blog/jmL.webp" data-dark-src="images/ico/blog/jmD.webp" alt="">
+                        </span>
+                        <strong>When to go</strong>
+                        <span>Weather &amp; seasons</span>
+                    </div>
+                    <div class="maldives-teaser-highlight">
+                        <span class="maldives-teaser-icon" aria-hidden="true">
+                            <img src="images/ico/blog/winL.webp" data-light-src="images/ico/blog/winL.webp" data-dark-src="images/ico/blog/winD.webp" alt="">
+                        </span>
+                        <strong>What to do</strong>
+                        <span>Diving &amp; surfing</span>
+                    </div>
+                    <div class="maldives-teaser-highlight">
+                        <span class="maldives-teaser-icon" aria-hidden="true">
+                            <img src="images/ico/blog/cliL.webp" data-light-src="images/ico/blog/cliL.webp" data-dark-src="images/ico/blog/cliD.webp" alt="">
+                        </span>
+                        <strong>Before you go</strong>
+                        <span>Insurance &amp; essentials</span>
+                    </div>
+                </div>
+                <a class="maldives-teaser-button" href="mald.html">
+                    Guide to Maldives
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="features" id="about">
         <div class="features-container">
+            <p class="section-kicker">The Pearl Drift difference</p>
             <h2>Why Choose Pearl Drift?</h2>
             <div class="features-grid">
                 <div class="feature-card">
@@ -994,16 +1299,17 @@
 
     <section class="contact" id="contactUs">
         <div class="contact-container">
-            <h2>Planning a trip to the Maldives? </h2>
+            <p class="section-kicker">Planning a trip to the maldives?</p>
+            <h2>Tell us your dates, interests and the kind of experience you're looking for. </h2>
             <div class="contact-grid">
                 <div class="contact-card">
-                    <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/contact/envL.webp" data-light-src="images/ico/contact/envL.webp" data-dark-src="images/ico/contact/envD.webp" style="width:110px; height:110px;"></div>
-                    <h3>Tell us your dates, interests and the kind of experience you're looking for. </h3>
-                    <br>
+                    <!-- <div class="feature-icon"><img class="feature-theme-icon" src="images/ico/contact/envL.webp" data-light-src="images/ico/contact/envL.webp" data-dark-src="images/ico/contact/envD.webp" style="width:110px; height:110px;"></div>
+                    <h3> </h3>
+                    <br> -->
                         <div class="modal-buttons">
-                            <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg" style="width:25px; height:25px;"></button>
-                            <button class="social-button" onclick="redirectContact('telegram')"><img src="images/ico/contact/tele.svg" style="width:25px; height:25px;"></button>
-                            <button class="social-button" onclick="redirectContact('whatsapp')"><img src="images/ico/contact/wha.svg" style="width:25px; height:25px;"></button>
+                            <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg" alt="Email"></button>
+                            <button class="social-button" onclick="redirectContact('telegram')"><img src="images/ico/contact/tele.svg" alt="Telegram"></button>
+                            <button class="social-button" onclick="redirectContact('whatsapp')"><img src="images/ico/contact/wha.svg" alt="WhatsApp"></button>
                         </div>
                 </div>
                 
@@ -1053,7 +1359,7 @@
 
         // Update theme-specific images
         function updateHeroImage(theme) {
-            document.querySelectorAll('.hero-panel-image, .tour-background, .feature-theme-icon').forEach(image => {
+            document.querySelectorAll('.hero-gallery-image, .hero-scroll-image, .tour-background, .feature-theme-icon, .maldives-teaser-image, .maldives-teaser-icon img').forEach(image => {
                 const source = image.dataset[`${theme}Src`];
                 if (source) image.src = source;
             });
@@ -1211,7 +1517,7 @@ function redirectContact(method) {
     } else if (method === 'telegram') {
         window.open('https://t.me/pearlDrift', '_blank');
     } else if (method === 'whatsapp') {
-        window.open('https://wa.me/message/65AGSTP42DCWM1', '_blank'); // Replace with your WhatsApp number
+        window.open('https://wa.me/message/65AGSTP42DCWM1', '_blank');
     }
 }
     </script>

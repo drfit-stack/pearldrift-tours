@@ -38,7 +38,7 @@
             --on-primary: #ffffff;
             --on-surface: #191c1b;
             --on-surface-variant: #3f4946;
-            --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --background: #dae4e0;
             --tours-background-image: url("images/back/pal/palL.webp");
             --tours-background-overlay: rgba(236, 242, 240, 0.9);
             --card-background: rgba(255, 255, 255, 0.72);
@@ -60,7 +60,7 @@
             --on-primary: #003831;
             --on-surface: #e0e3e1;
             --on-surface-variant: #bfc9c5;
-            --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --background: #1a201e;
             --tours-background-image: url("images/back/pal/palD.webp");
             --tours-background-overlay: rgba(26, 32, 30, 0.9);
             --card-background: rgba(26, 32, 30, 0.8);
@@ -383,7 +383,7 @@
         .tour-description-controls button {
             width: 32px;
             height: 32px;
-            border: 1px solid var(--outline);
+            border: 0.5px solid var(--outline);
             border-radius: 50%;
             background: var(--card-background);
             color: var(--on-surface);
@@ -416,7 +416,7 @@
             display: inline-flex;
             align-items: center;
             padding: 8px 12px;
-            border: 1px solid var(--primary);
+            border: 0.5px solid var(--primary);
             border-radius: 999px;
             background: transparent;
             color: var(--primary);
@@ -1343,7 +1343,7 @@
         }
 
         .maldives-section + .maldives-section {
-            border-top: 1px solid color-mix(in srgb, var(--outline) 35%, transparent);
+            border-top: 0.5px solid color-mix(in srgb, var(--outline) 35%, transparent);
         }
 
         .maldives-section-head {
@@ -1517,12 +1517,12 @@
             padding: 15px 16px;
             border-radius: 14px;
             background: var(--card-background);
-            border: 1px solid color-mix(in srgb, var(--outline) 35%, transparent);
+            border: 0.5px solid color-mix(in srgb, var(--outline) 35%, transparent);
             color: var(--on-surface-variant);
             line-height: 1.6;
         }
         .maldives-source-list { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
-        .maldives-source-list a { display:inline-flex; border:1px solid var(--outline); border-radius:999px; padding:9px 13px; color:var(--on-surface-variant); text-decoration:none; font-size:.88rem; }
+        .maldives-source-list a { display:inline-flex; border:0.5px solid var(--outline); border-radius:999px; padding:9px 13px; color:var(--on-surface-variant); text-decoration:none; font-size:.88rem; }
         .maldives-source-list a:hover { color:var(--primary); border-color:var(--primary); }
         .maldives-bottom-cta { padding:34px; display:flex; align-items:center; justify-content:space-between; gap:24px; border-radius:24px; background:var(--surface-container); }
         .maldives-bottom-cta h2 { font-size:clamp(1.7rem,3vw,2.5rem); margin-bottom:10px; }
@@ -1581,8 +1581,8 @@
             <ul class="nav-links" id="nav-links">
                 <!-- Desktop Back button -->
                 <li class="back-desktop"><a href="javascript:history.back()">← Back</a></li>
-                <li><a href="mald.html" onclick="closeMobileMenu()" aria-current="page">The Maldives</a></li>
                 <li><a href="index.html#tours" onclick="closeMobileMenu()">Our Experiences</a></li>
+                <li><a href="mald.html" onclick="closeMobileMenu()">Guide to Maldives</a></li>
                 <li><a href="index.html#about" onclick="closeMobileMenu()">Why Us</a></li>
                 <li><a href="index.html#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
             </ul>
@@ -1656,14 +1656,14 @@
                     <p>The northeast monsoon usually brings sunnier conditions and less rainfall. A strong all-round choice for beach time, boat trips and visitors prioritising more settled weather. It is also a popular period, so book early around holidays.</p>
                 </article>
                 <article class="maldives-card">
-                    <div class="maldives-icon" aria-hidden="true"><img class="icon-img" src="images/ico/blog/traL.webp" data-light-src="images/ico/blog/traL.webp" data-dark-src="images/ico/blog/traD.webp" alt=""></div>
-                    <h3>April and December · transition</h3>
-                    <p>Conditions can be changeable as the monsoon shifts. These months may offer a balance of sunshine and flexibility, but do not assume calm seas or dry weather every day.</p>
-                </article>
-                <article class="maldives-card">
                     <div class="maldives-icon" aria-hidden="true"><img class="icon-img" src="images/ico/blog/umbL.webp" data-light-src="images/ico/blog/umbL.webp" data-dark-src="images/ico/blog/umbD.webp" alt=""></div>
                     <h3>May–November · wetter, often windier</h3>
                     <p>The southwest monsoon usually brings more rain and stronger winds. There can still be sunny spells. This season can suit surfers and travellers who are flexible about weather, boat schedules and sea conditions.</p>
+                </article>
+                <article class="maldives-card">
+                    <div class="maldives-icon" aria-hidden="true"><img class="icon-img" src="images/ico/blog/traL.webp" data-light-src="images/ico/blog/traL.webp" data-dark-src="images/ico/blog/traD.webp" alt=""></div>
+                    <h3>April and December · transitions</h3>
+                    <p>Conditions can be changeable as the monsoon shifts. These months may offer a balance of sunshine and flexibility, but do not assume calm seas or dry weather every day.</p>
                 </article>
             </div>
             <table class="maldives-season-table">

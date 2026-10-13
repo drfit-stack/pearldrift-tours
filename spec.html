@@ -14,6 +14,9 @@
         }
 
         body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-x: hidden;
@@ -31,7 +34,7 @@
             --on-primary: #ffffff;
             --on-surface: #191c1b;
             --on-surface-variant: #3f4946;
-            --background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+            --background: #dae4e0;
             --tours-background-image: url("images/back/spe/specL.webp");
             --tours-background-overlay: rgba(236, 242, 240, 0.9);
             --card-background: rgba(255, 255, 255, 0.7);
@@ -51,7 +54,7 @@
             --on-primary: #003831;
             --on-surface: #e0e3e1;
             --on-surface-variant: #bfc9c5;
-            --background: linear-gradient(135deg, #0f1513 0%, #1a1f1c 100%);
+            --background: #1a201e;
             --tours-background-image: url("images/back/spe/specD.webp");
             --tours-background-overlay: rgba(26, 32, 30, 0.9);
             --card-background: rgba(26, 32, 30, 0.8);
@@ -199,6 +202,7 @@
 
         /* Tours Section */
         .tours {
+            flex: 1 0 auto;
             padding: 120px 0;
             background-color: var(--surface-container);
             background-image: linear-gradient(var(--tours-background-overlay), var(--tours-background-overlay)), var(--tours-background-image);
@@ -283,7 +287,7 @@
             background: rgba(0,0,0,0.4);
             color: white;
             border: none;
-            padding: 7px 15px;
+            padding: 7px 14px;
             cursor: pointer;
             font-size: 18px;
             border-radius: 50%;
@@ -374,7 +378,7 @@
         .tour-description-controls button {
             width: 32px;
             height: 32px;
-            border: 1px solid var(--outline);
+            border: 0.5px solid var(--outline);
             border-radius: 50%;
             background: var(--card-background);
             color: var(--on-surface);
@@ -407,7 +411,7 @@
             display: inline-flex;
             align-items: center;
             padding: 8px 12px;
-            border: 1px solid var(--primary);
+            border: 0.5px solid var(--primary);
             border-radius: 999px;
             background: transparent;
             color: var(--primary);
@@ -506,6 +510,7 @@
 
         /* Footer */
         footer {
+            margin-top: auto;
             background: var(--footer-background);
             color: var(--footer-text);
             padding: 64px 0 32px;
@@ -1225,8 +1230,8 @@
             <ul class="nav-links" id="nav-links">
                 <!-- Desktop Back button -->
                 <li class="back-desktop"><a href="javascript:history.back()">← Back</a></li>
-                <li><a href="mald.html" onclick="closeMobileMenu()">The Maldives</a></li>
                 <li><a href="index.html#tours" onclick="closeMobileMenu()">Our Experiences</a></li>
+                <li><a href="mald.html" onclick="closeMobileMenu()">Guide to Maldives</a></li>
                 <li><a href="index.html#about" onclick="closeMobileMenu()">Why Us</a></li>
                 <li><a href="index.html#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
             </ul>
