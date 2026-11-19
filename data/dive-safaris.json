@@ -49,49 +49,53 @@
     "published": true
   },
   {
-    "id": "sachika",
-    "title": "Sachika",
-    "duration": "7–12 nights (itinerary dependent)",
-    "routeNote": "Route varies by season and departure",
-    "description": "A 33 m, 10-cabin Maldivian dive yacht with a jacuzzi sundeck, dedicated dive dhoni and free Nitrox. It runs year-round itineraries with diving, snorkeling, fishing, beach visits and local-island excursions.",
-    "price": "From $2,500 pp",
-    "priceNote": "Our 7-night departures start at $2,500 per person; cabin, route and departure affect your final fare.",
-    "bestTimeToVisit": "Year-round; routes and marine life vary by season",
+    "id": "princess-haseena",
+    "title": "Princess Haseena",
+    "duration": "Itinerary dependent",
+    "routeNote": "Maldives liveaboard itinerary",
+    "description": "A 32 m Maldivian-built liveaboard with 12 cabins, 13 bathrooms and three decks. Princess Haseena combines solar energy and battery storage with diesel generation for a future-ready diving safari.",
+    "price": "Request a quote",
+    "priceNote": "Cabin configuration, itinerary and departure affect availability and the final fare.",
+    "bestTimeToVisit": "Year-round Maldives liveaboard itineraries",
     "badges": [
-      "Award-winning",
-      "10 cabins · 22 guests",
-      "Jacuzzi deck",
-      "Free Nitrox"
+      "32 m · 12 cabins",
+      "24/26 guests",
+      "Solar & battery",
+      "Nitrox available"
     ],
     "images": [
-      "images/saf/sachika/sachika1.webp",
-      "images/saf/sachika/sachika2.webp",
-      "images/saf/sachika/sachika3.webp"
+      "images/saf/phaseena/phaseena1.webp",
+      "images/saf/phaseena/phaseena2.webp",
+      "images/saf/phaseena/phaseena3.webp",
+      "images/saf/phaseena/phaseena4.webp"
     ],
     "buttonText": "More details →",
     "details": {
-      "title": "Sachika",
-      "overview": "An award-winning liveaboard for divers and snorkelers exploring the Maldives.",
-      "location": "Maldives atolls",
-      "route": "Itineraries include central and deep-south atolls; routes and dive sites vary by departure.",
-      "vessel": "33 m liveaboard with 10 cabins, a jacuzzi sundeck and a separate diving dhoni.",
+      "title": "Princess Haseena",
+      "overview": "Princess Haseena is Top Class Cruising’s future-ready Maldivian-built liveaboard, renovated in 2026.",
+      "location": "Maldives",
+      "route": "Maldives liveaboard itineraries are confirmed according to the selected departure. Exact routes and dive sites vary.",
+      "vessel": "32 m, 10.8 m beam, 12 cabins across three decks, 13 bathrooms and accommodation for 24/26 guests.",
       "includes": [
-        "Full-board meals",
-        "Free Nitrox for qualified divers",
-        "Airport transfers on scheduled cruise dates",
-        "Diving package, snorkeling, kayaks and stand-up paddleboards"
+        "Five dive guides",
+        "Nitrox available",
+        "Custom-built diving facilities",
+        "Full-board dining",
+        "Kayaks and stand-up paddleboards"
       ],
       "activities": [
-        "Guided diving across the selected route",
-        "Snorkeling, fishing, beach visits and local-island excursions",
-        "Mantas, sharks and whale sharks may be encountered; sightings are not guaranteed"
+        "Guided diving from a dedicated diving vessel",
+        "Snorkeling and naturalist itineraries",
+        "Kayaking and stand-up paddleboarding",
+        "Beach barbecues and al fresco dining"
       ],
-      "transfers": "Airport transfers are included on scheduled departure dates. We’ll confirm your meeting point and any extra transfer costs if you’re traveling outside the scheduled dates.",
-      "priceBasis": "Our 7-night Sachika departures start at USD 2,500 per person. Cabin and departure affect the fare; green tax, fuel surcharge, service charge and equipment rental may be extra. Share your dates with us and we’ll confirm availability and your full trip total.",
+      "transfers": "Transfer arrangements are confirmed when you request your preferred departure.",
+      "priceBasis": "Please send us your preferred dates, cabin configuration and number of guests for a current Princess Haseena quote. The quoted total may vary with departure and itinerary.",
       "importantNotes": [
-        "Choose from trips ranging from 7 to 12 nights; routes and dive sites vary by departure.",
-        "We’ll outline any equipment rental, green tax, service charge and fuel surcharge in your quote before you book.",
-        "Manta, shark and whale-shark sightings vary by route and season and can’t be guaranteed."
+        "Princess Haseena was built in the Maldives in 2016 and renovated in 2026.",
+        "Cabins range across the lower, main and upper decks, with flexible double, twin and family configurations.",
+        "The vessel uses solar energy, battery storage and diesel generation to improve onboard energy use.",
+        "A new 15 m diving dhoni with four electric motors and solar-assisted battery propulsion was under construction, according to the vessel page."
       ]
     },
     "published": true
