@@ -258,6 +258,7 @@
             const location = [island, atoll].filter(Boolean).join(' · ');
             const facts = [
                 ["Location", location],
+                ["Duration", record.duration],
                 ["Best time", record.bestTimeToVisit],
                 [String(record.price || '').startsWith('From ') ? "Starting price" : "Price", record.price]
             ].filter(([, value]) => value);

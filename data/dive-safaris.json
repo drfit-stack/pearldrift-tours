@@ -2,14 +2,17 @@
   {
     "id": "maani",
     "title": "Princess Maani",
-    "description": "Princess Maani is a 41 m, 14-cabin liveaboard for 28 guests, featuring two jacuzzis, a sun deck and an open-air cocktail bar. A dedicated dive dhoni and free Nitrox keep diving seamless, while a European-chef kitchen, kayaks/SUP and massage elevate your surface time.",
-    "price": "From $2,650",
-    "priceNote": "Confirm dates, cabin, trip length, and rate basis.",
-    "bestTimeToVisit": "April–October",
+    "duration": "7–11 nights (itinerary dependent)",
+    "routeNote": "Route varies by season and departure",
+    "description": "A 42 m, 14-cabin liveaboard for up to 28 guests, with two jacuzzis, a sun deck, cocktail bar and dedicated dive dhoni. Free Nitrox, kayaks and SUPs are available; routes range across central, northern and southern atolls.",
+    "price": "From $2,688",
+    "priceNote": "Per-person fares vary by itinerary, cabin and departure; mandatory taxes and surcharges may be extra.",
+    "bestTimeToVisit": "Varies by route and season",
     "badges": [
-      "Liveaboard luxury",
+      "14 cabins · 28 guests",
+      "2 jacuzzis",
       "Free Nitrox",
-      "Jacuzzi sundeck"
+      "Kayaks & SUPs"
     ],
     "images": [
       "images/saf/maani/maani1.webp",
@@ -19,26 +22,28 @@
     "buttonText": "More details →",
     "details": {
       "title": "Princess Maani",
-      "overview": "A diver-first liveaboard experience across the Maldives.",
-      "route": "Maldives atolls. Confirm the route and dive sites for the selected departure.",
-      "vessel": "41 m liveaboard with 14 cabins for up to 28 guests and a dedicated dive dhoni.",
+      "overview": "A multi-route liveaboard offering diving and snorkeling trips across the Maldives.",
+      "location": "Maldives atolls",
+      "route": "Published routes include the central atolls, Hanifaru Bay, northern atolls and the deep south. Confirm the route and sites for the selected departure.",
+      "vessel": "42 m liveaboard with 14 cabins for up to 28 guests, two jacuzzis and a dedicated dive dhoni.",
       "includes": [
-        "14-cabin accommodation for up to 28 guests",
-        "All meals by a European chef",
-        "Dedicated dive dhoni service",
-        "Free Nitrox for certified divers"
+        "Full-board meals",
+        "Free Nitrox for qualified divers",
+        "Airport transfer on scheduled cruise dates",
+        "Kayaks, stand-up paddleboards and beach barbecue"
       ],
       "activities": [
-        "Guided diving across the atolls; marine sightings vary by route and season",
-        "Kayaks and stand-up paddleboards",
-        "Jacuzzis, open-air cocktail bar, and massage services"
+        "Guided diving across the selected route; dive sites vary by itinerary",
+        "Hanifaru Bay manta snorkeling on the Manta Madness itinerary",
+        "Kayaking, stand-up paddleboarding and beach barbecues",
+        "Massage services are available at an additional cost"
       ],
-      "transfers": "Pickup from Malé or a domestic airport is listed. Confirm the embarkation point and transfer timing.",
-      "priceBasis": "Confirm currency, dates, cabin, trip length, and rate basis.",
+      "transfers": "Airport transfer is included on scheduled cruise dates; confirm the meeting point. Transfers outside scheduled dates may cost extra.",
+      "priceBasis": "The lowest listed fare is about $2,688 per person for a 7-night departure; confirm the selected cabin, itinerary, mandatory fees and current rate.",
       "importantNotes": [
-        "14 cabins for up to 28 guests",
-        "Free Nitrox is for certified divers",
-        "Private dive guides and custom itinerary upgrades may be additional"
+        "Listed departures range from 7 to 11 nights.",
+        "Green tax, fuel surcharge, service charge and some park fees may be additional.",
+        "Wildlife sightings are not guaranteed."
       ]
     },
     "published": true
@@ -46,14 +51,17 @@
   {
     "id": "sachika",
     "title": "Sachika",
-    "description": "Sachika is an award-winning Maldivian dive safari yacht, combining adventure and elegance. With spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni, she offers seamless comfort and world-class diving with mantas, sharks, and whale sharks across the atolls.",
-    "price": "From $2,400",
-    "priceNote": "Confirm dates, cabin, trip length, and rate basis.",
-    "bestTimeToVisit": "April–October",
+    "duration": "7–12 nights (itinerary dependent)",
+    "routeNote": "Route varies by season and departure",
+    "description": "A 33 m, 10-cabin Maldivian dive yacht with a jacuzzi sundeck, dedicated dive dhoni and free Nitrox. It runs year-round itineraries with diving, snorkeling, fishing, beach visits and local-island excursions.",
+    "price": "From $2,500 pp",
+    "priceNote": "Per-person fares vary by departure, cabin and trip length; taxes and surcharges may be extra.",
+    "bestTimeToVisit": "Year-round; routes and marine life vary by season",
     "badges": [
-      "Award-winning yacht",
+      "Award-winning",
+      "10 cabins · 22 guests",
       "Jacuzzi deck",
-      "Premium dive sites"
+      "Free Nitrox"
     ],
     "images": [
       "images/saf/sachika/sachika1.webp",
@@ -63,26 +71,27 @@
     "buttonText": "More details →",
     "details": {
       "title": "Sachika",
-      "overview": "An award-winning yacht for guests seeking premium dive experiences.",
-      "route": "Maldives atolls. Confirm the route and dive sites for the selected departure.",
-      "vessel": "Award-winning safari yacht with spacious cabins, a dedicated dive dhoni, and a jacuzzi sundeck.",
+      "overview": "An award-winning liveaboard for divers and snorkelers exploring the Maldives.",
+      "location": "Maldives atolls",
+      "route": "Itineraries include central and deep-south atolls; routes and dive sites vary by departure.",
+      "vessel": "33 m liveaboard with 10 cabins, a jacuzzi sundeck and a separate diving dhoni.",
       "includes": [
-        "Spacious onboard cabins",
-        "Three daily meals",
-        "Dedicated dive dhoni",
-        "Daily guided dive briefings"
+        "Full-board meals",
+        "Free Nitrox for qualified divers",
+        "Airport transfers on scheduled cruise dates",
+        "Diving package, snorkeling, kayaks and stand-up paddleboards"
       ],
       "activities": [
-        "Guided dives across the atolls",
-        "Marine encounters may include mantas, sharks, and whale sharks; sightings are not guaranteed",
-        "Private briefings, custom dive plans, and sunset cruises may be available"
+        "Guided diving across the selected route",
+        "Snorkeling, fishing, beach visits and local-island excursions",
+        "Mantas, sharks and whale sharks may be encountered; sightings are not guaranteed"
       ],
-      "transfers": "Transfers from Malé are listed as available. Confirm whether they are included and the exact routing.",
-      "priceBasis": "Confirm currency, dates, cabin, trip length, and rate basis.",
+      "transfers": "Airport transfer is included on scheduled cruise dates; confirm the meeting point and any out-of-schedule transfer costs.",
+      "priceBasis": "The lowest listed fare is about $2,500 per person for a 7-night departure; confirm cabin, departure, mandatory fees and current rate.",
       "importantNotes": [
-        "Suitable for mixed-skill groups",
-        "Best for 7 or more nights",
-        "Whale shark encounters are seasonal and not guaranteed"
+        "Published trips range from 7 to 12 nights, depending on itinerary.",
+        "Equipment rental, green tax, service charge and fuel surcharge may be additional.",
+        "Marine sightings are not guaranteed."
       ]
     },
     "published": true

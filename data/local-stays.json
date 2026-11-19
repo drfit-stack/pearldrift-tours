@@ -2,14 +2,16 @@
   {
     "id": "aveyla",
     "title": "Aveyla Manta Village",
-    "description": "Eco resort on Dharavandhoo Island in the UNESCO-protected Baa Atoll, with solar-powered rooms and direct access to world-class manta diving.",
-    "price": "From $1,080",
-    "priceNote": "Confirm per-person, per-night, or package pricing.",
-    "bestTimeToVisit": "April–October",
+    "duration": "3–7 nights (package dependent)",
+    "description": "A solar-powered, 16-room stay on Dharavandhoo, with diving, snorkeling and seasonal manta trips to nearby Hanifaru Bay.",
+    "price": "From $720 pp",
+    "priceNote": "Manta Madness package, Village Deluxe twin-share; rates vary by room, package and dates.",
+    "bestTimeToVisit": "Manta season: June–November (peak August–October)",
     "badges": [
-      "Eco resort",
-      "PADI 5★ dive centre",
-      "Hanifaru Bay access"
+      "Solar powered",
+      "PADI 5-star diving",
+      "Hanifaru Bay",
+      "16 rooms"
     ],
     "images": [
       "images/local/dhar/aveyla1.webp",
@@ -20,44 +22,40 @@
     "buttonText": "More details →",
     "details": {
       "title": "Aveyla Manta Village",
-      "overview": "A low-impact stay for manta divers and marine-wildlife visitors.",
+      "overview": "A solar-powered base on Dharavandhoo for diving, snorkeling and seasonal Hanifaru Bay trips.",
       "island": "Dharavandhoo",
       "atoll": "Baa",
-      "accommodation": "16 solar-powered beach rooms. Family-friendly rooms are available.",
+      "accommodation": "16 rooms across Ocean Deluxe, Beach Deluxe and Village Deluxe categories; the property states it is fully solar-powered.",
       "activities": [
-        "Manta diving",
-        "Private manta snorkel excursions",
-        "Sustainability-focused island experiences"
+        "Scuba diving with the on-site PADI 5-star dive centre",
+        "Seasonal Hanifaru Bay manta snorkeling (June–November; peak August–October)",
+        "Snorkeling, night snorkeling, freediving, fishing, sandbank trips and local-island visits"
       ],
-      "transfers": "Round-trip speedboat transfer is listed as included. Confirm the domestic-flight connection and timing.",
-      "priceBasis": "Confirm dates, room type, and whether the rate is per person, per night, or for a package.",
+      "transfers": "Listed packages include return domestic flights between Malé and Dharavandhoo; confirm the schedule and package terms.",
+      "priceBasis": "$720 is the listed twin-share starting rate for the Manta Madness package in Village Deluxe; rates vary by room, package and dates.",
       "importantNotes": [
-        "Best suited to diving and marine-wildlife trips",
-        "Suggested stay: 4 or more nights",
-        "Small property with 16 rooms"
+        "Hanifaru Bay manta season runs June–November, with peak aggregations in August–October.",
+        "Manta Madness is a snorkeling package; dive inclusions depend on the selected package.",
+        "The property is about a 15-minute boat ride from Hanifaru Bay."
       ],
       "includes": [
-        "Accommodation in solar-powered beach rooms",
-        "Daily breakfast",
-        "Round-trip speedboat transfer",
-        "Guided manta dive briefing and marine-expert support"
+        "Listed packages include accommodation, breakfast and return domestic flights.",
+        "Diving and manta-snorkeling activities depend on the selected package."
       ],
       "highlights": [
-        "Direct access to Hanifaru Bay",
+        "About a 15-minute boat ride from Hanifaru Bay",
         "PADI 5-star dive centre",
-        "Small resort with only 16 rooms",
-        "Solar-powered resort operations"
+        "16-room property",
+        "Fully solar-powered operations"
       ],
       "practicalInfo": [
-        "Best for diving and marine wildlife lovers",
-        "Ideal stay: 4+ nights",
-        "Easy access via Dharavandhoo domestic airport",
-        "Family-friendly rooms available"
+        "Manta excursions are seasonal and weather-dependent.",
+        "Return domestic flights are included in listed packages; confirm current schedules.",
+        "Room categories and inclusions vary by package."
       ],
       "extras": [
-        "Spa treatments",
-        "Private manta snorkel excursions",
-        "Sustainability-focused island experiences"
+        "Night snorkeling and freediving",
+        "Sandbank trips, fishing and local-island visits"
       ]
     },
     "published": true
@@ -65,14 +63,16 @@
   {
     "id": "mantaBeachRetreat",
     "title": "Manta Beach Retreat",
-    "description": "Manta Beach Retreat is your gateway to experiencing the soul of Addu—where history, culture, and natural beauty come together in the southern Maldives.",
-    "price": "From $1,899",
-    "priceNote": "Confirm per-person, per-night, or package pricing.",
-    "bestTimeToVisit": "April–October",
+    "duration": "Flexible stay",
+    "description": "A locally hosted stay on Meedhoo in Addu Atoll, with access to diving, snorkeling, fishing, island hopping and local culture.",
+    "price": "Contact for rates",
+    "priceNote": "Rates vary by room and dates; confirm activity and transfer costs.",
+    "bestTimeToVisit": "Varies by activity and sea conditions",
     "badges": [
-      "Addu culture",
-      "Custom dive itineraries",
-      "Local island charm"
+      "Diving & snorkeling",
+      "Addu cycling",
+      "Island hopping",
+      "Island picnics"
     ],
     "images": [
       "images/local/addu/mbr1.webp",
@@ -82,47 +82,43 @@
     "buttonText": "More details →",
     "details": {
       "title": "Manta Beach Retreat",
-      "overview": "A welcoming, locally hosted retreat in Addu.",
-      "island": "Addu City",
-      "atoll": "Seenu",
-      "accommodation": "Guesthouse-style retreat. Confirm room types and configuration.",
+      "overview": "A locally hosted guesthouse on Meedhoo, with island, reef and water-based activities.",
+      "island": "Meedhoo",
+      "atoll": "Addu",
+      "accommodation": "Double/Twin Room with Pool View or Superior King Room; Wi-Fi and private bathrooms are listed.",
       "activities": [
-        "Dive excursions",
-        "Guided island exploration",
-        "Private island tours",
-        "Sunset dhow cruises",
-        "Surf and snorkel options"
+        "Scuba diving, including the British Loyalty wreck and local reefs",
+        "Snorkeling, fishing and water sports",
+        "Island hopping and cycling across Addu's connected islands",
+        "Picnics on uninhabited islands and cultural visits"
       ],
-      "transfers": "Airport transfer is available on request. Gan Airport is the stated arrival point.",
-      "priceBasis": "Confirm dates, room type, and rate basis.",
+      "transfers": "Domestic flights from Malé to Gan can be arranged. From Gan, reach Meedhoo by local ferry or private speedboat; confirm schedules and costs.",
+      "priceBasis": "Contact the property for current room rates; activities and transfers may be additional.",
       "importantNotes": [
-        "Confirm the specific island with the property",
-        "Flexible stay length",
-        "Family-friendly options are available",
-        "Confirm which activities and transfers are included in your quote"
+        "The property is on Meedhoo Island, Addu Atoll.",
+        "The local ferry from Gan is listed at about USD 6 per person each way; confirm the current fare.",
+        "Ask which meals, activities and transfers are included in your quote."
       ],
       "includes": [
-        "Breakfast each morning",
-        "Airport transfer on request",
-        "Assistance booking dive excursions",
-        "Access to cultural island experiences"
+        "Room accommodation in the selected room category.",
+        "Wi-Fi is listed by the property.",
+        "Meal and activity inclusions vary; request a written quote."
       ],
       "highlights": [
-        "Local cultural immersion",
-        "Personalized dive itineraries",
-        "Friendly guesthouse atmosphere",
-        "Close to Addu Atoll dive sites"
+        "Meedhoo Island setting",
+        "Access to Addu diving and snorkeling",
+        "Island hopping and cycling",
+        "Local cultural experiences"
       ],
       "practicalInfo": [
-        "Best for couples and small groups",
-        "Flexible stay length",
-        "Family-friendly options available",
-        "Easy transfer from Gan Airport"
+        "Arrive via Gan International Airport.",
+        "Continue to Meedhoo by ferry or private speedboat.",
+        "Confirm transfers and activity availability before booking."
       ],
       "extras": [
-        "Private island tours",
-        "Sunset dhow cruises",
-        "Surf and snorkel packages"
+        "Fishing and water sports",
+        "Picnics on uninhabited islands",
+        "Island hopping and cultural visits"
       ]
     },
     "published": true
@@ -130,14 +126,16 @@
   {
     "id": "empyrean",
     "title": "Empyrean Stay",
-    "description": "A family-managed 6-room guesthouse offering cozy stays just steps from the beach. Perfect for travelers seeking comfort, privacy, and authentic island life well known for surfing.",
-    "price": "From $600",
-    "priceNote": "Confirm per-person, per-night, or package pricing.",
-    "bestTimeToVisit": "April–October",
+    "duration": "Flexible stay",
+    "description": "A family-managed, six-room guesthouse in Thulusdhoo, about 250 m from Bikini Beach, with air-conditioned rooms and nearby surf breaks.",
+    "price": "Contact for rates",
+    "priceNote": "Rates vary by room and dates; confirm transfer and activity costs.",
+    "bestTimeToVisit": "Surf conditions vary seasonally",
     "badges": [
-      "Beachfront guesthouse",
-      "Family-owned",
-      "Surf-friendly"
+      "250 m to Bikini Beach",
+      "Cokes & Chickens surf",
+      "6 rooms",
+      "Free island hopping"
     ],
     "images": [
       "images/local/emp/emp1.webp",
@@ -149,45 +147,43 @@
     "buttonText": "More details →",
     "details": {
       "title": "Empyrean Stay",
-      "overview": "A six-room guesthouse steps from the beach, with a relaxed surf-friendly atmosphere.",
+      "overview": "A family-managed Thulusdhoo guesthouse close to Bikini Beach and local surf breaks.",
       "island": "Thulusdhoo",
-      "atoll": "Kaafu.",
-      "accommodation": "Family-run, 6-room guesthouse. Confirm available room types.",
+      "atoll": "Kaafu",
+      "accommodation": "Six-room guesthouse with air-conditioned rooms, private bathrooms, free Wi-Fi and several room configurations.",
       "activities": [
-        "Surf lessons",
-        "Island bike rentals",
-        "Private dining requests",
-        "Nearby beach and local cafes"
+        "Surfing at nearby Cokes and Chickens",
+        "Water sports on request",
+        "Free island hopping is listed by the property",
+        "Home-cooked meals on request"
       ],
-      "transfers": "Airport transfers are available; confirm arrangements and cost.",
-      "priceBasis": "Confirm dates, room type, and rate basis.",
+      "transfers": "Airport transfer is listed; confirm route, schedule and cost.",
+      "priceBasis": "Contact the property for current room rates; rates vary by room type and dates.",
       "importantNotes": [
-        "Beachside location",
-        "Surf-friendly setting",
-        "Well suited to relaxed stays and families"
+        "About 250 m from Bikini Beach; the property is not beachfront.",
+        "Water sports and some drinks are available at an additional cost.",
+        "Confirm airport transfer arrangements and cost."
       ],
       "includes": [
-        "Cozy room stay",
-        "Daily breakfast",
-        "Beachfront access",
-        "Local guesthouse hospitality"
+        "Air conditioning and room service.",
+        "Free Wi-Fi, kettle and mini refrigerator are listed.",
+        "Island hopping is listed as free by the property."
       ],
       "highlights": [
-        "Steps from the beach",
-        "Family-managed atmosphere",
-        "Surf-friendly location",
-        "Authentic island living"
+        "Six-room family-managed guesthouse",
+        "About 250 m from Bikini Beach",
+        "Surf breaks and water sports nearby",
+        "Local island setting"
       ],
       "practicalInfo": [
-        "Ideal for relaxed beach stays",
-        "Perfect for surfers and families",
-        "Short walk to local cafés",
-        "Airport transfers available"
+        "Located on Thulusdhoo in Kaafu Atoll.",
+        "The property is about 250 m from Bikini Beach.",
+        "Surf conditions and transfer schedules vary."
       ],
       "extras": [
-        "Surf lessons",
-        "Island bike rentals",
-        "Private dining requests"
+        "Water sports on request at an additional cost",
+        "Tea, coffee and soft drinks available at a cost",
+        "Home-cooked meals on request"
       ]
     },
     "published": true
@@ -195,14 +191,16 @@
   {
     "id": "dhiguveliMaldives",
     "title": "Dhiguveli Maldives",
-    "description": "Dhiguveli Maldives is truly the place for you if you are looking to unwind and make memories of a lifetime. Our hotel is only a minute’s walk away from the long stretches of white sandy beaches, dedicated to provide you the ultimate local experience. Our cosy modern rooms would make you feel right at home.",
-    "price": "From $1,899",
-    "priceNote": "Confirm per-person, per-night, or package pricing.",
-    "bestTimeToVisit": "April–October",
+    "duration": "5–14 nights (package dependent)",
+    "description": "A Dhigurah dive stay with full-board packages, scheduled boat dives and return speedboat transfers.",
+    "price": "From $1,300 pp",
+    "priceNote": "Officially listed 5-night/6-dive package; confirm current rates and availability.",
+    "bestTimeToVisit": "Year-round; wildlife sightings vary",
     "badges": [
-      "Beach access",
-      "Modern rooms",
-      "Local island feel"
+      "PADI 5-Star IDC",
+      "Full-board stays",
+      "Scheduled boat dives",
+      "Return speedboat"
     ],
     "images": [
       "images/local/dhimv/dhigumv1.webp",
@@ -213,45 +211,43 @@
     "buttonText": "More details →",
     "details": {
       "title": "Dhiguveli Maldives",
-      "overview": "A modern island stay a short walk from Dhigurah's beaches.",
+      "overview": "A local-island dive package combining full-board accommodation and scheduled boat dives.",
       "island": "Dhigurah",
-      "atoll": "South Ari Atoll",
-      "accommodation": "Modern hotel rooms. Confirm room types and availability.",
+      "atoll": "Alif Dhaal",
+      "accommodation": "Deluxe-room accommodation is included in the listed dive packages; confirm room category for the selected offer.",
       "activities": [
-        "Private beach picnics",
-        "Guided island walks",
-        "Local craft and food tours",
-        "Local beach activities"
+        "Scheduled boat dives, including two-tank morning and one-tank afternoon trips",
+        "Sunrise, night and specialty dives available on request",
+        "Whale-shark, manta and reef excursions; sightings are not guaranteed"
       ],
-      "transfers": "Airport transfer service is listed. Confirm route, schedule, and whether it is included.",
-      "priceBasis": "Confirm dates, room type, and rate basis.",
+      "transfers": "Return speedboat transfer is included in the listed dive packages; confirm departure point and schedule.",
+      "priceBasis": "The property lists a 5-night/6-dive package from $1,300 per person, including full board, dive equipment, return speedboat transfer and taxes; verify current rates.",
       "importantNotes": [
-        "Close to local beaches and dining",
-        "Couples and family stays are available",
-        "Domestic-flight routing from Malé is noted; confirm the connection"
+        "Published package options include 5 nights/6 dives, 7 nights/10 dives and 10 nights/16 dives.",
+        "The same official page also shows a 14-night option but repeats 10-night details; verify that offer before booking.",
+        "Wildlife encounters are not guaranteed."
       ],
       "includes": [
-        "Comfortable modern rooms",
-        "Daily breakfast",
-        "Airport transfer service",
-        "Access to local beach activities"
+        "Deluxe-room accommodation",
+        "Full-board meals",
+        "Local boat dives with equipment",
+        "Return speedboat transfer",
+        "Taxes"
       ],
       "highlights": [
-        "Minutes from the sand",
-        "Modern rooms",
-        "Local dining options",
-        "Relaxed island atmosphere"
+        "PADI 5-Star IDC dive centre",
+        "Dive packages from 5 nights",
+        "Full-board accommodation and scheduled boat dives",
+        "Dhigurah location in Alif Dhaal Atoll"
       ],
       "practicalInfo": [
-        "Great for beach lovers",
-        "Perfect for couples and families",
-        "Easy access via Malé domestic flights",
-        "Well suited for longer stays"
+        "Package rates and dive counts vary by length of stay.",
+        "Confirm the speedboat departure point and schedule.",
+        "Request written confirmation of inclusions and current rates."
       ],
       "extras": [
-        "Private beach picnics",
-        "Guided island walks",
-        "Local craft and food tours"
+        "Sunrise and night dives by arrangement",
+        "Specialty dives on request"
       ]
     },
     "published": true
@@ -259,14 +255,16 @@
   {
     "id": "dhiguveliBreeze",
     "title": "Dhiguveli Breeze",
-    "description": "Dhiguveli Breeze offers 3-star accommodations in Dhigurah and has a garden, a shared lounge and a restaurant. The property has a 24-hour front desk, airport transportation, room service and free WiFi. The hotel will provide guests with air-conditioned rooms with a desk, an electric tea pot, a safety deposit box, a flat-screen TV, a terrace and a private bathroom with a bidet. Dhiguveli Breeze provides some rooms with city views, and all rooms include a balcony. All rooms feature a closet. A buffet, à la carte or continental breakfast is available at the property.",
-    "price": "From $1,899",
-    "priceNote": "Confirm per-person, per-night, or package pricing.",
-    "bestTimeToVisit": "April–October",
+    "duration": "Flexible stay",
+    "description": "A Dhigurah hotel with air-conditioned rooms, a restaurant, garden and shared lounge, a short walk from North West Beach.",
+    "price": "Check dates for rates",
+    "priceNote": "Rates vary by room and dates; breakfast and transfers are not assumed to be included.",
+    "bestTimeToVisit": "Year-round; activity conditions vary",
     "badges": [
       "24-hour front desk",
-      "Breakfast included",
-      "Free WiFi"
+      "North West Beach",
+      "Free Wi-Fi",
+      "On-site restaurant"
     ],
     "images": [
       "images/local/dhibree/dhibree1.webp",
@@ -277,44 +275,41 @@
     "buttonText": "More details →",
     "details": {
       "title": "Dhiguveli Breeze",
-      "overview": "A practical, comfortable base for a stay in Dhigurah.",
+      "overview": "A 3-star Dhigurah hotel with room service and free Wi-Fi, close to the island's North West Beach.",
       "island": "Dhigurah",
-      "atoll": "South Ari Atoll",
-      "accommodation": "Air-conditioned rooms with desk, kettle, safe, flat-screen TV, terrace, and private bathroom. Balconies are listed; room views vary.",
+      "atoll": "Alif Dhaal",
+      "accommodation": "Air-conditioned rooms with a desk, kettle, safe, flat-screen TV, terrace, wardrobe and private bathroom; rooms have balconies and views vary.",
       "activities": [
-        "Local guided tours",
-        "Nearby beach activities",
-        "Laundry service and breakfast upgrades may be available"
+        "North West Beach is a short walk away",
+        "On-site restaurant and shared lounge",
+        "Ask the property about local excursions and availability"
       ],
-      "transfers": "Airport transfer is available on request. Confirm arrangements and cost.",
-      "priceBasis": "Confirm dates, room type, and rate basis.",
+      "transfers": "Airport transportation is listed by the property; confirm routing, schedule and cost.",
+      "priceBasis": "Check current room rates for the selected dates; booking prices and meal plans vary.",
       "importantNotes": [
-        "24-hour front desk, garden, and shared lounge",
-        "Breakfast options include buffet, à la carte, or continental",
-        "Some rooms have city views"
+        "The property lists breakfast options, but breakfast is not assumed to be included in the room rate.",
+        "The property has a 24-hour front desk, garden, restaurant and shared lounge.",
+        "Some rooms have city views."
       ],
       "includes": [
-        "Air-conditioned rooms",
-        "Breakfast included",
-        "WiFi throughout the property",
-        "Airport transfer upon request"
+        "Air-conditioned room with private bathroom",
+        "Free Wi-Fi",
+        "Room service is listed by the property"
       ],
       "highlights": [
         "24-hour front desk",
-        "Garden and lounge spaces",
-        "Breakfast and WiFi included",
-        "Good local value"
+        "Garden, restaurant and shared lounge",
+        "Free Wi-Fi",
+        "Short walk from North West Beach"
       ],
       "practicalInfo": [
-        "Best for budget-conscious travellers",
-        "Perfect for short stays",
-        "Family rooms available",
-        "Close to local shops and beaches"
+        "Located on Dhigurah in Alif Dhaal Atoll.",
+        "Room rates, meals and transfers depend on dates and booking terms.",
+        "Confirm room type and airport transfer details before booking."
       ],
       "extras": [
-        "Laundry service",
-        "Local guided tours",
-        "Breakfast upgrades"
+        "Breakfast options available at the property",
+        "Local excursions and airport transportation may be arranged"
       ]
     },
     "published": true
@@ -322,14 +317,16 @@
   {
     "id": "ataG",
     "title": "Ataraxis Grand and Spa",
-    "description": "Dhiguveli Breeze offers 3-star accommodations in Dhigurah and has a garden, a shared lounge and a restaurant. The property has a 24-hour front desk, airport transportation, room service and free WiFi. The hotel will provide guests with air-conditioned rooms with a desk, an electric tea pot, a safety deposit box, a flat-screen TV, a terrace and a private bathroom with a bidet. Dhiguveli Breeze provides some rooms with city views, and all rooms include a balcony. All rooms feature a closet. A buffet, à la carte or continental breakfast is available at the property.",
-    "price": "From $1,000",
-    "priceNote": "Confirm per-person, per-night, or package pricing.",
-    "bestTimeToVisit": "April–October",
+    "duration": "3–7 nights (package dependent)",
+    "description": "Ataraxis Grand & Spa on Fuvahmulah offers guided tiger-shark dives, beginner-friendly surf packages and a comfortable island base.",
+    "price": "From $565 pp",
+    "priceNote": "Lowest listed rate is the 4-night Tropic Surf Starter; prices and inclusions vary by package.",
+    "bestTimeToVisit": "Tiger-shark diving year-round; surf conditions vary seasonally",
     "badges": [
-      "24-hour front desk",
-      "Breakfast included",
-      "Free WiFi"
+      "Tiger-shark dives",
+      "Surf coaching",
+      "Rooftop gym",
+      "Sauna & jacuzzi"
     ],
     "images": [
       "images/local/fvm/ath1.webp",
@@ -342,44 +339,40 @@
     "buttonText": "More details →",
     "details": {
       "title": "Ataraxis Grand and Spa",
-      "overview": "A practical local base in Fuvahmulah with comfortable rooms.",
-      "island": "Fuvahmulah ",
+      "overview": "An activity-led stay on Fuvahmulah, with guided dive and surf packages plus wellness facilities.",
+      "island": "Fuvahmulah",
       "atoll": "Gnaviyani",
-      "accommodation": "Air-conditioned rooms with desk, kettle, safe, flat-screen TV, terrace, and private bathroom. Balconies are listed; room views vary.",
+      "accommodation": "Tropical rooms with private balconies; facilities include The Spot restaurant, rooftop gym, sauna and rooftop jacuzzi.",
       "activities": [
-        "Local guided tours",
-        "Nearby beach activities",
-        "Laundry service and breakfast upgrades may be available"
+        "Guided tiger-shark diving packages with 4, 9 or 15 dives",
+        "Beginner-friendly surf packages with 3, 6 or 8 coaching sessions",
+        "Snorkeling, guided island tours, Thoondu Beach and Fuvahmulah Nature Park visits"
       ],
-      "transfers": "Airport transfer is available on request. Confirm arrangements and cost.",
-      "priceBasis": "Confirm dates, room type, and rate basis.",
+      "transfers": "Airport pickup and drop-off are listed in packages; return domestic flights are included only in selected offers.",
+      "priceBasis": "Package rates are per person. The 4-night Tropic Surf Starter is listed from $565; confirm current rates and inclusions.",
       "importantNotes": [
-        "24-hour front desk, garden, and shared lounge",
-        "Breakfast options include buffet, à la carte, or continental",
-        "Some rooms have city views"
+        "Published dive and surf packages range from 3 to 7 nights.",
+        "Domestic flights, meals and activities differ by package; check the selected offer.",
+        "Tiger sharks are present year-round, but wildlife sightings are not guaranteed."
       ],
       "includes": [
-        "Air-conditioned rooms",
-        "Breakfast included",
-        "WiFi throughout the property",
-        "Airport transfer upon request"
+        "Package-dependent room, meal plan, coaching or dives, and transfers.",
+        "Some packages include return domestic flights between Malé and Fuvahmulah."
       ],
       "highlights": [
-        "24-hour front desk",
-        "Garden and lounge spaces",
-        "Breakfast and WiFi included",
-        "Good local value"
+        "Tiger-shark diving and pelagic encounters",
+        "Beginner-friendly surf coaching",
+        "Rooftop gym, sauna and jacuzzi",
+        "Fuvahmulah nature and local-island experiences"
       ],
       "practicalInfo": [
-        "Best for budget-conscious travellers",
-        "Perfect for short stays",
-        "Family rooms available",
-        "Close to local shops and beaches"
+        "Fuvahmulah is a single-island atoll in Gnaviyani.",
+        "Packages include different combinations of lodging, meals, flights and activities.",
+        "Confirm seasonal surf conditions and current package availability."
       ],
       "extras": [
-        "Laundry service",
-        "Local guided tours",
-        "Breakfast upgrades"
+        "Custom dive and surf itineraries are available on request",
+        "À la carte dining at Thresher Café & Bistro"
       ]
     },
     "published": true

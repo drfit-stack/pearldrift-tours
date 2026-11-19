@@ -2,14 +2,16 @@
   {
     "id": "hope",
     "title": "Hope Cruiser",
-    "description": "The Hope Cruiser is a luxury yacht offering an unforgettable experience in the Maldives. With spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni, she provides seamless comfort and world-class diving with mantas, sharks, and whale sharks across the atolls.",
+    "duration": "7 nights",
+    "description": "A Maldives dive liveaboard with six cabins for up to 12 guests, a dedicated dive tender and an open sundeck. Itineraries commonly include Malé and Ari Atolls; confirm the selected route.",
     "price": "$1,850",
-    "priceNote": "Confirm cabin, trip length, and inclusions.",
-    "bestTimeToVisit": "April–October",
+    "priceNote": "Previously selected rate; confirm currency, cabin basis, dates, fees and inclusions.",
+    "bestTimeToVisit": "Varies by route and season",
     "badges": [
-      "Luxury yacht",
-      "Jacuzzi deck",
-      "Premium dive sites"
+      "6 cabins · 12 guests",
+      "Dedicated dive tender",
+      "Open sundeck",
+      "Night dives"
     ],
     "images": [
       "images/saf/hope/hope1.webp",
@@ -20,22 +22,24 @@
     "buttonText": "More details →",
     "details": {
       "title": "Hope Cruiser",
-      "overview": "A dive-focused Maldives cruise with a comfortable base for exploring multiple atolls.",
-      "route": "Maldives atolls. Confirm the route, atolls, and dive sites for the selected departure.",
-      "vessel": "Luxury yacht with spacious cabins, a jacuzzi sundeck, and a dedicated dive dhoni.",
+      "overview": "A small-group dive liveaboard with a dedicated diving tender and routes around the central atolls.",
+      "atoll": "Ari Atoll",
+      "route": "Typical itineraries include South Malé and South Ari dive sites; confirm the exact atolls and sites for each departure.",
+      "vessel": "Six cabins for up to 12 guests, a separate dive tender, an open sundeck and indoor/aft dining areas.",
       "includes": [
-        "Confirm inclusions for the selected departure and cabin."
+        "Dive and meal inclusions vary by departure; confirm the full package before booking."
       ],
       "activities": [
-        "World-class diving across the atolls",
-        "Marine encounters may include mantas, sharks, and whale sharks; sightings are not guaranteed"
+        "Guided diving, typically up to three dives per day except embarkation and disembarkation days",
+        "A night dive may be scheduled",
+        "Marine encounters vary by route and are not guaranteed"
       ],
       "transfers": "Confirm the embarkation point, airport transfers, and pickup timing for the selected departure.",
-      "priceBasis": "Confirm currency, cabin basis, trip length, dates, and included services.",
+      "priceBasis": "$1,850 is the previously selected rate; confirm whether it is per person or cabin-based and which fees and services are included.",
       "importantNotes": [
-        "Spacious cabins",
-        "Jacuzzi sundeck",
-        "Dedicated dive dhoni"
+        "The operator lists six cabins for up to 12 guests; confirm current availability.",
+        "A minimum of six divers may be required to book the boat.",
+        "Ari is a common route area, but itineraries and dive sites vary by departure."
       ]
     },
     "published": true

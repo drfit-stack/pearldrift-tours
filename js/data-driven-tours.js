@@ -55,44 +55,58 @@
 
     const content = makeElement("div", "tour-content");
     content.appendChild(makeElement("h3", "", tour.title || ""));
+
     const island = String(tour.details?.island || "").split(";")[0].trim();
     const atollValue = String(tour.details?.atoll || "").trim().replace(/[.,;:]+$/, "");
     const atoll = atollValue && !/\batoll$/i.test(atollValue)
       ? `${atollValue} Atoll`
       : atollValue;
-    const location = [island, atoll].filter(Boolean).join(" · ");
-    const metaParts = [];
-    if (location) metaParts.push(location);
-    if (tour.bestTimeToVisit) metaParts.push(`Best time: ${tour.bestTimeToVisit}`);
-    if (metaParts.length) {
-      const meta = makeElement("div", "tour-meta", metaParts.join(" · "));
-      meta.setAttribute("aria-label", [
-        location && `Location: ${location}`,
-        tour.bestTimeToVisit && `Best time to visit: ${tour.bestTimeToVisit}`
-      ].filter(Boolean).join(". "));
-      content.appendChild(meta);
+    const location = tour.details?.location || [island, atoll].filter(Boolean).join(" · ");
+    if (location) {
+      content.appendChild(makeElement("div", "tour-meta", location));
     }
 
-    const badges = makeElement("div", "tour-badges");
-    (Array.isArray(tour.badges) ? tour.badges.slice(0, 2) : []).forEach(label => {
-      badges.appendChild(makeElement("span", "tour-badge", label));
-    });
-    if (badges.childElementCount) content.appendChild(badges);
+    if (tour.routeNote) {
+      content.appendChild(makeElement("div", "tour-route-note", tour.routeNote));
+    }
+
+    const normalizedLocation = location.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const highlights = (Array.isArray(tour.badges) ? tour.badges : [])
+      .filter(label => {
+        const normalizedLabel = String(label).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+        return normalizedLabel && (!normalizedLocation || !normalizedLocation.includes(normalizedLabel));
+      })
+      .slice(0, 4);
+    if (highlights.length) {
+      const highlightList = makeElement("div", "tour-card-highlights");
+      highlights.forEach(label => {
+        highlightList.appendChild(makeElement("span", "tour-card-highlight", label));
+      });
+      content.appendChild(highlightList);
+    }
+
+    if (tour.duration) {
+      const duration = makeElement("div", "tour-duration");
+      const cardDuration = String(tour.duration).replace(/\s*\([^)]*\)/g, "").trim();
+      duration.append(
+        makeElement("span", "tour-duration-label", "Duration"),
+        makeElement("strong", "", cardDuration)
+      );
+      content.appendChild(duration);
+    }
 
     const footer = makeElement("div", "tour-card-footer");
     const priceBlock = makeElement("div", "tour-price-block");
-    priceBlock.appendChild(makeElement("div", "tour-price", tour.price || ""));
-    if (tour.priceNote) {
-      const priceNote = makeElement("p", "tour-price-note");
-      priceNote.append(
-        makeElement("strong", "", "Rate basis: "),
-        makeElement("span", "", tour.priceNote)
-      );
-      priceBlock.appendChild(priceNote);
-    }
+    const hasStartingPrice = tour.price && tour.price.startsWith("From ");
+    const priceLabel = hasStartingPrice
+      ? "Starting at"
+      : "Price";
+    const cardPrice = hasStartingPrice ? tour.price.replace(/^From\s+/i, "") : tour.price;
+    priceBlock.appendChild(makeElement("span", "tour-price-label", priceLabel));
+    priceBlock.appendChild(makeElement("div", "tour-price", cardPrice || ""));
     footer.appendChild(priceBlock);
 
-    const button = makeElement("button", "Contact-details-button", tour.buttonText || "More details →");
+    const button = makeElement("button", "Contact-details-button", "View details →");
     button.type = "button";
     button.addEventListener("click", () => {
       if (typeof window.openDetailsModal === "function") {

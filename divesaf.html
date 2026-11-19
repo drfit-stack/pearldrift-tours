@@ -253,6 +253,8 @@
 
             document.getElementById('detailsModalTitle').textContent = tour.title || record.title;
             const facts = [
+                ["Duration", record.duration],
+                ["Location", tour.location],
                 ["Best time", record.bestTimeToVisit],
                 [String(record.price || '').startsWith('From ') ? "Starting price" : "Price", record.price]
             ].filter(([, value]) => value);
