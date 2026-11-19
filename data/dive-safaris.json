@@ -6,7 +6,7 @@
     "routeNote": "Route varies by season and departure",
     "description": "A 42 m, 14-cabin liveaboard for up to 28 guests, with two jacuzzis, a sun deck, cocktail bar and dedicated dive dhoni. Free Nitrox, kayaks and SUPs are available; routes range across central, northern and southern atolls.",
     "price": "From $2,688",
-    "priceNote": "Per-person fares vary by itinerary, cabin and departure; mandatory taxes and surcharges may be extra.",
+    "priceNote": "Our 7-night departures start at $2,688 per person; cabin, route and departure affect your final fare.",
     "bestTimeToVisit": "Varies by route and season",
     "badges": [
       "14 cabins · 28 guests",
@@ -38,12 +38,12 @@
         "Kayaking, stand-up paddleboarding and beach barbecues",
         "Massage services are available at an additional cost"
       ],
-      "transfers": "Airport transfer is included on scheduled cruise dates; confirm the meeting point. Transfers outside scheduled dates may cost extra.",
-      "priceBasis": "The lowest listed fare is about $2,688 per person for a 7-night departure; confirm the selected cabin, itinerary, mandatory fees and current rate.",
+      "transfers": "Airport transfers are included on scheduled departure dates. We’ll confirm your meeting point and any extra transfer costs if you’re traveling outside the scheduled dates.",
+      "priceBasis": "Our 7-night Princess Maani departures start at USD 2,688 per person. Cabin and route affect the fare; green tax, fuel surcharge, service charge and some park fees may be extra. Send us your dates and we’ll confirm availability and your full trip total.",
       "importantNotes": [
-        "Listed departures range from 7 to 11 nights.",
-        "Green tax, fuel surcharge, service charge and some park fees may be additional.",
-        "Wildlife sightings are not guaranteed."
+        "Choose from departures ranging from 7 to 11 nights, with routes varying by season.",
+        "We’ll outline any green tax, fuel surcharge, service charge and park fees in your quote before you book.",
+        "Marine-life sightings vary by route and season and can’t be guaranteed."
       ]
     },
     "published": true
@@ -55,7 +55,7 @@
     "routeNote": "Route varies by season and departure",
     "description": "A 33 m, 10-cabin Maldivian dive yacht with a jacuzzi sundeck, dedicated dive dhoni and free Nitrox. It runs year-round itineraries with diving, snorkeling, fishing, beach visits and local-island excursions.",
     "price": "From $2,500 pp",
-    "priceNote": "Per-person fares vary by departure, cabin and trip length; taxes and surcharges may be extra.",
+    "priceNote": "Our 7-night departures start at $2,500 per person; cabin, route and departure affect your final fare.",
     "bestTimeToVisit": "Year-round; routes and marine life vary by season",
     "badges": [
       "Award-winning",
@@ -86,12 +86,12 @@
         "Snorkeling, fishing, beach visits and local-island excursions",
         "Mantas, sharks and whale sharks may be encountered; sightings are not guaranteed"
       ],
-      "transfers": "Airport transfer is included on scheduled cruise dates; confirm the meeting point and any out-of-schedule transfer costs.",
-      "priceBasis": "The lowest listed fare is about $2,500 per person for a 7-night departure; confirm cabin, departure, mandatory fees and current rate.",
+      "transfers": "Airport transfers are included on scheduled departure dates. We’ll confirm your meeting point and any extra transfer costs if you’re traveling outside the scheduled dates.",
+      "priceBasis": "Our 7-night Sachika departures start at USD 2,500 per person. Cabin and departure affect the fare; green tax, fuel surcharge, service charge and equipment rental may be extra. Share your dates with us and we’ll confirm availability and your full trip total.",
       "importantNotes": [
-        "Published trips range from 7 to 12 nights, depending on itinerary.",
-        "Equipment rental, green tax, service charge and fuel surcharge may be additional.",
-        "Marine sightings are not guaranteed."
+        "Choose from trips ranging from 7 to 12 nights; routes and dive sites vary by departure.",
+        "We’ll outline any equipment rental, green tax, service charge and fuel surcharge in your quote before you book.",
+        "Manta, shark and whale-shark sightings vary by route and season and can’t be guaranteed."
       ]
     },
     "published": true
