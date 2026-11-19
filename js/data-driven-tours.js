@@ -14,100 +14,6 @@
     return element;
   }
 
-  function renderTourDescription(description) {
-    const pager = makeElement("div", "tour-description-pager");
-    pager.description = description;
-
-    const paragraph = makeElement("p", "tour-description-page");
-    paragraph.textContent = description;
-
-    const controls = makeElement("div", "tour-description-controls");
-    controls.setAttribute("role", "group");
-    controls.setAttribute("aria-label", "Description pages");
-    const previous = makeElement("button", "", "‹");
-    previous.type = "button";
-    previous.setAttribute("aria-label", "Previous description page");
-    previous.addEventListener("click", () => showDescriptionPage(pager, pager.pageIndex - 1));
-
-    const counter = makeElement("span", "tour-description-counter");
-    counter.setAttribute("aria-live", "polite");
-
-    const next = makeElement("button", "", "›");
-    next.type = "button";
-    next.setAttribute("aria-label", "Next description page");
-    next.addEventListener("click", () => showDescriptionPage(pager, pager.pageIndex + 1));
-
-    controls.append(previous, counter, next);
-    pager.append(paragraph, controls);
-    pager.paragraph = paragraph;
-    pager.controls = controls;
-    pager.previousButton = previous;
-    pager.counter = counter;
-    pager.nextButton = next;
-    pager.pages = [description];
-    pager.pageIndex = 0;
-
-    return pager;
-  }
-
-  function showDescriptionPage(pager, pageIndex) {
-    pager.pageIndex = Math.max(0, Math.min(pageIndex, pager.pages.length - 1));
-    const hasPages = pager.pages.length > 1;
-    pager.classList.toggle("has-pages", hasPages);
-    pager.controls.hidden = !hasPages;
-    pager.paragraph.textContent = pager.pages[pager.pageIndex];
-    pager.counter.textContent = `${pager.pageIndex + 1} / ${pager.pages.length}`;
-    pager.previousButton.disabled = pager.pageIndex === 0;
-    pager.nextButton.disabled = pager.pageIndex === pager.pages.length - 1;
-  }
-
-  function paginateTourDescription(pager) {
-    const paragraph = pager.paragraph;
-    const width = paragraph.clientWidth;
-    if (!width) return;
-
-    const maxHeight = Number.parseFloat(getComputedStyle(paragraph).maxHeight);
-    if (!Number.isFinite(maxHeight)) return;
-    pager.style.setProperty("--description-page-height", `${maxHeight}px`);
-    pager.controls.hidden = false;
-
-    const probe = paragraph.cloneNode(false);
-    Object.assign(probe.style, {
-      position: "fixed",
-      left: "-10000px",
-      top: "0",
-      width: `${width}px`,
-      height: "auto",
-      maxHeight: "none",
-      overflow: "visible",
-      flex: "none",
-      margin: "0",
-      visibility: "hidden"
-    });
-    pager.appendChild(probe);
-
-    const words = pager.description.trim().split(/\s+/).filter(Boolean);
-    const pages = [];
-    let currentPage = "";
-
-    words.forEach(word => {
-      const candidate = currentPage ? `${currentPage} ${word}` : word;
-      probe.textContent = candidate;
-      if (currentPage && probe.scrollHeight > maxHeight + 1) {
-        pages.push(currentPage);
-        currentPage = word;
-      } else {
-        currentPage = candidate;
-      }
-    });
-
-    if (currentPage) pages.push(currentPage);
-    probe.remove();
-
-    pager.pages = pages.length ? pages : [""];
-    showDescriptionPage(pager, Math.min(pager.pageIndex, pager.pages.length - 1));
-  }
-
   function renderTourCard(tour) {
     const card = makeElement("article", "tour-card");
     const slideshow = makeElement("div", "tour-image-slideshow");
@@ -149,27 +55,44 @@
 
     const content = makeElement("div", "tour-content");
     content.appendChild(makeElement("h3", "", tour.title || ""));
-    if (tour.bestTimeToVisit) {
-      const bestTime = makeElement("div", "tour-best-time");
-      bestTime.append(
-        makeElement("span", "tour-best-time-label", "Best time to visit: "),
-        makeElement("span", "tour-best-time-value", tour.bestTimeToVisit)
-      );
-      content.appendChild(bestTime);
+    const island = String(tour.details?.island || "").split(";")[0].trim();
+    const atollValue = String(tour.details?.atoll || "").trim().replace(/[.,;:]+$/, "");
+    const atoll = atollValue && !/\batoll$/i.test(atollValue)
+      ? `${atollValue} Atoll`
+      : atollValue;
+    const location = [island, atoll].filter(Boolean).join(" · ");
+    const metaParts = [];
+    if (location) metaParts.push(location);
+    if (tour.bestTimeToVisit) metaParts.push(`Best time: ${tour.bestTimeToVisit}`);
+    if (metaParts.length) {
+      const meta = makeElement("div", "tour-meta", metaParts.join(" · "));
+      meta.setAttribute("aria-label", [
+        location && `Location: ${location}`,
+        tour.bestTimeToVisit && `Best time to visit: ${tour.bestTimeToVisit}`
+      ].filter(Boolean).join(". "));
+      content.appendChild(meta);
     }
+
     const badges = makeElement("div", "tour-badges");
-    (Array.isArray(tour.badges) ? tour.badges : []).forEach(label => {
+    (Array.isArray(tour.badges) ? tour.badges.slice(0, 2) : []).forEach(label => {
       badges.appendChild(makeElement("span", "tour-badge", label));
     });
     if (badges.childElementCount) content.appendChild(badges);
 
-    const descriptionPager = renderTourDescription(tour.description || "");
-    content.appendChild(descriptionPager);
-
     const footer = makeElement("div", "tour-card-footer");
-    footer.appendChild(makeElement("div", "tour-price", tour.price || ""));
+    const priceBlock = makeElement("div", "tour-price-block");
+    priceBlock.appendChild(makeElement("div", "tour-price", tour.price || ""));
+    if (tour.priceNote) {
+      const priceNote = makeElement("p", "tour-price-note");
+      priceNote.append(
+        makeElement("strong", "", "Rate basis: "),
+        makeElement("span", "", tour.priceNote)
+      );
+      priceBlock.appendChild(priceNote);
+    }
+    footer.appendChild(priceBlock);
 
-    const button = makeElement("button", "Contact-details-button", tour.buttonText || "View details →");
+    const button = makeElement("button", "Contact-details-button", tour.buttonText || "More details →");
     button.type = "button";
     button.addEventListener("click", () => {
       if (typeof window.openDetailsModal === "function") {
@@ -195,14 +118,15 @@
         tours.filter(tour => tour && tour.id).map(tour => [tour.id, tour])
       );
 
+      const publishedTours = tours.filter(tour => tour && tour.published !== false);
+      grid.dataset.cardCount = String(publishedTours.length);
+
       const fragment = document.createDocumentFragment();
-      tours.filter(tour => tour && tour.published !== false).forEach(tour => {
+      publishedTours.forEach(tour => {
         fragment.appendChild(renderTourCard(tour));
       });
 
       grid.replaceChildren(fragment);
-
-      grid.querySelectorAll(".tour-description-pager").forEach(paginateTourDescription);
     } catch (error) {
       console.error("Pearl Drift: could not load tour data.", error);
       grid.replaceChildren(
@@ -210,14 +134,6 @@
       );
     }
   }
-
-  let resizeFrame = 0;
-  window.addEventListener("resize", () => {
-    cancelAnimationFrame(resizeFrame);
-    resizeFrame = requestAnimationFrame(() => {
-      grid.querySelectorAll(".tour-description-pager").forEach(paginateTourDescription);
-    });
-  });
 
   loadTours();
 })();

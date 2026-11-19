@@ -1,1208 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="local">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Drift Tours</title>
     <link rel="icon" type="image/svg+xml" href="images/favi.svg">
-    <link rel="stylesheet" href="css/theme-scrollbars.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-x: hidden;
-        }
-
-        /* Light Theme Variables */
-        :root {
-            --primary: #006b5c;
-            --primary-container: #7df8e5;
-            --tertiary: #456179;
-            --surface: #f8f9ff;
-            --surface-variant: #dae4e0;
-            --surface-container: #ecf2f0;
-            --outline: #6f7975;
-            --on-primary: #ffffff;
-            --on-surface: #191c1b;
-            --on-surface-variant: #3f4946;
-            --background: #dae4e0;
-            --tours-background-image: url("images/back/pal/palL.webp");
-            --tours-background-overlay: rgba(236, 242, 240, 0.9);
-            --card-background: rgba(255, 255, 255, 0.7);
-            --footer-background: #191c1b;
-            --footer-text: #f8f9ff;
-        }
-
-        /* Dark Theme Variables */
-        [data-theme="dark"] {
-            --primary: #5ddcc6;
-            --primary-container: #00513f;
-            --tertiary: #a2cbef;
-            --surface: #0f1513;
-            --surface-variant: #3f4946;
-            --surface-container: #1a201e;
-            --outline: #899390;
-            --on-primary: #003831;
-            --on-surface: #e0e3e1;
-            --on-surface-variant: #bfc9c5;
-            --background: #1a201e;
-            --tours-background-image: url("images/back/pal/palD.webp");
-            --tours-background-overlay: rgba(26, 32, 30, 0.9);
-            --card-background: rgba(26, 32, 30, 0.8);
-            --footer-background: #0a0e0c;
-            --footer-text: #e0e3e1;
-        }
-
-        body {
-            background: var(--background);
-            color: var(--on-surface);
-        }
-
-        /* Theme Toggle Switch */
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 20px;
-            color: var(--on-surface);
-            cursor: pointer;
-            padding: 8px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            outline: none;
-        }
-
-        .theme-toggle:hover {
-            background: var(--surface-variant);
-            transform: scale(1.1);
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--on-surface);
-            cursor: pointer;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            outline: none;
-        }
-
-        .mobile-menu-toggle:hover {
-            background: var(--surface-variant);
-        }
-
-        /* Nav Controls Container */
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Left side container for logo and theme toggle */
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        /* Dynamic Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--card-background);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 16px 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-        }
-
-        nav > :last-child {
-            margin-left: auto;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            text-decoration: none;
-            background: linear-gradient(45deg, var(--primary), var(--tertiary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            align-items: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--on-surface);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            height: 48px;
-            line-height: 1;
-            padding: 8px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Tours Section */
-        .tours {
-            flex: 1 0 auto;
-            padding: 120px 0;
-            background-color: var(--surface-container);
-            background-image: linear-gradient(var(--tours-background-overlay), var(--tours-background-overlay)), var(--tours-background-image);
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-
-        .tours-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .tours h2 {
-            text-align: center;
-            font-size: clamp(32px, 6vw, 48px);
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--on-surface);
-        }
-
-        .tours-intro {
-            max-width: 760px;
-            margin: 0 auto 48px;
-            color: var(--on-surface-variant);
-            font-size: 17px;
-            line-height: 1.7;
-            text-align: center;
-        }
-
-        .tours-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-
-        .tour-card {
-            background: var(--card-background);
-            border-radius: 28px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 2, 0.2, 1);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 0.5px solid var(--outline);
-            display: flex;
-            flex-direction: column;
-            height: 620px;
-        }
-
-        .tour-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .tour-image-slideshow {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .tour-image-slideshow img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .tour-image-slideshow img.active {
-            display: block;
-        }
-
-        .tour-image-slideshow .prev,
-        .tour-image-slideshow .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-32%);
-            background: rgba(0,0,0,0.4);
-            color: white;
-            border: none;
-            padding: 7px 14px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 50%;
-            transition: background 0.3s;
-            z-index: 10;
-        }
-
-        .tour-image-slideshow .prev:hover,
-        .tour-image-slideshow .next:hover {
-            background: rgba(0,0,0,0.7);
-        }
-
-        .tour-image-slideshow .prev {
-            left: 8px;
-        }
-
-        .tour-image-slideshow .next {
-            right: 8px;
-        }
-
-        .tour-content {
-            flex: 1 1 auto;
-            display: flex;
-            flex-direction: column;
-            padding: 32px;
-            height: auto;
-            text
-        }
-
-        .tour-content h3 {
-            font-size: clamp(20px, 4vw, 24px);
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--on-surface);
-        }
-
-        .tour-description-pager {
-            flex: 0 0 auto;
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 24px;
-        }
-
-        .tour-description-pager.has-pages {
-            flex: 0 0 calc(var(--description-page-height) + 40px);
-            height: calc(var(--description-page-height) + 40px);
-        }
-
-        .tour-description-pager.has-pages .tour-description-page {
-            flex: 0 0 var(--description-page-height);
-            height: var(--description-page-height);
-        }
-
-        .tour-content p {
-            flex: 0 0 auto;
-            min-height: 0;
-            color: var(--on-surface-variant);
-            line-height: 1.6;
-            margin-bottom: 0;
-            font-size: 14px;
-            max-height: 100px;
-            overflow: hidden;
-            overflow-wrap: anywhere;
-        }
-
-        #detailsModalBody.is-scrollable:not(.is-at-scroll-end) {
-            -webkit-mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
-            mask-image: linear-gradient(to bottom, #000 50%, rgba(0, 0, 0, 0.45) 100%);
-        }
-
-        #detailsModalBody.is-scrollable:focus-visible {
-            outline: 2px solid var(--outline);
-            outline-offset: 2px;
-        }
-
-        .tour-description-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .tour-description-controls[hidden] {
-            display: none;
-        }
-
-        .tour-description-controls button {
-            width: 32px;
-            height: 32px;
-            border: 0.5px solid var(--outline);
-            border-radius: 50%;
-            background: var(--card-background);
-            color: var(--on-surface);
-            font-size: 22px;
-            line-height: 1;
-            cursor: pointer;
-        }
-
-        .tour-description-controls button:disabled {
-            opacity: 0.45;
-            cursor: default;
-        }
-
-        .tour-description-counter {
-            min-width: 40px;
-            color: var(--on-surface-variant);
-            font-size: 12px;
-            text-align: center;
-        }
-
-        .tour-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 0;
-            margin-bottom: 16px;
-        }
-
-        .tour-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 12px;
-            border: 0.5px solid var(--primary);
-            border-radius: 999px;
-            background: transparent;
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 600;
-            opacity: 90%;
-        }
-
-        .tour-best-time {
-            margin: -8px 0 16px;
-            color: var(--on-surface-variant);
-            font-size: 13px;
-            line-height: 1.4;
-        }
-
-        .tour-best-time-label {
-            font-weight: 600;
-            opacity: 85%;
-        }
-
-        .tour-best-time-value {
-            color: var(--on-surface);
-        }
-
-        .modal-section {
-            text-align: left;
-            margin-top: 18px;
-        }
-
-        .modal-section h3 {
-            margin: 0 0 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--on-surface);
-        }
-
-        .modal-section p,
-        .modal-section li {
-            color: var(--on-surface-variant);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .modal-section ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .tour-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 0;
-            min-width: 0;
-        }
-
-        .tour-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-top: auto;
-        }
-
-        .tour-card-footer .Contact-details-button {
-            min-width: 0;
-            padding: 12px 16px;
-        }
-
-        .Contact-details-button {
-            background: var(--primary);
-            color: var(--on-primary);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 8px rgba(0, 107, 92, 0.3);
-            outline: none;
-            flex: 0 0 auto;
-            min-width: 160px;
-        }
-
-        .flex-center-gap {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .Contact-details-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(0, 107, 92, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: auto;
-            background: var(--footer-background);
-            color: var(--footer-text);
-            padding: 64px 0 32px;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--footer-text);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-            font-size: 14px;
-        }
-
-        .footer-links a:hover {
-            opacity: 0.7;
-        }
-
-        /* Animations */
-        /* Mobile Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .nav-left {
-                gap: 8px;
-            }
-
-            .theme-toggle {
-                width: 36px;
-                height: 36px;
-                padding: 6px;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 72px;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                /* keep menu within viewport height; account for header space */
-                height: calc(100vh);
-                /* translucent fallback so panel shows even when blur isn't supported */
-                background: var(--card-background, rgba(255,255,255,0.75));
-                /* ensure correct compositing for backdrop */
-                isolation: isolate;
-                /* sit above other content */
-                z-index: 1500;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 50px;
-                padding: 40px 20px;
-
-                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-
-            /* Enable backdrop-filter only when supported (use standard property to avoid
-               DevTools 'invalid property' noise for prefixed rules) */
-            @supports (backdrop-filter: blur(20px)) {
-                .nav-links {
-                    backdrop-filter: blur(20px);
-                }
-            }
-            .nav-links a {
-                font-size: 18px;
-                padding: 12px 0;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .tours {
-                padding: 80px 0;
-            }
-            
-            .tours-container {
-                padding: 0 20px;
-            }
-            
-            .tours h2 {
-                margin-bottom: 16px;
-            }
-
-            .tours-intro {
-                margin-bottom: 32px;
-                font-size: 16px;
-            }
-            
-            .tours-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .tour-card {
-                height: 620px;
-            }
-
-            .tour-image-slideshow {
-                flex: 0 0 200px;
-            }
-            
-            .tour-content {
-                padding: 32px 24px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 16px;
-            }
-            
-            .footer-content {
-                padding: 0 20px;
-            }
-            
-            footer {
-                padding: 48px 0 24px;
-            }
-        }
-
-        /* Tablet Responsive */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .tours-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .tours-container {
-                padding: 0 40px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .tours-grid {
-                grid-template-columns: repeat(auto-fit, 362px);
-                justify-content: center;
-            }
-
-            .tour-card {
-                height: 620px;
-            }
-
-            .tour-image-slideshow {
-                flex: 0 0 200px;
-            }
-        }
-
-        /* Desktop: center the nav links */
-        @media (min-width: 769px) {
-            nav {
-                display: grid;
-                grid-template-columns: auto 1fr auto;
-                column-gap: clamp(24px, 3vw, 48px);
-                align-items: center;
-            }
-
-            .nav-links {
-                grid-row: 1;
-                grid-column: 2;
-                justify-self: center;
-            }
-
-            .nav-controls {
-                grid-row: 1;
-                grid-column: 3;
-                justify-self: end;
-            }
-
-            .theme-toggle {
-                width: 48px;
-                height: 48px;
-                padding: 8px;
-            }
-        }
-
-        /* Extra Small Mobile */
-        @media (max-width: 480px) {
-            .tours h2 {
-                font-size: 28px;
-            }
-            
-            .tour-content h3 {
-                font-size: 18px;
-            }
-            
-            .tour-content {
-                padding: 24px 20px;
-            }
-            
-            .nav-links {
-                width: 90%;
-            }
-            
-            .logo {
-                font-size: 24px;
-            }
-        }
-
-        /* Shared back link styles (looks like nav links) */
-        .back-link,
-        .back-desktop a {
-            text-decoration: none;
-            color: var(--on-surface);
-            font-weight: 500;
-            font-size: 16px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover,
-        .back-desktop a:hover {
-            color: var(--primary);
-        }
-
-        /* underline animation */
-        .back-link::after,
-        .back-desktop a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .back-link:hover::after,
-        .back-desktop a:hover::after {
-            width: 100%;
-        }
-
-        /* show/hide depending on screen size */
-        .back-mobile { display: none; }   /* hidden by default */
-        .back-desktop { display: list-item; } /* visible by default */
-
-        @media (max-width: 768px) {
-            .back-mobile { display: inline-block; margin-right: 12px; }
-            .back-desktop { display: none; } /* hide in mobile menu */
-        }
-        /* Social buttons in popup cards*/
-        .social-button {
-            background: #f0f0f0;
-            color: var(--on-primary);
-            border: none;
-            padding: 0;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(0, 107, 92, 0.25);
-            outline: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .social-button img {
-            width: 28px;
-            height: 28px;
-            display: block;
-            object-fit: contain;
-        }
-
-        .social-button:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 24px rgba(0, 107, 92, 0.35);
-            background: var(--primary-container);
-        }
-
-        .social-button:active {
-            transform: translateY(-2px) scale(0.98);
-        }
-        /* Buttons container */
-        .modal-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            width: 100%;
-            margin-top: 12px;
-        }
-
-        /* Modal background */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
-        /* Modal box */
-        .modal-content {
-            background: var(--surface);
-            color: var(--on-surface);
-            padding: 32px 24px;
-            border-radius: 28px;
-            text-align: center;
-            width: min(380px, 92vw);
-            max-width: 96vw;
-            max-height: calc(100vh - 80px);
-            overflow-y: auto;
-            overflow-x: hidden;
-            box-shadow: 0 12px 48px rgba(0,0,0,0.25);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        #detailsModal .modal-content {
-            width: min(840px, 94vw);
-            max-width: 94vw;
-            height: min(760px, calc(100vh - 48px));
-            height: min(760px, calc(100dvh - 48px));
-            overflow: hidden;
-            align-items: stretch;
-            gap: 18px;
-            text-align: left;
-        }
-
-        #detailsModal .modal-content h2 {
-            padding-right: 40px;
-            text-align: left;
-        }
-
-        #detailsModalBody {
-            width: 100%;
-            flex: 1 1 auto;
-            min-height: 0;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-        }
-
-        #detailsModal .stay-overview {
-            margin: 0 0 8px;
-            color: var(--on-surface-variant);
-            font-size: 1rem;
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        .stay-detail-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            column-gap: 28px;
-        }
-
-        .stay-detail {
-            padding: 16px 0;
-        }
-
-        .stay-detail h3 {
-            margin: 0 0 8px;
-            color: var(--on-surface);
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-
-        #detailsModal .stay-detail p,
-        #detailsModal .stay-detail li {
-            color: var(--on-surface-variant);
-            font-size: 0.9rem;
-            line-height: 1.55;
-            text-align: left;
-        }
-
-        #detailsModal .stay-detail ul {
-            margin: 0;
-        }
-
-        .stay-inquiry {
-            display: flex;
-            justify-content: flex-end;
-            flex: 0 0 auto;
-            padding-top: 14px;
-        }
-
-        .stay-inquiry button {
-            width: auto;
-            flex: 0 0 auto;
-        }
-
-        @media (max-width: 640px) {
-            #detailsModal .modal-content {
-                width: calc(100vw - 24px);
-                max-width: calc(100vw - 24px);
-                height: calc(100vh - 24px);
-                height: calc(100dvh - 24px);
-                padding: 28px 20px 20px;
-            }
-
-            .stay-detail-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .stay-inquiry button {
-                width: 100%;
-            }
-        }
-
-        /* Title + description */
-        .modal-content h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            width: 100%;
-            text-align: center;
-        }
-
-        .modal-content p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: var(--on-surface-variant);
-            width: 100%;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        /* Modal highlights list styling */
-        .modal-content ul {
-            list-style: none;
-            padding: 0;
-            margin: 18px 0 0 0;
-            max-width: 100%;
-            text-align: left;
-        }
-
-        .modal-content ul li {
-            position: relative;
-            padding-left: 22px;
-            margin-bottom: 10px;
-            font-size: 15px;
-            color: var(--on-surface-variant);
-        }
-
-        .modal-content ul li::before {
-            content: "\2022";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-size: 18px;
-            line-height: 1;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            font-size: 2rem;
-            color: var(--outline);
-            cursor: pointer;
-            line-height: 1;
-            padding: 4px;
-            transition: all 0.3s ease;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-close:hover {
-            background: var(--surface-variant);
-            color: var(--primary);
-        }
-
-        /* Carousel Lightbox Styles */
-        #lightboxModal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 3000;
-            background: rgba(32, 33, 36, 0.82);
-            backdrop-filter: blur(12px);
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1);
-        }
-
-        #lightboxModal.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .lightbox-content {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 97vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border-radius: 0;
-            box-shadow: none;
-            animation: fadeIn 0.2s ease-out both;
-            overflow: visible;
-        }
-
-        .lightbox-image-wrapper {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .lightbox-arrows-bottom {
-            position: fixed;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            width: 100vw;
-            height: 48px;
-            padding: 0 clamp(12px, 2vw, 28px);
-            box-sizing: border-box;
-            pointer-events: none;
-            z-index: 3001;
-        }
-
-        .lightbox-arrow {
-            background: var(--surface);
-            color: var(--primary);
-            opacity: 0.45;
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            cursor: pointer;
-            z-index: 2;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-            transition: background 0.2s, color 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto;
-        }
-
-        .lightbox-arrow:hover {
-            background: var(--primary);
-            color: var(--on-primary);
-        }
-
-        #lightboxImage {
-            max-width: 96vw;
-            max-height: 85vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-            background: none;
-            border: none;
-            transition: box-shadow 0.2s, border 0.2s;
-            display: block;
-            margin: 0;
-            pointer-events: auto;
-            border-radius: 28px;
-            clip-path: inset(0 round 28px);
-        }
-
-        /* Temporary image used for animated lightbox transitions */
-        .lightbox-temp-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: auto;
-            height: auto;
-            max-width: 96vw;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 28px;
-            clip-path: inset(0 round 28px);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-            transition: transform 260ms cubic-bezier(0.22,0.61,0.36,1);
-            z-index: 1;
-            pointer-events: none;
-            transform: translateX(0%);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        #lightboxClose {
-            position: absolute;
-            top: 13px;
-            right: 10px;
-            font-size: 2rem;
-            color: var(--outline);
-            background: var(--surface);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 3;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-            transition: color 0.2s, background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #lightboxClose:hover {
-            background: var(--primary);
-            color: var(--on-primary);
-        }
-
-        @media (max-width: 768px) {
-            .lightbox-content {
-                flex-direction: column !important;
-                justify-content: center !important;
-            }
-
-            .lightbox-image-wrapper {
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                height: auto !important;
-                min-height: 0 !important;
-                flex: 0 0 auto !important;
-            }
-
-            .lightbox-arrows-bottom {
-                position: fixed !important;
-                top: 50% !important;
-                left: 0;
-                right: 0;
-                bottom: auto;
-                transform: translateY(-50%) !important;
-                margin: 0 !important;
-                z-index: 3001;
-                justify-content: space-between !important;
-                width: 100vw !important;
-                padding: 0 12px !important;
-                background: none !important;
-                pointer-events: none;
-            }
-        }
-
-        @media (min-width: 769px) {
-            #lightboxImage,
-            .lightbox-temp-image {
-                max-width: 64vw !important;
-                max-height: 78vh !important;
-                width: auto !important;
-                height: auto !important;
-                box-shadow: 0 8px 40px rgba(0,0,0,0.22);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/listings.css">
 </head>
 <body>
     <header>
@@ -1214,19 +18,25 @@
                 <!-- Mobile Back button -->
                 <a href="javascript:history.back()" class="back-link back-mobile">← Back</a>
                 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                    <img class="theme-icon" src="images/sm/moon.webp" style="width: 36px; height: 36px;">
+                    <img class="theme-icon" src="images/sm/moon.webp">
                 </button>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                    <span id="menu-icon">☰</span>
+                <button class="mobile-menu-toggle" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
+                    <span id="menu-icon" aria-hidden="true">☰</span>
                 </button>
             </div>
             <ul class="nav-links" id="nav-links">
+                <li class="mobile-menu-heading">
+                    <div>
+                        <span class="mobile-menu-eyebrow">Pearl Drift</span>
+                        <span class="mobile-menu-title">Explore the islands</span>
+                    </div>
+                </li>
                 <!-- Desktop Back button -->
                 <li class="back-desktop"><a href="javascript:history.back()">← Back</a></li>
-                <li><a href="index.html#tours" onclick="closeMobileMenu()">Our Experiences</a></li>
-                <li><a href="mald.html" onclick="closeMobileMenu()">Guide to Maldives</a></li>
-                <li><a href="index.html#about" onclick="closeMobileMenu()">Why Us</a></li>
-                <li><a href="index.html#contactUs" onclick="closeMobileMenu()">Get in Touch</a></li>
+                <li><a href="index.html#tours">Our Experiences</a></li>
+                <li><a href="mald.html">Guide to Maldives</a></li>
+                <li><a href="index.html#about">Why Us</a></li>
+                <li class="nav-cta"><a href="index.html#contactUs">Get in Touch <span class="nav-cta-arrow" aria-hidden="true">→</span></a></li>
             </ul>
         </nav>
     </header>
@@ -1257,9 +67,9 @@
     </div>
 
     <!-- Details Modal -->
-    <div id="detailsModal" class="modal" style="display:none;">
-        <div class="modal-content" style="position:relative;">
-            <span class="modal-close" onclick="closeDetailsModal()" style="position:absolute;top:12px;right:18px;font-size:2rem;cursor:pointer;">&times;</span>
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeDetailsModal()">&times;</span>
             <h2 id="detailsModalTitle">Stay details</h2>
             <div id="detailsModalBody"></div>
             <div class="stay-inquiry"><button class="Contact-details-button" onclick="openStayInquiry()">Ask about this stay</button></div>
@@ -1268,15 +78,15 @@
 
     <!-- Contact Options Modal -->
     <div id="contactModal" class="modal">
-        <div class="modal-content" style="position:relative;">
-            <span class="modal-close" onclick="closeContactModal()" style="position:absolute;top:12px;right:18px;font-size:2rem;cursor:pointer;">&times;</span>
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeContactModal()">&times;</span>
             <h2 id="modalTitle">Contact Us</h2>
             <p id="modalDescription">Choose how you want to reach us:</p>
 
             <div class="modal-buttons">
-                <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg" style="width:25px; height:25px;"></button>
-                <button class="social-button" onclick="redirectContact('telegram')"><img src="images/ico/contact/tele.svg" style="width:25px; height:25px;"></button>
-                <button class="social-button" onclick="redirectContact('whatsapp')"><img src="images/ico/contact/wha.svg" style="width:25px; height:25px;"></button>
+                <button class="social-button" onclick="redirectContact('email')"><img src="images/ico/contact/gma.svg"></button>
+                <button class="social-button" onclick="redirectContact('telegram')"><img src="images/ico/contact/tele.svg"></button>
+                <button class="social-button" onclick="redirectContact('whatsapp')"><img src="images/ico/contact/wha.svg"></button>
             </div>
         </div>
     </div>
@@ -1339,38 +149,6 @@
             });
         }
 
-        // Mobile Menu Management
-        function toggleMobileMenu() {
-            const navLinks = document.getElementById('nav-links');
-            const menuIcon = document.getElementById('menu-icon');
-            const headerNav = document.querySelector('header nav');
-
-            const opening = !navLinks.classList.contains('active');
-
-            if (opening) {
-                // Move the menu to document.body so it's outside the header's stacking context
-                // This allows backdrop-filter to see the page behind the header.
-                if (navLinks.parentElement !== document.body) document.body.appendChild(navLinks);
-                navLinks.classList.add('active');
-                menuIcon.textContent = '✕';
-            } else {
-                // Close and reattach back into the header nav so markup is preserved
-                navLinks.classList.remove('active');
-                menuIcon.textContent = '☰';
-                if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
-            }
-        }
-
-        function closeMobileMenu() {
-            const navLinks = document.getElementById('nav-links');
-            const menuIcon = document.getElementById('menu-icon');
-            const headerNav = document.querySelector('header nav');
-
-            navLinks.classList.remove('active');
-            menuIcon.textContent = '☰';
-            if (headerNav && navLinks.parentElement !== headerNav) headerNav.appendChild(navLinks);
-        }
-
         // Smooth scrolling
         function scrollToSection(sectionId) {
             document.getElementById(sectionId).scrollIntoView({
@@ -1385,16 +163,6 @@
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
             } else {
                 header.style.boxShadow = 'none';
-            }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const navLinks = document.getElementById('nav-links');
-            const mobileToggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
-                closeMobileMenu();
             }
         });
 
@@ -1436,10 +204,6 @@
                     scrollToSection(targetId);
                 }
 
-                // Close mobile menu when a nav item is selected on small screens
-                if (window.innerWidth <= 768) {
-                    closeMobileMenu();
-                }
             });
         });
 
@@ -1488,28 +252,54 @@
             }[char]));
 
             document.getElementById('detailsModalTitle').textContent = tour.title || record.title;
-            const fields = [
-                ["Island", tour.island],
-                ["Atoll", tour.atoll],
-                ["Accommodation", tour.accommodation],
-                ["What's included", tour.includes],
-                ["Activities available", tour.activities],
-                ["Transfers", tour.transfers],
-                ["Price basis", tour.priceBasis],
-                ["Important notes", tour.importantNotes]
+            const island = String(tour.island || '').split(';')[0].trim();
+            const atollValue = String(tour.atoll || '').trim().replace(/[.,;:]+$/, '');
+            const atoll = atollValue && !/\batoll$/i.test(atollValue) ? `${atollValue} Atoll` : atollValue;
+            const location = [island, atoll].filter(Boolean).join(' · ');
+            const facts = [
+                ["Location", location],
+                ["Best time", record.bestTimeToVisit],
+                [String(record.price || '').startsWith('From ') ? "Starting price" : "Price", record.price]
+            ].filter(([, value]) => value);
+            const factsHtml = `<dl class="tour-modal-at-glance">${facts.map(([label, value]) =>
+                `<div class="tour-modal-fact"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`
+            ).join('')}</dl>`;
+            const groups = [
+                ["Accommodation & activities", [
+                    ["Accommodation", tour.accommodation],
+                    ["Activities", tour.activities]
+                ]],
+                ["What's included & transfers", [
+                    ["What's included", tour.includes],
+                    ["Transfers", tour.transfers]
+                ]],
+                ["Price & important notes", [
+                    ["Price basis", tour.priceBasis],
+                    ["Important notes", tour.importantNotes]
+                ]]
             ];
-            let bodyHtml = `<p class="stay-overview">${escapeHtml(tour.overview)}</p><div class="stay-detail-grid">`;
-            fields.forEach(([label, value]) => {
-                if (value === undefined || value === null || value === '') return;
+            const renderFields = fields => fields
+                .filter(([, value]) => value && (!Array.isArray(value) || value.length))
+                .map(([label, value]) => {
                 const content = Array.isArray(value)
                     ? `<ul>${value.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
                     : `<p>${escapeHtml(value)}</p>`;
-                bodyHtml += `<section class="stay-detail"><h3>${escapeHtml(label)}</h3>${content}</section>`;
+                return `<section class="tour-modal-detail"><h3>${escapeHtml(label)}</h3>${content}</section>`;
+            }).join('');
+            let bodyHtml = `<p class="tour-modal-overview">${escapeHtml(tour.overview)}</p>${factsHtml}`;
+            groups.forEach(([label, fields]) => {
+                const content = renderFields(fields);
+                if (content) {
+                    bodyHtml += `<details class="tour-modal-group"><summary>${escapeHtml(label)}</summary><div class="tour-modal-group-content">${content}</div></details>`;
+                }
             });
-            bodyHtml += '</div>';
-            document.getElementById('detailsModalBody').innerHTML = bodyHtml;
+            const detailsModalBody = document.getElementById('detailsModalBody');
+            detailsModalBody.innerHTML = bodyHtml;
+            detailsModalBody.querySelectorAll('.tour-modal-group').forEach(group => {
+                group.addEventListener('toggle', () => requestAnimationFrame(() => updateTourDescriptionFade(detailsModalBody)));
+            });
             document.getElementById('detailsModal').style.display = 'flex';
-            updateTourDescriptionFade(document.getElementById('detailsModalBody'));
+            updateTourDescriptionFade(detailsModalBody);
             updateModalScrollLock();
         }
 
@@ -2156,9 +946,6 @@
         // Handle resize events
         window.addEventListener('resize', () => {
             document.querySelectorAll('#detailsModalBody').forEach(updateTourDescriptionFade);
-            if (window.innerWidth > 768) {
-                closeMobileMenu();
-            }
         });
 
         // Redirect to chosen contact method
@@ -2190,4 +977,5 @@ function redirectContact(method) {
 }
     </script>
     <script src="js/data-driven-tours.js" defer></script>
+    <script src="js/mobile-menu.js"></script>
 </html>

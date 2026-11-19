@@ -1,0 +1,487 @@
+/* Guide theme tokens and base styles */
+html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary: #006b5c;
+            --primary-container: #7df8e5;
+            --secondary: #4a635e;
+            --secondary-container: #cce8e1;
+            --tertiary: #456179;
+            --surface: #f8f9ff;
+            --surface-variant: #dae4e0;
+            --surface-container: #ecf2f0;
+            --outline: #6f7975;
+            --on-primary: #ffffff;
+            --on-surface: #191c1b;
+            --on-surface-variant: #3f4946;
+            --background: #dae4e0;
+
+            --card-background: rgba(255, 255, 255, 0.72);
+            --footer-background: #191c1b;
+            --footer-text: #f8f9ff;
+        }
+
+        [data-theme="dark"] {
+            --primary: #5ddcc6;
+            --primary-container: #00513f;
+            --secondary: #b0ccc6;
+            --secondary-container: #334b46;
+            --tertiary: #a2cbef;
+            --surface: #0f1513;
+            --surface-variant: #3f4946;
+            --surface-container: #1a201e;
+            --outline: #899390;
+            --on-primary: #003831;
+            --on-surface: #e0e3e1;
+            --on-surface-variant: #bfc9c5;
+            --background: #1a201e;
+
+            --card-background: rgba(26, 32, 30, 0.8);
+            --footer-background: #0a0e0c;
+            --footer-text: #e0e3e1;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--on-surface);
+        }
+
+        footer {
+            background: var(--footer-background);
+            color: var(--footer-text);
+            padding: 64px 0 32px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-left {
+                gap: 8px;
+            }
+
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                padding: 6px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .footer-content {
+                padding: 0 20px;
+            }
+
+            footer {
+                padding: 48px 0 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+            }
+        }
+
+        /* Guide navigation links */
+        .back-link,
+        .back-desktop a {
+            text-decoration: none;
+            color: var(--on-surface);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover,
+        .back-desktop a:hover {
+            color: var(--primary);
+        }
+
+        .back-link::after,
+        .back-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .back-link:hover::after,
+        .back-desktop a:hover::after {
+            width: 100%;
+        }
+
+        .back-mobile { display: none; }
+        .back-desktop { display: list-item; }
+
+        @media (max-width: 768px) {
+            .back-mobile { display: inline-block; margin-right: 12px; }
+            .back-desktop { display: none; }
+        }
+
+        /* Guide hero */
+        .maldives-page {
+            padding-top: 112px;
+            background: var(--surface);
+        }
+
+        .maldives-wrap {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .maldives-hero {
+            min-height: 480px;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: clamp(28px, 5vw, 72px);
+            padding: 56px 0 68px;
+        }
+
+        .maldives-kicker {
+            color: var(--primary);
+            font-size: .8rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .maldives-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.4rem);
+            line-height: 1.02;
+            letter-spacing: -.05em;
+            max-width: 650px;
+            margin-bottom: 22px;
+            color: var(--on-surface);
+            font-weight: 800;
+        }
+
+        .maldives-hero h1 span {
+            color: var(--primary);
+        }
+
+        .maldives-lede {
+            font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+            line-height: 1.7;
+            color: var(--on-surface-variant);
+            max-width: 600px;
+        }
+
+        .maldives-hero-media {
+            min-width: 0;
+        }
+
+        .maldives-hero-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Sticky section navigation */
+        .maldives-jumpbar {
+            position: sticky;
+            top: 78px;
+            z-index: 30;
+            background: color-mix(in srgb, var(--surface-container) 82%, rgba(255,255,255,0.45));
+            backdrop-filter: blur(18px);
+        }
+
+        .maldives-jumpbar nav a {
+            padding: 9px 13px;
+            border-radius: 999px;
+            transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+        }
+
+        .maldives-jumpbar nav a.active,
+        .maldives-jumpbar nav a[aria-current="true"] {
+            background: color-mix(in srgb, var(--primary) 14%, var(--surface-container));
+            color: var(--on-surface);
+            transform: translateY(-1px);
+        }
+
+        .maldives-jumpbar nav a:focus {
+            outline: 2px solid color-mix(in srgb, var(--primary) 24%, transparent);
+            outline-offset: 2px;
+        }
+
+        .maldives-jumpbar nav {
+            max-width: 1160px;
+            margin: auto;
+            padding: 12px 24px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            justify-content: flex-start;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .maldives-jumpbar a {
+            flex: 0 0 auto;
+            text-decoration: none;
+            color: var(--on-surface-variant);
+            font-size: 16px;
+            font-weight: 650;
+            padding: 9px 13px;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .maldives-jumpbar a:hover,
+        .maldives-jumpbar a:focus-visible {
+            background: var(--surface-variant);
+            color: var(--on-surface);
+            outline: none;
+        }
+
+        /* Editorial sections, cards, and tables */
+        .maldives-section {
+            padding: 84px 0;
+            scroll-margin-top: 145px;
+            background: transparent;
+        }
+
+        .maldives-section + .maldives-section {
+            border-top: 0.5px solid color-mix(in srgb, var(--outline) 35%, transparent);
+        }
+
+        .maldives-section-head {
+            max-width: 760px;
+            margin-bottom: 36px;
+        }
+
+        .maldives-section h2 {
+            font-size: clamp(2rem, 3.2vw, 3.1rem);
+            letter-spacing: -.04em;
+            line-height: 1.08;
+            margin-bottom: 16px;
+            font-weight: 700;
+            color: var(--on-surface);
+        }
+
+        .maldives-section-head p {
+            color: var(--on-surface-variant);
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .maldives-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .maldives-card {
+            background: var(--card-background);
+            border: 0.5px solid color-mix(in srgb, var(--outline) 42%, transparent);
+            border-radius: 20px;
+            padding: 25px;
+            min-width: 0;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+        }
+
+        .maldives-card .maldives-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--surface-variant);
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .maldives-icon .icon-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .maldives-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            color: var(--on-surface);
+        }
+
+        .maldives-card p,
+        .maldives-card li {
+            color: var(--on-surface-variant);
+            line-height: 1.75;
+            font-size: .96rem;
+        }
+
+        .maldives-card ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .maldives-card li + li {
+            margin-top: 6px;
+        }
+
+        .maldives-callout {
+            padding: 25px 28px;
+            border-radius: 20px;
+            border: 0.5px solid color-mix(in srgb, var(--primary) 50%, transparent);
+            background: color-mix(in srgb, var(--primary-container) 22%, var(--surface));
+            margin-top: 24px;
+        }
+
+        .maldives-callout strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.08rem;
+            color: var(--on-surface);
+        }
+
+        .maldives-callout p {
+            color: var(--on-surface-variant);
+            line-height: 1.75;
+        }
+
+        .maldives-season-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .maldives-season-table th,
+        .maldives-season-table td {
+            padding: 16px 18px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 0.5px solid color-mix(in srgb, var(--outline) 35%, transparent);
+            line-height: 1.65;
+        }
+
+        .maldives-season-table th {
+            background: var(--surface-variant);
+            font-size: .9rem;
+            color: var(--on-surface);
+        }
+
+        .maldives-season-table td {
+            color: var(--on-surface-variant);
+            background: var(--card-background);
+        }
+
+        .maldives-season-table td:first-child {
+            color: var(--on-surface);
+            font-weight: 750;
+            white-space: nowrap;
+        }
+
+        .maldives-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .maldives-split > * {
+            min-width: 0;
+        }
+
+        .maldives-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            color: var(--primary);
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .maldives-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Checklist, source links, and planning call to action */
+        .maldives-checklist {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .maldives-checklist li {
+            padding: 15px 16px;
+            border-radius: 14px;
+            background: var(--card-background);
+            border: 0.5px solid color-mix(in srgb, var(--outline) 35%, transparent);
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+        }
+        .maldives-source-list { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+        .maldives-source-list a { display:inline-flex; border:0.5px solid var(--outline); border-radius:999px; padding:9px 13px; color:var(--on-surface-variant); text-decoration:none; font-size:.88rem; }
+        .maldives-source-list a:hover { color:var(--primary); border-color:var(--primary); }
+        .maldives-bottom-cta { padding:34px; display:flex; align-items:center; justify-content:space-between; gap:24px; border-radius:24px; background:var(--surface-container); }
+        .maldives-bottom-cta h2 { font-size:clamp(1.7rem,3vw,2.5rem); margin-bottom:10px; }
+        .maldives-bottom-cta p { color:var(--on-surface-variant); line-height:1.7; max-width:650px; }
+        .maldives-bottom-cta .maldives-cta { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; border-radius:999px; background:var(--primary); color:var(--on-primary); text-decoration:none; font-weight:800; padding:16px 22px; }
+        .maldives-fineprint { font-size:.85rem; color:var(--on-surface-variant); line-height:1.7; margin-top:18px; }
+        /* Responsive guide layout */
+        @media (max-width: 850px) {
+            .maldives-hero { grid-template-columns:1fr; padding-top:40px; min-height:unset; }
+            .maldives-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+            .maldives-jumpbar { top:70px; }
+            .maldives-bottom-cta { align-items:flex-start; flex-direction:column; }
+        }
+        @media (max-width: 600px) {
+            .maldives-page { padding-top:88px; }
+            .maldives-wrap { width:min(100% - 32px, 1160px); }
+            .maldives-hero { gap:26px; padding:34px 0 42px; }
+            .maldives-section { padding:58px 0; scroll-margin-top:125px; }
+            .maldives-grid, .maldives-split { grid-template-columns:1fr; }
+            .maldives-card { padding:21px; }
+            .maldives-jumpbar nav {
+                padding:9px 16px;
+                -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - 28px), rgba(0,0,0,0) 100%);
+                mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - 28px), rgba(0,0,0,0) 100%);
+            }
+            .maldives-season-table { display:block; overflow-x:auto; white-space:normal;
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - 28px), rgba(0,0,0,0) 100%);
+                mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - 50px), rgba(0,0,0,0) 100%);
+             }
+            .maldives-season-table th, .maldives-season-table td { min-width:155px; padding:13px; }
+            .maldives-checklist { grid-template-columns:1fr; }
+            .maldives-bottom-cta { padding:25px; }
+        }
+        /* Respect reduced-motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            .maldives-page *, .maldives-page *::before, .maldives-page *::after { scroll-behavior:auto !important; transition:none !important; animation:none !important; }
+        }
+
+/* Guide-specific safety and CTA spacing */
+.maldives-safety-note {
+    margin-top: 12px;
+}
+
+.maldives-bottom-cta {
+    margin-top: 34px;
+}

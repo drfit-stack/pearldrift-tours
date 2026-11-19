@@ -4,6 +4,7 @@
     "title": "Aveyla Manta Village",
     "description": "Eco resort on Dharavandhoo Island in the UNESCO-protected Baa Atoll, with solar-powered rooms and direct access to world-class manta diving.",
     "price": "From $1,080",
+    "priceNote": "Confirm per-person, per-night, or package pricing.",
     "bestTimeToVisit": "April–October",
     "badges": [
       "Eco resort",
@@ -16,10 +17,10 @@
       "images/local/dhar/aveyla3.webp",
       "images/local/dhar/aveyla4.webp"
     ],
-    "buttonText": "View stay →",
+    "buttonText": "More details →",
     "details": {
       "title": "Aveyla Manta Village",
-      "overview": "An eco-conscious resort inside the UNESCO-protected Baa Atoll, built for guests who want manta diving, marine conservation, and a quieter island stay.",
+      "overview": "A low-impact stay for manta divers and marine-wildlife visitors.",
       "island": "Dharavandhoo",
       "atoll": "Baa",
       "accommodation": "16 solar-powered beach rooms. Family-friendly rooms are available.",
@@ -29,7 +30,7 @@
         "Sustainability-focused island experiences"
       ],
       "transfers": "Round-trip speedboat transfer is listed as included. Confirm the domestic-flight connection and timing.",
-      "priceBasis": "From $1,080 as shown on the stay card. Confirm dates, room type, and whether the rate is per person, per night, or for a package.",
+      "priceBasis": "Confirm dates, room type, and whether the rate is per person, per night, or for a package.",
       "importantNotes": [
         "Best suited to diving and marine-wildlife trips",
         "Suggested stay: 4 or more nights",
@@ -66,6 +67,7 @@
     "title": "Manta Beach Retreat",
     "description": "Manta Beach Retreat is your gateway to experiencing the soul of Addu—where history, culture, and natural beauty come together in the southern Maldives.",
     "price": "From $1,899",
+    "priceNote": "Confirm per-person, per-night, or package pricing.",
     "bestTimeToVisit": "April–October",
     "badges": [
       "Addu culture",
@@ -77,11 +79,11 @@
       "images/local/addu/mbr2.webp",
       "images/local/addu/mbr3.webp"
     ],
-    "buttonText": "View stay →",
+    "buttonText": "More details →",
     "details": {
       "title": "Manta Beach Retreat",
-      "overview": "A welcoming retreat in Addu with local hospitality, optional dive add-ons, and guided island exploration.",
-      "island": "Addu City; confirm the specific island with the property.",
+      "overview": "A welcoming, locally hosted retreat in Addu.",
+      "island": "Addu City",
       "atoll": "Seenu",
       "accommodation": "Guesthouse-style retreat. Confirm room types and configuration.",
       "activities": [
@@ -92,8 +94,9 @@
         "Surf and snorkel options"
       ],
       "transfers": "Airport transfer is available on request. Gan Airport is the stated arrival point.",
-      "priceBasis": "From $1,899 as shown on the stay card. Confirm dates, room type, and rate basis.",
+      "priceBasis": "Confirm dates, room type, and rate basis.",
       "importantNotes": [
+        "Confirm the specific island with the property",
         "Flexible stay length",
         "Family-friendly options are available",
         "Confirm which activities and transfers are included in your quote"
@@ -129,6 +132,7 @@
     "title": "Empyrean Stay",
     "description": "A family-managed 6-room guesthouse offering cozy stays just steps from the beach. Perfect for travelers seeking comfort, privacy, and authentic island life well known for surfing.",
     "price": "From $600",
+    "priceNote": "Confirm per-person, per-night, or package pricing.",
     "bestTimeToVisit": "April–October",
     "badges": [
       "Beachfront guesthouse",
@@ -142,10 +146,10 @@
       "images/local/emp/emp4.webp",
       "images/local/emp/emp5.webp"
     ],
-    "buttonText": "View stay →",
+    "buttonText": "More details →",
     "details": {
       "title": "Empyrean Stay",
-      "overview": "A small, family-run guesthouse offering beachside comfort, quiet days, and local surf culture just steps from the sand.",
+      "overview": "A six-room guesthouse steps from the beach, with a relaxed surf-friendly atmosphere.",
       "island": "Thulusdhoo",
       "atoll": "Kaafu.",
       "accommodation": "Family-run, 6-room guesthouse. Confirm available room types.",
@@ -156,7 +160,7 @@
         "Nearby beach and local cafes"
       ],
       "transfers": "Airport transfers are available; confirm arrangements and cost.",
-      "priceBasis": "From $600 as shown on the stay card. Confirm dates, room type, and rate basis.",
+      "priceBasis": "Confirm dates, room type, and rate basis.",
       "importantNotes": [
         "Beachside location",
         "Surf-friendly setting",
@@ -193,6 +197,7 @@
     "title": "Dhiguveli Maldives",
     "description": "Dhiguveli Maldives is truly the place for you if you are looking to unwind and make memories of a lifetime. Our hotel is only a minute’s walk away from the long stretches of white sandy beaches, dedicated to provide you the ultimate local experience. Our cosy modern rooms would make you feel right at home.",
     "price": "From $1,899",
+    "priceNote": "Confirm per-person, per-night, or package pricing.",
     "bestTimeToVisit": "April–October",
     "badges": [
       "Beach access",
@@ -205,10 +210,10 @@
       "images/local/dhimv/dhigumv3.webp",
       "images/local/dhimv/dhigumv4.webp"
     ],
-    "buttonText": "View stay →",
+    "buttonText": "More details →",
     "details": {
       "title": "Dhiguveli Maldives",
-      "overview": "A modern island hideaway close to long white beaches and local life, designed for guests who want comfort without losing authentic island character.",
+      "overview": "A modern island stay a short walk from Dhigurah's beaches.",
       "island": "Dhigurah",
       "atoll": "South Ari Atoll",
       "accommodation": "Modern hotel rooms. Confirm room types and availability.",
@@ -219,7 +224,7 @@
         "Local beach activities"
       ],
       "transfers": "Airport transfer service is listed. Confirm route, schedule, and whether it is included.",
-      "priceBasis": "From $1,899 as shown on the stay card. Confirm dates, room type, and rate basis.",
+      "priceBasis": "Confirm dates, room type, and rate basis.",
       "importantNotes": [
         "Close to local beaches and dining",
         "Couples and family stays are available",
@@ -256,6 +261,7 @@
     "title": "Dhiguveli Breeze",
     "description": "Dhiguveli Breeze offers 3-star accommodations in Dhigurah and has a garden, a shared lounge and a restaurant. The property has a 24-hour front desk, airport transportation, room service and free WiFi. The hotel will provide guests with air-conditioned rooms with a desk, an electric tea pot, a safety deposit box, a flat-screen TV, a terrace and a private bathroom with a bidet. Dhiguveli Breeze provides some rooms with city views, and all rooms include a balcony. All rooms feature a closet. A buffet, à la carte or continental breakfast is available at the property.",
     "price": "From $1,899",
+    "priceNote": "Confirm per-person, per-night, or package pricing.",
     "bestTimeToVisit": "April–October",
     "badges": [
       "24-hour front desk",
@@ -268,10 +274,10 @@
       "images/local/dhibree/dhibree3.webp",
       "images/local/dhibree/dhibree4.webp"
     ],
-    "buttonText": "View stay →",
+    "buttonText": "More details →",
     "details": {
       "title": "Dhiguveli Breeze",
-      "overview": "A reliable island stay with practical amenities, free WiFi, and simple comfort for travellers who want a good value local base.",
+      "overview": "A practical, comfortable base for a stay in Dhigurah.",
       "island": "Dhigurah",
       "atoll": "South Ari Atoll",
       "accommodation": "Air-conditioned rooms with desk, kettle, safe, flat-screen TV, terrace, and private bathroom. Balconies are listed; room views vary.",
@@ -281,7 +287,7 @@
         "Laundry service and breakfast upgrades may be available"
       ],
       "transfers": "Airport transfer is available on request. Confirm arrangements and cost.",
-      "priceBasis": "From $1,899 as shown on the stay card. Confirm dates, room type, and rate basis.",
+      "priceBasis": "Confirm dates, room type, and rate basis.",
       "importantNotes": [
         "24-hour front desk, garden, and shared lounge",
         "Breakfast options include buffet, à la carte, or continental",
@@ -318,6 +324,7 @@
     "title": "Ataraxis Grand and Spa",
     "description": "Dhiguveli Breeze offers 3-star accommodations in Dhigurah and has a garden, a shared lounge and a restaurant. The property has a 24-hour front desk, airport transportation, room service and free WiFi. The hotel will provide guests with air-conditioned rooms with a desk, an electric tea pot, a safety deposit box, a flat-screen TV, a terrace and a private bathroom with a bidet. Dhiguveli Breeze provides some rooms with city views, and all rooms include a balcony. All rooms feature a closet. A buffet, à la carte or continental breakfast is available at the property.",
     "price": "From $1,000",
+    "priceNote": "Confirm per-person, per-night, or package pricing.",
     "bestTimeToVisit": "April–October",
     "badges": [
       "24-hour front desk",
@@ -332,10 +339,10 @@
       "images/local/fvm/ath5.webp",
       "images/local/fvm/ath6.webp"
     ],
-    "buttonText": "View stay →",
+    "buttonText": "More details →",
     "details": {
       "title": "Ataraxis Grand and Spa",
-      "overview": "A reliable island stay with practical amenities, free WiFi, and simple comfort for travellers who want a good value local base.",
+      "overview": "A practical local base in Fuvahmulah with comfortable rooms.",
       "island": "Fuvahmulah ",
       "atoll": "Gnaviyani",
       "accommodation": "Air-conditioned rooms with desk, kettle, safe, flat-screen TV, terrace, and private bathroom. Balconies are listed; room views vary.",
@@ -345,7 +352,7 @@
         "Laundry service and breakfast upgrades may be available"
       ],
       "transfers": "Airport transfer is available on request. Confirm arrangements and cost.",
-      "priceBasis": "From $1,899 as shown on the stay card. Confirm dates, room type, and rate basis.",
+      "priceBasis": "Confirm dates, room type, and rate basis.",
       "importantNotes": [
         "24-hour front desk, garden, and shared lounge",
         "Breakfast options include buffet, à la carte, or continental",
